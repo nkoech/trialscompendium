@@ -1,0 +1,235 @@
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto%20Mono';
+@import '../../app/home/home.css';
+
+/* Base styles */
+*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0 }
+
+fieldset, img {
+  border:0
+}
+
+a img {
+  border:none
+} /* Gets rid of IE's blue borders */
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+  background: #fafafa;
+  color: #34495e;
+  font-size: 15px;
+  font-family: "Source Sans Pro", 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizelegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+ol, ul, li {
+  list-style: none;
+  display: inline-block;
+}
+
+a {
+  color: #34495e;
+  text-decoration: none;
+  transition: all 500ms ease-in-out;
+}
+a:hover, a:active{
+  color: #34495e;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  color:#2c3e50;
+  font-weight: 600;
+}
+
+p {
+  line-height: 21px;
+}
+
+.btn {
+  text-align: center;
+  border: none;
+}
+
+.btn:focus,.btn:active, .btn:enabled {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.form-control {
+  line-height: 1.3333333;
+}
+
+.form-control:hover {
+  background-color: #fff;
+}
+
+.form-control:enabled {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #97be32;
+  background-color: #fff !important;
+}
+
+/* Navbar navigation */
+
+.app-navbar {
+  opacity: 1;
+  border-bottom: 0;
+  margin-bottom: 0;
+  background: #fff !important;
+  border-top: 5px solid #97be32;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.app-navbar:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.app-navbar .navbar-brand {
+  display: block;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-right: 20px;
+}
+
+.app-navbar .navbar-brand img {
+  height: 100%;
+}
+
+.app-navbar .nav {
+  background: #fff;
+  text-align: center;
+}
+
+.app-navbar .nav {
+  display: block;
+}
+
+.app-navbar .nav a {
+  color: #34495e;
+  border-bottom: 5px solid #fff !important;
+}
+
+.app-navbar .navbar-brand, .app-navbar .nav a {
+  line-height: 68px;
+  height: 68px;
+  padding-top: 0;
+}
+
+.app-navbar .nav-link a:hover, .app-navbar .nav-link a.active {
+  background: #fbfbfb;
+  border-bottom: 5px solid #97be32 !important;
+}
+
+.app-navbar .registration-link {
+  font-weight: 600;
+}
+
+.app-navbar .nav #login a {
+  color: #bbb;
+}
+
+.app-navbar .nav #sign-up a {
+  color: #2c3e50;
+}
+
+.app-navbar .registration-link a:hover, .app-navbar .registration-link a.active {
+  color: #2c3e50 !important;
+  background: #fbfbfb;
+  border-bottom: 5px solid #f9d136 !important;
+}
+
+/*Mobile menu*/
+
+.app-navbar .navbar-toggle {
+  margin-top: 22px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 0;
+  margin-right: 33px;
+  background: url(../img/menu_btn.png) center center no-repeat;
+  background-size: 24px;
+}
+
+.app-navbar .navbar-toggle:focus, .app-navbar .navbar-toggle:hover {
+  background-color: transparent !important;
+}
+
+.app-navbar .navbar-collapse {
+  border: none;
+}
+
+.main-container {
+  margin-top: 68px;
+}
+
+.footer {
+  padding: 48px 0 48px;
+  background-color: #eceee8;
+}
+
+.footer p a:hover {
+  color: #99CC00;
+}
+
+.footer h4 {
+  padding-bottom: 9px;
+  opacity: 0.5;
+  color: #1f3349;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.footer p {
+  padding-top: 4px;
+}
+
+.footer p i {
+  color: #97be32;
+}
+
+.footer-contact .address {
+  padding-left: 16px;
+}
+
+@media (max-width: 992px) {
+  .app-navbar .nav a {
+    line-height: 32px;
+    height: 32px;
+    padding-top: 0;
+    border-bottom: 0 !important;
+  }
+
+  .app-navbar .nav a:hover, .app-navbar .nav a.active {
+    color: #97be32 !important;
+    background: #fff;
+    border-bottom: 0 !important;
+  }
+
+  .footer h4 {
+    padding-top: 20px;
+  }
+}

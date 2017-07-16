@@ -7,15 +7,11 @@ from trialscompendium.utils.abstractmodels import (
 )
 from trialscompendium.utils.createslug import create_slug
 from trialscompendium.utils.modelmanagers import (
-    model_instance_filter,
     model_foreign_key_qs,
     model_type_filter,
-    create_model_type,
     get_year_choices,
     get_datetime_now,
 )
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver

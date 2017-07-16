@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-    url(r'^api/trials', include('trialscompendium.trials.api.urls', namespace='trials_api'))
+    # url(r'^api/trials/', include('trialscompendium.trials.api.urls', namespace='trials_api'))
 ]
 
 if settings.DEBUG:

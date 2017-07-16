@@ -49,7 +49,7 @@ class Treatment(AuthUserDetail, CreateUpdateTime):
     )
 
     no_replicate = models.PositiveSmallIntegerField(verbose_name='Number of replication')
-    nitrogen_treatment = models.DecimalField(max_length=4, choices=NITROGEN_TREATMENT, default=NITROGEN_TREATMENT[0][0])
+    nitrogen_treatment = models.CharField(max_length=4, choices=NITROGEN_TREATMENT, default=NITROGEN_TREATMENT[0][0])
     phosphate_treatment = models.CharField(max_length=4, choices=PHOSPHATE_TREATMENT, default=PHOSPHATE_TREATMENT[0][0])
     tillage_practice = models.CharField(max_length=30, choices=TILLAGE_PRACTICES, default=TILLAGE_PRACTICES[0][0])
     cropping_system = models.CharField(max_length=30, choices=CROPPING_SYSTEMS, default=CROPPING_SYSTEMS[0][0])
@@ -58,7 +58,7 @@ class Treatment(AuthUserDetail, CreateUpdateTime):
     farm_residue = models.BooleanField(default=True)
 
     def __unicode__(self):
-        str_format = 'TP: {0}, CS: {1}, {2}, {3}{4}, Rep: {5}, FYM: {6}, Residue: {7}'.format(
+        str_format = 'TP: {0}, CS: {1}, Crops: {2}, Nitrogen-Phosphate: {3}{4}, Rep: {5}, FYM: {6}, Residue: {7}'.format(
             self.tillage_practice, self.cropping_system, self.crops_grown, self.nitrogen_treatment,
             self.phosphate_treatment, self.no_replicate, self.farm_yard_manure, self.farm_residue
         )
@@ -117,10 +117,10 @@ class Plot(AuthUserDetail, CreateUpdateTime):
     Plot model. Creates plot entity.
     """
     slug = models.SlugField(max_length=120, unique=True, blank=True)
-    treatment = models.ForeignKey(Treatment, on_delete=models.PROTECT)
     trial_id = models.CharField(max_length=20, blank=True, null=True)
     plot_id = models.CharField(max_length=20, unique=True)
     sub_plot_id = models.CharField(max_length=15, blank=True, null=True)
+    treatment = models.ForeignKey(Treatment, on_delete=models.PROTECT)
     objects = PlotManager()
 
     def __unicode__(self):

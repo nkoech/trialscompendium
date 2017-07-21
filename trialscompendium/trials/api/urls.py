@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from .views import (
-    # plot_views,
+    plot_views,
     trial_yield_views,
     # treatment_views,
 )
@@ -44,21 +44,21 @@ urlpatterns = [
 ]
 
 
-# # Plot URLs
-# urlpatterns += [
-#     url(
-#         r'^$',
-#         plot_views['PlotListAPIView'].as_view(),
-#         name='plot_list'
-#     ),
-#     url(
-#         r'^create/$',
-#         plot_views['PlotCreateAPIView'].as_view(),
-#         name='plot_create'
-#     ),
-#     url(
-#         r'^(?P<slug>[\w-]+)/$',
-#         plot_views['PlotDetailAPIView'].as_view(),
-#         name='plot_detail'
-#     ),
-# ]
+# Plot URLs
+urlpatterns += [
+    url(
+        r'^$',
+        plot_views['PlotListAPIView'].as_view(),
+        name='plot_list'
+    ),
+    url(
+        r'^create/$',
+        plot_views['PlotCreateAPIView'].as_view(),
+        name='plot_create'
+    ),
+    url(
+        r'^(?P<slug>[\w-]+)/$',
+        plot_views['PlotDetailAPIView'].as_view(),
+        name='plot_detail'
+    ),
+]

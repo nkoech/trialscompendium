@@ -2,30 +2,30 @@ from django.conf.urls import url
 from .views import (
     plot_views,
     trial_yield_views,
-    # treatment_views,
+    treatment_views,
 )
 
-# # Treatment URLs
-# urlpatterns = [
-#     url(
-#         r'^treatment/$',
-#         treatment_views['TreatmentListAPIView'].as_view(),
-#         name='treatment_list'
-#     ),
-#     url(
-#         r'^treatment/create/$',
-#         treatment_views['TreatmentCreateAPIView'].as_view(),
-#         name='treatment_create'
-#     ),
-#     url(
-#         r'^treatment/(?P<pk>[\w-]+)/$',
-#         treatment_views['TreatmentDetailAPIView'].as_view(),
-#         name='treatment_detail'
-#     ),
-# ]
+# Treatment URLs
+urlpatterns = [
+    url(
+        r'^treatment/$',
+        treatment_views['TreatmentListAPIView'].as_view(),
+        name='treatment_list'
+    ),
+    url(
+        r'^treatment/create/$',
+        treatment_views['TreatmentCreateAPIView'].as_view(),
+        name='treatment_create'
+    ),
+    url(
+        r'^treatment/(?P<pk>[\w-]+)/$',
+        treatment_views['TreatmentDetailAPIView'].as_view(),
+        name='treatment_detail'
+    ),
+]
 
 # Trial Yield URLs
-urlpatterns = [
+urlpatterns += [
     url(
         r'^yield/$',
         trial_yield_views['TrialYieldListAPIView'].as_view(),

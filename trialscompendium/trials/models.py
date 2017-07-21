@@ -196,7 +196,7 @@ class TrialYield(AuthUserDetail, CreateUpdateTime):
     plot = models.ForeignKey(Plot, on_delete=models.PROTECT)
     observation = models.CharField(max_length=45)
     year = models.SmallIntegerField(choices=get_year_choices(), default=get_datetime_now())
-    season = models.CharField(max_length=11, choices=SEASONS, unique=True)
+    season = models.CharField(max_length=11, choices=SEASONS)
     trial_yield = models.DecimalField(max_digits=6, decimal_places=2)
     objects = TrialYieldManager()
 

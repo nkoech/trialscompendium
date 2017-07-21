@@ -27,17 +27,17 @@ from .views import (
 # Trial Yield URLs
 urlpatterns = [
     url(
-        r'^trialyield/$',
+        r'^yield/$',
         trial_yield_views['TrialYieldListAPIView'].as_view(),
         name='trial_yield_list'
     ),
     url(
-        r'^trialyield/create/$',
+        r'^yield/create/$',
         trial_yield_views['TrialYieldCreateAPIView'].as_view(),
         name='trial_yield_create'
     ),
     url(
-        r'^trialyield/(?P<pk>[\w-]+)/$',
+        r'^yield/(?P<pk>[\w-]+)/$',
         trial_yield_views['TrialYieldDetailAPIView'].as_view(),
         name='trial_yield_detail'
     ),

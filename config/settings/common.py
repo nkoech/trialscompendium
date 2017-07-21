@@ -50,6 +50,7 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     'trialscompendium.trials',
+    'trialscompendium.search',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -162,7 +163,7 @@ WEBPACK_LOADER = {
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
-    'http://localhost:8000'
+    'localhost:8000'
 )
 
 

@@ -4,9 +4,14 @@ from django.db.models import Q
 import re
 
 
-def get_project_models():
+def get_project_models(proj):
+    """
+    :param proj: Project name
+    :return: model class
+    :rtype: Class object
+    """
 
-    third_party_apps = ([app.rsplit('.')[-1] for app in settings.INSTALLED_APPS if "csacompendium" not in app])
+    third_party_apps = ([app.rsplit('.')[-1] for app in settings.INSTALLED_APPS if proj not in app])
     for ct in ContentType.objects.all():
         if ct.app_label not in third_party_apps:
             yield ct.model_class()

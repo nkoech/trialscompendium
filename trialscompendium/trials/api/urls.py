@@ -1,64 +1,64 @@
 from django.conf.urls import url
 from .views import (
+    # plot_views,
     trial_yield_views,
-    # indicator_views,
-    # subpillar_views,
+    # treatment_views,
 )
 
-# # Subpillar URLs
+# # Treatment URLs
 # urlpatterns = [
 #     url(
-#         r'^subpillar/$',
-#         subpillar_views['SubpillarListAPIView'].as_view(),
-#         name='subpillar_list'
+#         r'^treatment/$',
+#         treatment_views['TreatmentListAPIView'].as_view(),
+#         name='treatment_list'
 #     ),
 #     url(
-#         r'^subpillar/create/$',
-#         subpillar_views['SubpillarCreateAPIView'].as_view(),
-#         name='subpillar_create'
+#         r'^treatment/create/$',
+#         treatment_views['TreatmentCreateAPIView'].as_view(),
+#         name='treatment_create'
 #     ),
 #     url(
-#         r'^subpillar/(?P<slug>[\w-]+)/$',
-#         subpillar_views['SubpillarDetailAPIView'].as_view(),
-#         name='subpillar_detail'
-#     ),
-# ]
-#
-# # Indicator URLs
-# urlpatterns += [
-#     url(
-#         r'^indicator/$',
-#         indicator_views['IndicatorListAPIView'].as_view(),
-#         name='indicator_list'
-#     ),
-#     url(
-#         r'^indicator/create/$',
-#         indicator_views['IndicatorCreateAPIView'].as_view(),
-#         name='indicator_create'
-#     ),
-#     url(
-#         r'^indicator/(?P<slug>[\w-]+)/$',
-#         indicator_views['IndicatorDetailAPIView'].as_view(),
-#         name='indicator_detail'
+#         r'^treatment/(?P<pk>[\w-]+)/$',
+#         treatment_views['TreatmentDetailAPIView'].as_view(),
+#         name='treatment_detail'
 #     ),
 # ]
 
-
-# Trial yield URLs
+# Trial Yield URLs
 urlpatterns = [
     url(
-        r'^$',
+        r'^trialyield/$',
         trial_yield_views['TrialYieldListAPIView'].as_view(),
         name='trial_yield_list'
     ),
     url(
-        r'^create/$',
+        r'^trialyield/create/$',
         trial_yield_views['TrialYieldCreateAPIView'].as_view(),
         name='trial_yield_create'
     ),
     url(
-        r'^(?P<pk>[\w-]+)/$',
+        r'^trialyield/(?P<pk>[\w-]+)/$',
         trial_yield_views['TrialYieldDetailAPIView'].as_view(),
         name='trial_yield_detail'
     ),
 ]
+
+
+# # Plot URLs
+# urlpatterns += [
+#     url(
+#         r'^$',
+#         plot_views['PlotListAPIView'].as_view(),
+#         name='plot_list'
+#     ),
+#     url(
+#         r'^create/$',
+#         plot_views['PlotCreateAPIView'].as_view(),
+#         name='plot_create'
+#     ),
+#     url(
+#         r'^(?P<slug>[\w-]+)/$',
+#         plot_views['PlotDetailAPIView'].as_view(),
+#         name='plot_detail'
+#     ),
+# ]

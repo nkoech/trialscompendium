@@ -22,7 +22,7 @@ function HomeController(researchService, $timeout) {
 
         });
     };
-    // vm.query("csapractice", {"sub_practice_level__iexact":"Silvopasture"});
+    // vm.query("trials", {"plot_id__iexact": 103});
     
     vm.setSearchObj = function(obj) {
         if (typeof obj !== 'undefined') {

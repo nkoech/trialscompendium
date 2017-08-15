@@ -6,7 +6,7 @@ require('./home/home.module');
 require('./about/about.module');
 require('./login/login.module');
 require('./sign-up/sign-up.module');
-require('./research/research.module');
+require('./trial/trial.module');
 
 
 angular.module('app', [
@@ -16,5 +16,5 @@ angular.module('app', [
     'app.about',
     'app.login',
     'app.sign-up',
-    'app.research'
+    'app.trial'
 ]);

@@ -1,11 +1,11 @@
 angular
     .module('app.core')
     .constant('BASE_URL', 'http://127.0.0.1:8000/api')
-    .factory('researchService', researchService);
+    .factory('trialService', trialService);
 
-researchService.$inject = ['$resource', 'BASE_URL', '$log'];
+trialService.$inject = ['$resource', 'BASE_URL', '$log'];
 
-function researchService($resource, BASE_URL, $log) {
+function trialService($resource, BASE_URL, $log) {
     return {
         'search': search,
         'get': get
@@ -60,9 +60,9 @@ function researchService($resource, BASE_URL, $log) {
     }
 }
 
-// researchService.$inject = ['$http', 'BASE_URL', '$log'];
+// trialService.$inject = ['$http', 'BASE_URL', '$log'];
 //
-// function researchService($http, BASE_URL, $log) {
+// function trialService($http, BASE_URL, $log) {
 //     return {
 //         'getListData': getListData,
 //         'getDetailData': getDetailData,

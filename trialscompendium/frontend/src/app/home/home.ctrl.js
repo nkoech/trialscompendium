@@ -2,9 +2,9 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-HomeController.$inject = ['researchService', '$timeout'];
+HomeController.$inject = ['trialService', '$timeout'];
 
-function HomeController(researchService, $timeout) {
+function HomeController(trialService, $timeout) {
     var vm = this;
     vm.results = false;
     vm.searching = false;
@@ -13,7 +13,7 @@ function HomeController(researchService, $timeout) {
 
     vm.query = function(apiNode, query){
         vm.searching = true;
-        researchService.search(apiNode, query).then(function (response) {
+        trialService.search(apiNode, query).then(function (response) {
             vm.results = response;
             $timeout(function(){
                 vm.searching = false;

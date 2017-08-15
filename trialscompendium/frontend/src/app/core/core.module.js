@@ -12,4 +12,4 @@ angular.module('app.core', [
     'ui.bootstrap'
 ]);
 
-require('./research.fct');
+require('./trial.fct');

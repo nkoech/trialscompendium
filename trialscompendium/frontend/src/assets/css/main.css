@@ -25,7 +25,7 @@ body, html {
 }
 
 body {
-  background: #fafafa;
+  /*background: #fafafa;*/
   color: #34495e;
   font-size: 15px;
   font-family: "Source Sans Pro", 'Helvetica Neue', Arial, sans-serif;
@@ -87,6 +87,11 @@ p {
   background-color: #fff !important;
 }
 
+.input-lg i {
+  color: #a3a3a3;
+  max-width: 100%;
+}
+
 /* Navbar navigation */
 
 .app-navbar {
@@ -95,7 +100,8 @@ p {
   margin-bottom: 0;
   background: #fff !important;
   border-top: 5px solid #97be32;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  border-bottom: 1px solid #eceee8
+  /*box-shadow: 0 0 20px rgba(0,0,0,0.3);*/
 }
 
 .app-navbar:after {
@@ -210,6 +216,18 @@ p {
 
 .footer-contact .address {
   padding-left: 16px;
+}
+
+.nav-tabs li a {
+  border-radius: 0;
+}
+
+.nav-tabs li a:hover {
+  background-color: #eceee8;
+}
+
+.nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover  {
+  border-top: 3px solid #97be32;
 }
 
 @media (max-width: 992px) {

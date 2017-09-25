@@ -161,10 +161,8 @@ WEBPACK_LOADER = {
     }
 }
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:8080',
-    'localhost:8000'
+CORS_ORIGIN_REGEX_WHITELIST = (
+    r'^/api/.*$'
 )
-
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None

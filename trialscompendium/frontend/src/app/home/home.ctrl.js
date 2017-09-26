@@ -18,12 +18,11 @@ function HomeController(trialService, $timeout) {
             $timeout(function(){
                 vm.searching = false;
             }, 500);
-            console.log(vm.results);
         }).catch(function (error) {
 
         });
     };
-    vm.query("trials", {"plot_id__iexact": 103});
+    // vm.query("trials", {plot_id__iexact: 103});
     
     vm.setSearchObj = function(obj) {
         if (typeof obj !== 'undefined') {

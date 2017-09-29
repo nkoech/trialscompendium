@@ -10,24 +10,28 @@
     border-radius: 0;
 }
 
-.keyword-search .form-control {
+.search .input-group {
+    padding-bottom: 20px;
+}
+
+.search .input-group .form-control {
     border-right: 0;
     box-shadow: none;
     background-color: #fff;
 }
 
-.keyword-search .btn {
+.search .input-group .btn {
     border: 1px solid #ccc;
     border-left: none;
     background-color: #fff;
 }
 
-.keyword-search .btn:hover {
+.search .input-group .btn:hover {
     background-color: #fff;
     border-color: #ccc;
 }
 
-.keyword-search .btn:focus {
+.search .input-group .btn:focus {
     border-color: #97be32;
 }
 

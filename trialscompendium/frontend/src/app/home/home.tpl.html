@@ -2,65 +2,98 @@
 
     <!-- main section -->
     <section class="main-content">
-
-        <!-- Search section -->
-        <section class="search">
-            <div class="container">
+        <div class="container">
+            <!-- Search section -->
+            <section class="search">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <div class="keyword-search">
+                        <form role="form" class="form-horizontal">
                             <div class="input-group">
-                                <input type="text" class="form-control input-lg" placeholder="Search keyword" name="search-keyword">
+                                <input type="text" name="search-keyword" class="form-control input-lg" placeholder="Search keyword">
                                 <div class="input-group-btn">
                                     <button class="btn btn-default input-component input-lg" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label for="trial">Trial</label>
+                                    <input type="text" name="search-trial" class="form-control input-lg" id="trial" placeholder="Trial">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="observation">Observation</label>
+                                    <input type="text" name="search-observation" class="form-control input-lg" id="observation" placeholder="Observation">
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                        <!--<form class="form-inline search-filters" ng-submit="vm.setSearchObj(val);">-->
+                            <!--<div class="filter-field">-->
+                                <!--<label class="sr-only" for="country">Name</label>-->
+                                <!--<input type="text" name="search_country" class="form-control input-lg" id="country" placeholder="Country Name" ng-model="val.country">-->
+                            <!--</div>-->
+                            <!--<div class="filter-field">-->
+                                <!--<label class="sr-only" for="scale">Name</label>-->
+                                <!--<input type="text" name="search_scale" class="form-control input-lg" id="scale" placeholder="Scale of Practice" ng-model="val.scale">-->
+                            <!--</div>-->
+                            <!--<div class="filter-field">-->
+                                <!--<label class="sr-only" for="practice">Name</label>-->
+                                <!--<input type="text" name="search_practice" class="form-control input-lg" id="practice" placeholder="CSA Practice" ng-model="val.practice">-->
+                            <!--</div>-->
+                            <!--<div class="filter-field">-->
+                                <!--<label class="sr-only" for="outcome">Name</label>-->
+                                <!--<input type="text" name="search_outcome" class="form-control input-lg" id="outcome" placeholder="Outcome/Indicator" ng-model="val.outcome">-->
+                            <!--</div>-->
+                            <!--<div class="bottom-btn">-->
+                                <!--<button type="submit" class="btn btn-primary input-lg">Search</button>-->
+                            <!--</div>-->
+                        <!--</form>-->
                     </div>
                 </div>
-            </div>
-        </section>
-
-    </section>
-
-    <!-- Map view section -->
-    <section class="map-view" id="map-view">
-        <div id="map">
-
-            <div class="search">
-                <div class="global-search">
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default input-component input-lg" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </div>
-                        <input type="text" class="form-control input-lg" placeholder="Search keyword" name="search-keyword">
-                    </div>
-                </div>
-                <form class="form-inline search-filters" ng-submit="vm.setSearchObj(val);">
-                    <div class="filter-field">
-                        <label class="sr-only" for="country">Name</label>
-                        <input type="text" name="search_country" class="form-control input-lg" id="country" placeholder="Country Name" ng-model="val.country">
-                    </div>
-                    <div class="filter-field">
-                        <label class="sr-only" for="scale">Name</label>
-                        <input type="text" name="search_scale" class="form-control input-lg" id="scale" placeholder="Scale of Practice" ng-model="val.scale">
-                    </div>
-                    <div class="filter-field">
-                        <label class="sr-only" for="practice">Name</label>
-                        <input type="text" name="search_practice" class="form-control input-lg" id="practice" placeholder="CSA Practice" ng-model="val.practice">
-                    </div>
-                    <div class="filter-field">
-                        <label class="sr-only" for="outcome">Name</label>
-                        <input type="text" name="search_outcome" class="form-control input-lg" id="outcome" placeholder="Outcome/Indicator" ng-model="val.outcome">
-                    </div>
-                    <div class="bottom-btn">
-                        <button type="submit" class="btn btn-primary input-lg">Search</button>
-                    </div>
-                </form>
-            </div>
+            </section>
 
         </div>
     </section>
+
+    <!--&lt;!&ndash; Map view section &ndash;&gt;-->
+    <!--<section class="map-view" id="map-view">-->
+        <!--<div id="map">-->
+
+            <!--<div class="search">-->
+                <!--<div class="global-search">-->
+                    <!--<div class="input-group">-->
+                        <!--<div class="input-group-btn">-->
+                            <!--<button class="btn btn-default input-component input-lg" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>-->
+                        <!--</div>-->
+                        <!--<input type="text" class="form-control input-lg" placeholder="Search keyword" name="search-keyword">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<form class="form-inline search-filters" ng-submit="vm.setSearchObj(val);">-->
+                    <!--<div class="filter-field">-->
+                        <!--<label class="sr-only" for="country">Name</label>-->
+                        <!--<input type="text" name="search_country" class="form-control input-lg" id="country" placeholder="Country Name" ng-model="val.country">-->
+                    <!--</div>-->
+                    <!--<div class="filter-field">-->
+                        <!--<label class="sr-only" for="scale">Name</label>-->
+                        <!--<input type="text" name="search_scale" class="form-control input-lg" id="scale" placeholder="Scale of Practice" ng-model="val.scale">-->
+                    <!--</div>-->
+                    <!--<div class="filter-field">-->
+                        <!--<label class="sr-only" for="practice">Name</label>-->
+                        <!--<input type="text" name="search_practice" class="form-control input-lg" id="practice" placeholder="CSA Practice" ng-model="val.practice">-->
+                    <!--</div>-->
+                    <!--<div class="filter-field">-->
+                        <!--<label class="sr-only" for="outcome">Name</label>-->
+                        <!--<input type="text" name="search_outcome" class="form-control input-lg" id="outcome" placeholder="Outcome/Indicator" ng-model="val.outcome">-->
+                    <!--</div>-->
+                    <!--<div class="bottom-btn">-->
+                        <!--<button type="submit" class="btn btn-primary input-lg">Search</button>-->
+                    <!--</div>-->
+                <!--</form>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</section>-->
 
     <!-- Main content section -->
     <section class="main-content">

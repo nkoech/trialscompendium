@@ -23,11 +23,4 @@ function HomeController(trialService, $timeout) {
         });
     };
     // vm.query("trials", {plot_id__iexact: 103});
-    
-    vm.setSearchObj = function(obj) {
-        if (typeof obj !== 'undefined') {
-            angular.extend(vm.searchObj, obj);
-            console.log(obj);
-        }
-    };
 }

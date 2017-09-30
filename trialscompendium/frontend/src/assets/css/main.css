@@ -75,7 +75,7 @@ p {
   line-height: 1.3333333;
   font-size: 15px;
   width: 100%;
-  height: 35px;
+  min-height: 35px;
   border-radius: 0;
   box-shadow: none;
   background-color: #fff;
@@ -99,6 +99,31 @@ p {
   outline: none !important;
   box-shadow: none;
 }
+
+.ui-select-multiple.ui-select-bootstrap {
+  height: auto;
+  padding-top: 5px !important;
+}
+
+.ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
+  height: auto;
+  text-align: center;
+  font-size: 13px;
+  border-radius: 15px;
+}
+
+.ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
+  color: #97be32;
+  font-weight: 600;
+  opacity: 1;
+  line-height: 100% !important;
+}
+
+.ui-select-multiple.ui-select-bootstrap input.ui-select-search {
+  position: absolute;
+}
+
+.ui-select-multiple.ui-select-bootstrap input.ui-select-search
 
 .app-navbar {
   opacity: 1;

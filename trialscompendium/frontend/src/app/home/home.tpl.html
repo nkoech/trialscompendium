@@ -17,7 +17,7 @@
                             <div class="form-group">
                                 <div class="col-sm-3">
                                     <label for="trial">Trial</label>
-                                    <ui-select ng-model="vm.selected"  id="trial" theme="bootstrap">
+                                    <ui-select ng-model="vm.selected"  name="search-trial" id="trial" theme="bootstrap">
                                         <ui-select-match placeholder="Select trial...">{{$select.selected.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in (vm.itemArray | filter: $select.search) track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -25,8 +25,8 @@
                                     </ui-select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label for="trial">Observation</label>
-                                    <ui-select ng-model="vm.selected"  id="observation" theme="bootstrap">
+                                    <label for="observation">Observation</label>
+                                    <ui-select ng-model="vm.selected" name="search-observation" id="observation" theme="bootstrap">
                                         <ui-select-match placeholder="Select observation...">{{$select.selected.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in (vm.itemArray | filter: $select.search) track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>

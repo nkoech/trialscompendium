@@ -1,6 +1,7 @@
 @import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 @import 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto%20Mono';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css';
 @import '../../app/home/home.css';
 
 /* Base styles */
@@ -61,7 +62,8 @@ p {
 
 .btn {
   text-align: center;
-  border: none;
+  height: 35px;
+  border-radius: 0;
 }
 
 .btn:focus,.btn:active, .btn:enabled {
@@ -71,6 +73,12 @@ p {
 
 .form-control {
   line-height: 1.3333333;
+  font-size: 15px;
+  width: 100%;
+  height: 35px;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: #fff;
 }
 
 .form-control:hover {
@@ -87,12 +95,15 @@ p {
   background-color: #fff !important;
 }
 
-.input-lg i {
+.ui-select-match {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.fa {
   color: #a3a3a3;
   max-width: 100%;
 }
-
-/* Navbar navigation */
 
 .app-navbar {
   opacity: 1;
@@ -101,7 +112,6 @@ p {
   background: #fff !important;
   border-top: 5px solid #97be32;
   border-bottom: 1px solid #eceee8
-  /*box-shadow: 0 0 20px rgba(0,0,0,0.3);*/
 }
 
 .app-navbar:after {
@@ -162,8 +172,6 @@ p {
   background: #fbfbfb;
   border-bottom: 5px solid #f9d136 !important;
 }
-
-/*Mobile menu*/
 
 .app-navbar .navbar-toggle {
   margin-top: 22px;

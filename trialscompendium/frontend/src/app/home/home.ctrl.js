@@ -22,5 +22,18 @@ function HomeController(trialService, $timeout) {
 
         });
     };
+
+    // TODO test code to be deleted
     // vm.query("trials", {plot_id__iexact: 103});
+
+    // TODO test code to be deleted
+    vm.itemArray = [
+        {id: 1, name: 'first'},
+        {id: 2, name: 'second'},
+        {id: 3, name: 'third'},
+        {id: 4, name: 'fourth'},
+        {id: 5, name: 'fifth'}
+    ];
+
+    vm.selected = { value: vm.itemArray[0] };
 }

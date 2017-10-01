@@ -1,3 +1,3 @@
 angular.module('app.widgets', []);
 
-require('./search/search.drct');
+require('./search-trial/search-trial.drct');

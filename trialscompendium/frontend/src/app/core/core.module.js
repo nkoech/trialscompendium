@@ -15,3 +15,4 @@ angular.module('app.core', [
 ]);
 
 require('./trial.fct');
+require('./props.flt');

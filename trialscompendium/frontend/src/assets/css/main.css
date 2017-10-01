@@ -123,7 +123,22 @@ p {
   position: absolute;
 }
 
-.ui-select-multiple.ui-select-bootstrap input.ui-select-search
+.ui-select-choices li {
+  display: inline;
+}
+
+.ui-select-bootstrap .ui-select-choices-row span:hover {
+  background-color: #eceee8;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active span {
+  background-color: #97be32;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  box-shadow: none;
+}
 
 .app-navbar {
   opacity: 1;

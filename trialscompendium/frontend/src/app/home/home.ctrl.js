@@ -36,6 +36,7 @@ function HomeController(trialService, $timeout) {
         // {id: 6, name: '2010'},
         // {id: 7, name: '2015'},
         // {id: 8, name: '2006'}
+
         {id: 1, name: 'first'},
         {id: 2, name: 'second'},
         {id: 3, name: 'third'},

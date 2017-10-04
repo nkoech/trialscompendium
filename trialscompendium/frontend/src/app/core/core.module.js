@@ -17,3 +17,4 @@ angular.module('app.core', [
 require('./trial.fct');
 require('./props.fltr');
 require('./capitalize.fltr');
+require('./slugify.fltr');

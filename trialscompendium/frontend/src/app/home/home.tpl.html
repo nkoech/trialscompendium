@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4">
                                     <label for="year">Year</label>
-                                    <ui-select multiple ng-model="vm.selected" name="search-year" id="year" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false">
+                                    <ui-select multiple ng-model="vm.selected" name="search-year" id="year" theme="bootstrap" close-on-select="false">
                                         <ui-select-match placeholder="Select year...">{{$item.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <div class="col-lg-4 col-md-4">
                                     <label for="season">Season</label>
-                                    <ui-select multiple ng-model="vm.selected" name="search-season" id="season" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false">
+                                    <ui-select multiple ng-model="vm.selected" name="search-season" id="season" theme="bootstrap" close-on-select="false">
                                         <ui-select-match placeholder="Select season...">{{$item.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="col-lg-5 col-md-5">
                                     <label for="tillage">Tillage</label>
-                                    <ui-select multiple ng-model="vm.selected" name="search-tillage" id="tillage" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false">
+                                    <ui-select multiple ng-model="vm.selected" name="search-tillage" id="tillage" theme="bootstrap" close-on-select="false">
                                         <ui-select-match placeholder="Select tillage...">{{$item.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3">
                                     <label for="farm-yard-manure">Farm Yard Manure</label>
-                                    <ui-select multiple ng-model="vm.selected" name="search-farm-yard-manure" id="farm-yard-manure" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false">
+                                    <ui-select multiple ng-model="vm.selected" name="search-farm-yard-manure" id="farm-yard-manure" theme="bootstrap" close-on-select="false">
                                         <ui-select-match placeholder="Select farm yard manure...">{{$item.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <div class="col-lg-4 col-md-4">
                                     <label for="residue">Residue</label>
-                                    <ui-select multiple ng-model="vm.selected" name="search-residue" id="residue" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false">
+                                    <ui-select multiple ng-model="vm.selected" name="search-residue" id="residue" theme="bootstrap" close-on-select="false">
                                         <ui-select-match placeholder="Select residue...">{{$item.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4">
                                     <label for="nitrogen">Nitrogen</label>
-                                    <ui-select multiple ng-model="vm.selected" name="search-nitrogen" id="nitrogen" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false">
+                                    <ui-select multiple ng-model="vm.selected" name="search-nitrogen" id="nitrogen" theme="bootstrap" close-on-select="false">
                                         <ui-select-match placeholder="Select nitrogen...">{{$item.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4">
                                     <label for="phosphate">Phosphate</label>
-                                    <ui-select multiple ng-model="vm.selected" name="search-phosphate" id="phosphate" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false">
+                                    <ui-select multiple ng-model="vm.selected" name="search-phosphate" id="phosphate" theme="bootstrap" close-on-select="false">
                                         <ui-select-match placeholder="Select phosphate...">{{$item.name}}</ui-select-match>
                                         <ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">
                                             <div ng-bind-html="item.name | highlight: $select.search"></div>

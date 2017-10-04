@@ -3,7 +3,7 @@ angular
     .directive('searchTrial', searchTrial);
 
 function searchTrial() {
-    var directive = {
+    return {
         templateUrl: require('./search-trial.tpl.html'),
         restrict: 'EA',
         scope: {},
@@ -11,7 +11,6 @@ function searchTrial() {
         controller: SearchTrialController,
         controllerAs: 'vm'
     };
-    return directive;
 }
 
 function SearchTrialController() {

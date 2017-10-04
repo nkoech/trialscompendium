@@ -7,7 +7,7 @@ require('./about/about.module');
 require('./login/login.module');
 require('./sign-up/sign-up.module');
 require('./trial/trial.module');
-// require('./widgets/widgets.module');
+require('./widgets/widgets.module');
 
 
 angular.module('app', [
@@ -17,6 +17,6 @@ angular.module('app', [
     'app.about',
     'app.login',
     'app.sign-up',
-    'app.trial'
-    // 'app.widgets'
+    'app.trial',
+    'app.widgets'
 ]);

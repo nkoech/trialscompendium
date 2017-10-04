@@ -6,7 +6,10 @@ function searchTrial() {
     return {
         templateUrl: require('./search-trial.tpl.html'),
         restrict: 'EA',
-        scope: {},
+        scope: {
+            'title': '@',
+            'multiple': '@'
+        },
         bindToController: true,
         controller: SearchTrialController,
         controllerAs: 'vm'
@@ -14,7 +17,8 @@ function searchTrial() {
 }
 
 function SearchTrialController() {
-    var vm = this;    
+    var vm = this;
+
     vm.itemArray = [
         // {id: 1, name: '2000'},
         // {id: 2, name: '2017'},
@@ -33,5 +37,6 @@ function SearchTrialController() {
     ];
 
     vm.selected = { value: vm.itemArray[0] };
+
 }
 

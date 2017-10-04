@@ -71,6 +71,14 @@ p {
   box-shadow: none;
 }
 
+.form-group, .input-group {
+  padding-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
 .form-control {
   line-height: 1.3333333;
   font-size: 15px;

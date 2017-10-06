@@ -21,5 +21,5 @@ function HomeController(trialService, $timeout) {
 
         });
     };
-    vm.query("trials", {offset:20, limit:20});
+    vm.query("trials", {offset:0, limit:20});
 }

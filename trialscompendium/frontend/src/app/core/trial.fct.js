@@ -44,7 +44,7 @@ function trialService($resource, BASE_URL, $log) {
         // Query can be passed empty i.e. {}
         return makeRequest(apiNode + '/', query).query().$promise.
         then(function(data){
-            return data.results;
+            return data;
         });
     }
 

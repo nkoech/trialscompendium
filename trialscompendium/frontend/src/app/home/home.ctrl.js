@@ -12,7 +12,7 @@ function HomeController(trialService, $timeout) {
     vm.query = function(apiNode, query){
         vm.searching = true;
         trialService.search(apiNode, query).then(function (response) {
-            vm.results = response;
+            vm.results = response.results;
             $timeout(function(){
                 vm.searching = false;
             }, 500);
@@ -21,5 +21,5 @@ function HomeController(trialService, $timeout) {
 
         });
     };
-    vm.query("search", {query:101});
+    vm.query("trials", {offset:20, limit:20});
 }

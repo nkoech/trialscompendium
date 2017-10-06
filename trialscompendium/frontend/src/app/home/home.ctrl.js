@@ -16,8 +16,10 @@ function HomeController(trialService, $timeout) {
             $timeout(function(){
                 vm.searching = false;
             }, 500);
+            console.log(vm.results);
         }).catch(function (error) {
 
         });
     };
+    vm.query("search", {query:101});
 }

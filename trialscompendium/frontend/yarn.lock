@@ -64,6 +64,10 @@ angular-animate@^1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.4.tgz#d3eb906d39834f2dfbdd982e6b8d7a3b4d9001d2"
 
+angular-local-storage@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/angular-local-storage/-/angular-local-storage-0.7.1.tgz#fbd2730763c29fa9af5725e0186c780621e8cdd2"
+
 angular-resource@^1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.4.tgz#bcb83688b0a7d3402fde58dc7f4881383a6c0ebb"

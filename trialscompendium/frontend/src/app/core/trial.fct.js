@@ -42,7 +42,7 @@ function trialService($resource, BASE_URL, $log) {
     }
 
     function search(apiNode, query){
-        // Search per page
+        // Search one or more records per page
         return makeRequest(apiNode + '/', query).query().$promise.
         then(function(data){
             return data;
@@ -50,13 +50,13 @@ function trialService($resource, BASE_URL, $log) {
     }
 
     function get(apiNode, query) {
-        // Get per page
+        // Get one record per page
         var id = Object.keys(query)[0];
         return makeRequest(apiNode + '/:' + id, query).get().$promise;
     }
 
     function searchAllPages(apiNode, query, list) {
-        // Search across all pages
+        // Search one or more records in all pages
         return makeRequest(apiNode + '/', query).query().$promise.then(function(data){
             list = list.concat(data.results);
             if (data.next) {

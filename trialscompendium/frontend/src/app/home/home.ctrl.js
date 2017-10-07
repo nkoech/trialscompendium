@@ -9,17 +9,28 @@ function HomeController(trialService, $timeout) {
     vm.results = false;
     vm.searching = false;
 
-    vm.query = function(apiNode, query){
+    // vm.query = function (apiNode, query) {
+    //     vm.searching = true;
+    //     trialService.search(apiNode, query).then(function (response) {
+    //         vm.results = response.results;
+    //         $timeout(function () {
+    //             vm.searching = false;
+    //         }, 500);
+    //         console.log(vm.results);
+    //         // console.log(vm.count);
+    //     });
+    // };
+    // vm.query("trials/treatment/", {offset: vm.offset, limit: vm.limit});
+
+    vm.query = function (apiNode, query) {
         vm.searching = true;
-        trialService.search(apiNode, query).then(function (response) {
-            vm.results = response.results;
-            $timeout(function(){
+        trialService.searchAllPages(apiNode, query, []).then(function (response) {
+            vm.results = response;
+            $timeout(function () {
                 vm.searching = false;
             }, 500);
-            console.log(vm.results);
-        }).catch(function (error) {
-
         });
     };
-    vm.query("trials", {offset:0, limit:20});
+    vm.query("trials/treatment/", {nitrogen_treatment__iexact: 'N0', offset: 0, limit: 50});
+
 }

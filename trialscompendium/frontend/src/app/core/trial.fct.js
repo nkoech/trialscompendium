@@ -8,7 +8,8 @@ trialService.$inject = ['$resource', 'BASE_URL', '$log'];
 function trialService($resource, BASE_URL, $log) {
     return {
         'search': search,
-        'get': get
+        'get': get,
+        'searchAllPages': searchAllPages
     };
 
     function makeRequest(url, params) {
@@ -41,7 +42,7 @@ function trialService($resource, BASE_URL, $log) {
     }
 
     function search(apiNode, query){
-        // Query can be passed empty i.e. {}
+        // Search per page
         return makeRequest(apiNode + '/', query).query().$promise.
         then(function(data){
             return data;
@@ -49,8 +50,21 @@ function trialService($resource, BASE_URL, $log) {
     }
 
     function get(apiNode, query) {
+        // Get per page
         var id = Object.keys(query)[0];
         return makeRequest(apiNode + '/:' + id, query).get().$promise;
+    }
+
+    function searchAllPages(apiNode, query, list) {
+        // Search across all pages
+        return makeRequest(apiNode + '/', query).query().$promise.then(function(data){
+            list = list.concat(data.results);
+            if (data.next) {
+                query.offset += query.limit;
+                return searchAllPages(apiNode, query, list);
+            }
+            return list;
+        });
     }
 
     function dataServiceError(errorResponse) {

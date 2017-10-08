@@ -73,15 +73,3 @@ function trialService($resource, BASE_URL, $log) {
         return errorResponse;
     }
 }
-
-//TODO: Removing duplicate object entries. Nested objects are not taken care off. Look into it.
-// var uniqueOutput = [];
-// var uniqueItems = [];
-// angular.forEach(arr, function (obj) {
-//     angular.forEach(obj, function (value, key) {
-//         if (uniqueItems.indexOf(value) === -1){
-//             uniqueItems.push(value);
-//             uniqueOutput.push(obj);
-//         }
-//     });
-// });

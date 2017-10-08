@@ -4,6 +4,7 @@ require('angular-resource');
 require('angular-sanitize');
 require('angular-ui-bootstrap');
 require('ui-select');
+require('angular-local-storage');
 
 angular.module('app.core', [
     'ngAnimate',

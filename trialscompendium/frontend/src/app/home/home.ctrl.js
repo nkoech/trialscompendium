@@ -26,7 +26,7 @@ function HomeController(trialService, storeService, $timeout) {
     // vm.query("trials/treatment/", {offset: vm.offset, limit: vm.limit});
 
     
-    vm.query = function (apiNode, query) {
+    vm.selectOptions = function (apiNode, query) {
         vm.searching = true;
         trialService.searchAllPages(apiNode, query, []).then(function (response) {
             vm.slicedTrials = storeService.sliceTrials(response, vm.searchProp);
@@ -36,5 +36,5 @@ function HomeController(trialService, storeService, $timeout) {
             }, 500);
         });
     };
-    vm.query("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
+    vm.selectOptions("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
 }

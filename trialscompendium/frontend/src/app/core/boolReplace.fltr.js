@@ -1,7 +1,7 @@
 /**
  * Boolean filter
  * Replace boolean from to
- * Usage: {{value | ['Plus','Minus']}}
+ * Usage: {{value | boolReplace: ['Plus','Minus']}}
  **/
 
 angular

@@ -20,5 +20,6 @@ angular.module('app.core', [
 
 require('./trial.fct');
 require('./store.fct');
+require('./uniqueObj.fltr');
 // require('./boolReplace.fltr');
 

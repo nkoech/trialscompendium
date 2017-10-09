@@ -16,8 +16,7 @@ function storeService(localStorageService) {
     return {
         'addTrial': addTrial,
         'getTrials': getTrials,
-        'sliceTrials': sliceTrials,
-        'uniqueTrialsFilter': uniqueTrialsFilter
+        'sliceTrials': sliceTrials
     };
 
     function addTrial(data) {
@@ -48,20 +47,6 @@ function storeService(localStorageService) {
             }
         });
         return slicedTrials;
-    }
-
-    function uniqueTrialsFilter(data){
-        var uniqueObj = [];
-        var uniqueItems = [];
-        angular.forEach(data, function (obj) {
-            angular.forEach(obj, function (value) {
-                if (uniqueItems.indexOf(value) === -1){
-                    uniqueItems.push(value);
-                    uniqueObj.push(obj);
-                }
-            });
-        });
-        return uniqueObj;
     }
 
     function save() {

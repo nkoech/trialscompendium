@@ -4,7 +4,7 @@
     <div ng-if="vm.multiple == 0">
         <ui-select ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap">
             <ui-select-match placeholder="Select {{vm.label}}...">{{$select.selected[vm.prop]}}</ui-select-match>
-            <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search track by $index">
+            <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search | uniqueObj track by $index">
                 <div ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
@@ -13,7 +13,7 @@
     <div ng-if="vm.multiple == 1">
         <ui-select multiple ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" close-on-select="false">
             <ui-select-match placeholder="Select {{vm.label}}...">{{$item[vm.prop]}}</ui-select-match>
-            <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search track by $index">
+            <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search | uniqueObj track by $index">
                 <div ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>

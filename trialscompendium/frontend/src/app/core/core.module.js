@@ -5,6 +5,7 @@ require('angular-sanitize');
 require('angular-ui-bootstrap');
 require('ui-select');
 require('angular-local-storage');
+require('angular-filter');
 
 angular.module('app.core', [
     'ngAnimate',
@@ -13,11 +14,13 @@ angular.module('app.core', [
     'ngSanitize',
     'ui.bootstrap',
     'ui.select',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angular.filter'
 ]);
 
 require('./trial.fct');
 require('./store.fct');
-require('./props.fltr');
+// require('./props.fltr');
 require('./capitalize.fltr');
-require('./slugify.fltr');
+// require('./slugify.fltr');
+

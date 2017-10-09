@@ -64,6 +64,12 @@ angular-animate@^1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.4.tgz#d3eb906d39834f2dfbdd982e6b8d7a3b4d9001d2"
 
+angular-filter@^0.5.17:
+  version "0.5.17"
+  resolved "https://registry.yarnpkg.com/angular-filter/-/angular-filter-0.5.17.tgz#60c0c7380fd45872cb8f10801cfe07e154062935"
+  dependencies:
+    angular "*"
+
 angular-local-storage@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/angular-local-storage/-/angular-local-storage-0.7.1.tgz#fbd2730763c29fa9af5725e0186c780621e8cdd2"
@@ -91,7 +97,7 @@ angular-ui-bootstrap@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.0.tgz#2facefb915386655dc5f44150258032517236d01"
 
-angular@1.x, angular@^1.2, angular@^1.6.4:
+angular@*, angular@1.x, angular@^1.2, angular@^1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.4.tgz#03b7b15c01a0802d7e2cf593240e604054dc77fb"
 

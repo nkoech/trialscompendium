@@ -1,20 +1,66 @@
+<!--<div class="search-trial">-->
+    <!--<label for="{{vm.title | slugify}}">{{vm.title | capitalize: true}}</label>-->
+    <!--&lt;!&ndash; Drop down list with single select &ndash;&gt;-->
+    <!--<div ng-if="vm.multiple == 0">-->
+        <!--<ui-select ng-model="vm.selected" name="search-{{vm.title | slugify}}" id="{{vm.title | slugify}}" theme="bootstrap">-->
+            <!--<ui-select-match placeholder="Select {{vm.title}}...">{{$select.selected.name}}</ui-select-match>-->
+            <!--<ui-select-choices repeat="item in vm.itemArray | filter: $select.search track by item.id">-->
+                <!--<div ng-bind-html="item.name | highlight: $select.search"></div>-->
+            <!--</ui-select-choices>-->
+        <!--</ui-select>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; Drop down list with multiple select &ndash;&gt;-->
+    <!--<div ng-if="vm.multiple == 1">-->
+        <!--<ui-select multiple ng-model="vm.selected" name="search-{{vm.title | slugify}}" id="{{vm.title | slugify}}" theme="bootstrap" close-on-select="false">-->
+            <!--<ui-select-match placeholder="Select {{vm.title}}...">{{$item.name}}</ui-select-match>-->
+            <!--<ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">-->
+                <!--<div ng-bind-html="item.name | highlight: $select.search"></div>-->
+            <!--</ui-select-choices>-->
+        <!--</ui-select>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="search-trial">-->
+    <!--<label for="{{vm.title | slugify}}">{{vm.title | capitalize: true}}</label>-->
+    <!--&lt;!&ndash; Drop down list with single select &ndash;&gt;-->
+    <!--<div ng-if="vm.multiple == 0">-->
+        <!--<ui-select ng-model="vm.selected" name="search-{{vm.title | slugify}}" id="{{vm.title | slugify}}" theme="bootstrap">-->
+            <!--<ui-select-match placeholder="Select {{vm.title}}...">{{$select.selected[(vm.title | slugify)]}}</ui-select-match>-->
+            <!--<ui-select-choices repeat="item in vm.selectOptions | propsFilter: {(vm.title | slugify): $select.search} track by $index">-->
+                <!--<div ng-bind-html="item[(vm.title | slugify)] | highlight: $select.search"></div>-->
+            <!--</ui-select-choices>-->
+        <!--</ui-select>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; Drop down list with multiple select &ndash;&gt;-->
+    <!--<div ng-if="vm.multiple == 1">-->
+        <!--<ui-select multiple ng-model="vm.selected" name="search-{{vm.title | slugify}}" id="{{vm.title | slugify}}" theme="bootstrap" close-on-select="false">-->
+            <!--<ui-select-match placeholder="Select {{vm.title}}...">{{$item[(vm.title | slugify)]}}</ui-select-match>-->
+            <!--<ui-select-choices repeat="item in vm.selectOptions | propsFilter: {(vm.title | slugify): $select.search} track by $index">-->
+                <!--<div ng-bind-html="item[(vm.title | slugify)] | highlight: $select.search"></div>-->
+            <!--</ui-select-choices>-->
+        <!--</ui-select>-->
+    <!--</div>-->
+<!--</div>-->
+
+
 <div class="search-trial">
-    <label for="{{vm.title | slugify}}">{{vm.title | capitalize: true}}</label>
+    <label for="{{vm.prop}}">{{vm.label | capitalize: true}}</label>
     <!-- Drop down list with single select -->
     <div ng-if="vm.multiple == 0">
-        <ui-select ng-model="vm.selected" name="search-{{vm.title | slugify}}" id="{{vm.title | slugify}}" theme="bootstrap">
-            <ui-select-match placeholder="Select {{vm.title}}...">{{$select.selected.name}}</ui-select-match>
-            <ui-select-choices repeat="item in vm.itemArray | filter: $select.search track by item.id">
-                <div ng-bind-html="item.name | highlight: $select.search"></div>
+        <ui-select ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap">
+            <ui-select-match placeholder="Select {{vm.label}}...">{{$select.selected[vm.prop]}}</ui-select-match>
+            <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search track by $index">
+                <div ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
     </div>
     <!-- Drop down list with multiple select -->
     <div ng-if="vm.multiple == 1">
-        <ui-select multiple ng-model="vm.selected" name="search-{{vm.title | slugify}}" id="{{vm.title | slugify}}" theme="bootstrap" close-on-select="false">
-            <ui-select-match placeholder="Select {{vm.title}}...">{{$item.name}}</ui-select-match>
-            <ui-select-choices repeat="item in vm.itemArray | propsFilter: {name: $select.search} track by item.id">
-                <div ng-bind-html="item.name | highlight: $select.search"></div>
+        <ui-select multiple ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" close-on-select="false">
+            <ui-select-match placeholder="Select {{vm.label}}...">{{$item[vm.prop]}}</ui-select-match>
+            <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search track by $index">
+                <div ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
     </div>

@@ -16,7 +16,7 @@ function storeService(localStorageService) {
     return {
         'addTrial': addTrial,
         'getTrials': getTrials,
-        'sliceTrials': sliceTrials
+        'pickTrials': pickTrials
     };
 
     function addTrial(data) {

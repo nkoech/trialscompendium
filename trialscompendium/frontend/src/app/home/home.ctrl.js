@@ -23,11 +23,11 @@ function HomeController(trialService, storeService, $timeout) {
     // };
     // vm.query("trials/treatment/", {offset: vm.offset, limit: vm.limit});
 
-    
+
     vm.queryAllpages = function (apiNode, query) {
         vm.searching = true;
         trialService.searchAllPages(apiNode, query, []).then(function (response) {
-            vm.selectOptions = storeService.sliceTrials(response, vm.searchProp);
+            vm.selectOptions = storeService.pickTrials(response, vm.searchProp);
             $timeout(function () {
                 vm.searching = false;
             }, 500);

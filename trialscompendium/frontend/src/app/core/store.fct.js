@@ -6,7 +6,7 @@ storeService.$inject = ['localStorageService'];
 
 function storeService(localStorageService) {
     var trials = [];
-    var slicedTrials = [];
+    var pickedTrials = [];
     var ls = localStorageService.get('store');
 
     if (ls !== null) {
@@ -28,25 +28,25 @@ function storeService(localStorageService) {
         return trials;
     }
 
-    function sliceTrials(data, searchProp){
+    function pickTrials(data, searchProp){
         angular.forEach(data, function (value, key) {
             var obj = {};
             if (value !== undefined && value !== null){
                 if (typeof value === 'object'){
-                    sliceTrials(value, searchProp);
+                    pickTrials(value, searchProp);
                 }else{
                     angular.forEach(searchProp, function (prop) {
                         if (prop === key) {
                             // Replace true and false js values with Plus and Minus string respectively
                             value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;
                             obj[key] = value;
-                            slicedTrials = slicedTrials.concat(obj);
+                            pickedTrials = pickedTrials.concat(obj);
                         }
                     });
                 }
             }
         });
-        return slicedTrials;
+        return pickedTrials;
     }
 
     function save() {

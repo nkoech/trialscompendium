@@ -20,7 +20,4 @@ angular.module('app.core', [
 
 require('./trial.fct');
 require('./store.fct');
-// require('./props.fltr');
-require('./capitalize.fltr');
-// require('./slugify.fltr');
 

@@ -36,22 +36,35 @@ function SearchTrialController() {
     //     {id: 5, name: 'fifth'}
     // ];
     
-    vm.selectOptions = [
-        {"nitrogen_treatment": "N30"},
-        {"phosphate_treatment": "P60"},
-        {"farm_yard_manure": true},
-        {"farm_residue": false},
-        {"trial_id": "INM3"},
-        {"observation": "Maize AGB"},
-        {"year": 2004},
-        {"season": "Short Rains"},
-        {"season": "Long Rains"},
-        {"observation": "Maize Y"},
-        {"nitrogen_treatment": "N60"},
-        {"nitrogen_treatment": "N90"},
-        {"nitrogen_treatment": "N0"},
-        {"phosphate_treatment": "P0"}
-    ];
+    vm.selectOptions = [{
+        "nitrogen_treatment": "N30"
+    }, {
+        "phosphate_treatment": "P60"
+    }, {
+        "farm_yard_manure": "Plus"
+    }, {
+        "farm_residue": "Minus"
+    }, {
+        "trial_id": "INM3"
+    }, {
+        "observation": "Maize AGB"
+    }, {
+        "year": 2004
+    }, {
+        "season": "Short Rains"
+    }, {
+        "season": "Long Rains"
+    }, {
+        "observation": "Maize Y"
+    }, {
+        "nitrogen_treatment": "N60"
+    }, {
+        "nitrogen_treatment": "N90"
+    }, {
+        "nitrogen_treatment": "N0"
+    }, {
+        "phosphate_treatment": "P0"
+    }];
 
     // vm.selected = { value: vm.itemArray[0] };
     vm.selected = false;

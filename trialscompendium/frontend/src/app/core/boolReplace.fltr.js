@@ -11,6 +11,6 @@ angular
 function boolReplace() {
     return boolReplaceFilter;
     function boolReplaceFilter(input, strList) {
-        return (input === true) ? strList[0] : (input === false) ? strList[1] : value;
+        return (input === true) ? strList[0] : (input === false) ? strList[1] : input;
     }
 }

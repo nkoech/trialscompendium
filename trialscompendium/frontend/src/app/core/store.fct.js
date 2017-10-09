@@ -39,7 +39,7 @@ function storeService(localStorageService) {
                     angular.forEach(searchProp, function (prop) {
                         if (prop === key) {
                             // Replace true and false js values with Plus and Minus string respectively
-                            // value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;
+                            value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;
                             obj[key] = value;
                             slicedTrials = slicedTrials.concat(obj);
                         }

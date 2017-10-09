@@ -20,5 +20,5 @@ angular.module('app.core', [
 
 require('./trial.fct');
 require('./store.fct');
-require('./strReplace.fltr');
+require('./boolReplace.fltr');
 

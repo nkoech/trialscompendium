@@ -41,9 +41,9 @@ function SearchTrialController() {
     }, {
         "phosphate_treatment": "P60"
     }, {
-        "farm_yard_manure": "Plus"
+        "farm_yard_manure": true
     }, {
-        "farm_residue": "Minus"
+        "farm_residue": false
     }, {
         "trial_id": "INM3"
     }, {

@@ -7,6 +7,7 @@ HomeController.$inject = ['trialService', 'storeService', '$timeout'];
 function HomeController(trialService, storeService, $timeout) {
     var vm = this;
     vm.results = false;
+    vm.selectOptions = false;
     vm.searching = false;
     vm.searchProp = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
 
@@ -22,7 +23,6 @@ function HomeController(trialService, storeService, $timeout) {
     //     });
     // };
     // vm.query("trials/treatment/", {offset: vm.offset, limit: vm.limit});
-
 
     vm.queryAllpages = function (apiNode, query) {
         vm.searching = true;

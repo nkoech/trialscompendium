@@ -11,7 +11,7 @@
     </div>
     <!-- Drop down list with multiple select -->
     <div ng-if="vm.multiple == 1">
-        <ui-select multiple ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" close-on-select="false">
+        <ui-select multiple ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" close-on-select="true">
             <ui-select-match placeholder="Select {{vm.label}}...">{{$item[vm.prop]}}</ui-select-match>
             <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search | uniqueObj track by $index">
                 <div ng-bind-html="item[vm.prop] | highlight: $select.search"></div>

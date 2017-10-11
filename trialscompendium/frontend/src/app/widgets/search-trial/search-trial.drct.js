@@ -9,7 +9,8 @@ function searchTrial() {
         scope: {
             'label': '@',
             'prop': '@',
-            'multiple': '@'
+            'multiple': '@',
+            'trialSelected': '='
             // 'selectOptions': '='
         },
         bindToController: true,
@@ -22,14 +23,13 @@ function SearchTrialController() {
     var vm = this;
     vm.selected = false;
 
-    // vm.trialSelected = true;
-    // vm.getSelectedTrial = function() {
-    //     if (vm.selected.trial_id === 'INM3') {
-    //         vm.trialSelected = true;
-    //     } else if (vm.selected.trial_id === 'CT1'){
-    //         vm.trialSelected = false;
-    //     }
-    // };
+    vm.getSelectedTrial = function() {
+        if (vm.selected.trial_id === 'INM3') {
+            vm.trialSelected = true;
+        } else if (vm.selected.trial_id === 'CT1'){
+            vm.trialSelected = false;
+        }
+    };
 
     vm.selectOptions = [{
         "nitrogen_treatment": "N30"

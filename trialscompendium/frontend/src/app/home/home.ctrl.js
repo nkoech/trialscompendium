@@ -9,8 +9,10 @@ function HomeController(trialService, storeService, $timeout) {
     vm.results = false;
     vm.selectOptions = false;
     vm.searching = false;
+    vm.trialSelected = false;
     vm.searchProp = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
 
+    // Search one or more records per page
     // vm.query = function (apiNode, query) {
     //     vm.searching = true;
     //     trialService.search(apiNode, query).then(function (response) {
@@ -24,6 +26,7 @@ function HomeController(trialService, storeService, $timeout) {
     // };
     // vm.query("trials/treatment/", {offset: vm.offset, limit: vm.limit});
 
+    // Search one or more records in all pages
     vm.queryAllpages = function (apiNode, query) {
         vm.searching = true;
         trialService.searchAllPages(apiNode, query, []).then(function (response) {

@@ -10,7 +10,8 @@ function searchTrial() {
             'label': '@',
             'prop': '@',
             'multiple': '@',
-            'trialSelected': '='
+            'trialSelected': '=',
+            'disableInputField': '='
             // 'selectOptions': '='
         },
         bindToController: true,
@@ -26,8 +27,10 @@ function SearchTrialController() {
     vm.getSelectedTrial = function() {
         if (vm.selected.trial_id === 'INM3') {
             vm.trialSelected = true;
+            vm.disableInputField = false;
         } else if (vm.selected.trial_id === 'CT1'){
             vm.trialSelected = false;
+            vm.disableInputField = false;
         }
     };
 

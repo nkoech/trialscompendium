@@ -10,6 +10,7 @@ function HomeController(trialService, storeService, $timeout) {
     vm.selectOptions = false;
     vm.searching = false;
     vm.trialSelected = false;
+    vm.disableInputField = true;
     vm.searchProp = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
 
     // Search one or more records per page

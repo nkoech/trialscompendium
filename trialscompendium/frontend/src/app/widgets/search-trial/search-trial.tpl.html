@@ -5,7 +5,8 @@
         <ui-select ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" ng-change="vm.getSelectedTrial()">
             <ui-select-match placeholder="Select {{vm.label}}...">{{$select.selected[vm.prop]}}</ui-select-match>
             <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search | uniqueObj track by $index">
-                <div ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
+                <div ng-if="vm.trialSelected" ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
+                <div ng-if="!vm.trialSelected && !(item[vm.prop] | startsWith: 'Tephrosia')" ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
     </div>
@@ -14,7 +15,8 @@
         <ui-select multiple ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" close-on-select="true">
             <ui-select-match placeholder="Select {{vm.label}}...">{{$item[vm.prop]}}</ui-select-match>
             <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search | uniqueObj track by $index">
-                <div ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
+                <div ng-if="vm.trialSelected && !(item[vm.prop] | startsWith: 'zero')" ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
+                <div ng-if="!vm.trialSelected && (vm.prop !== 'farm_yard_manure')" ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
     </div>

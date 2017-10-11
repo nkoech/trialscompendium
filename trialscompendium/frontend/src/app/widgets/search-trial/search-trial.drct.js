@@ -22,16 +22,15 @@ function searchTrial() {
 
 function SearchTrialController() {
     var vm = this;
-    vm.selected = false;
+    vm.selected = undefined;
 
     vm.getSelectedTrial = function() {
         if (vm.selected.trial_id === 'INM3') {
             vm.trialSelected = true;
-            vm.disableInputField = false;
         } else if (vm.selected.trial_id === 'CT1'){
             vm.trialSelected = false;
-            vm.disableInputField = false;
         }
+        vm.disableInputField = false;
     };
 
     vm.selectOptions = [{

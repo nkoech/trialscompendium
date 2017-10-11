@@ -3,33 +3,41 @@
     min-height: 400px;
 }
 
-.main-content .search .input-group {
-    padding-bottom: 40px;
-}
 
-.search .input-group .form-control {
-    border-right: 0;
-}
 
-.search .input-group .btn {
-    border: 1px solid #ccc;
-    border-left: none;
-    background-color: #fff;
-}
+/* START OF INPUT GROUP SEARCH FIELD */
 
-.search .input-group .btn:hover {
-    background-color: #fff;
-    border-color: #ccc;
-}
+/*.main-content .search .input-group {*/
+    /*padding-bottom: 40px;*/
+/*}*/
 
-.search .input-group .btn:focus {
-    border-color: #97be32;
-}
+/*.search .input-group .form-control {*/
+    /*border-right: 0;*/
+/*}*/
 
-.search .input-group .fa {
-    color: #a3a3a3;
-    max-width: 100%;
-}
+/*.search .input-group .btn {*/
+    /*border: 1px solid #ccc;*/
+    /*border-left: none;*/
+    /*background-color: #fff;*/
+/*}*/
+
+/*.search .input-group .btn:hover {*/
+    /*background-color: #fff;*/
+    /*border-color: #ccc;*/
+/*}*/
+
+/*.search .input-group .btn:focus {*/
+    /*border-color: #97be32;*/
+/*}*/
+
+/*.search .input-group .fa {*/
+    /*color: #a3a3a3;*/
+    /*max-width: 100%;*/
+/*}*/
+
+/* END OF INPUT GROUP SEARCH FIELD */
+
+
 
 /*.home-page .map-view {*/
     /*padding-top: 0;*/

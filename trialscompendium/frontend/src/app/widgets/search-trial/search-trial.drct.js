@@ -24,15 +24,25 @@ function searchTrial() {
 function SearchTrialController() {
     var vm = this;
 
-    vm.getSelectedTrial = function() {
+    vm.getSelectedTrial = function(prop) {
         vm.disableInputField = false;
-        angular.forEach(vm.selected,function(value, key){
-            if (vm.selected[key][key] === 'INM3') {
+        if (prop === 'trial_id'){
+            if (vm.selected[prop][prop] === 'INM3') {
                 vm.trialSelected = true;
-            } else if (vm.selected[key][key] === 'CT1'){
+            } else if (vm.selected[prop][prop] === 'CT1'){
                 vm.trialSelected = false;
             }
-        });
+        }
+    };
+
+    vm.resetForm = function(prop){
+        if (prop === 'trial_id'){
+            angular.forEach(vm.selected,function(value, key){
+                if (key !== prop) {
+                    vm.selected[key] = undefined;
+                }
+            });
+        }
     };
 
     vm.selectOptions = [{

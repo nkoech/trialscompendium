@@ -1,6 +1,28 @@
 .home-page .main-content {
-    padding: 50px 0 0;
     min-height: 400px;
+}
+
+.main-content .search {
+    padding: 50px 0 50px;
+    background-color: #fafafa;
+}
+
+.search .bottom-btn {
+    text-align: right;
+    padding: 10px 0 0 0;
+}
+.search .bottom-btn .btn {
+    font-weight: 600;
+    background-color: #97be32;
+    margin-top: 7px;
+}
+
+.search .bottom-btn .btn:hover {
+    background-color: #99CC00;
+}
+
+.search .bottom-btn .btn-primary {
+    width: 25%;
 }
 
 

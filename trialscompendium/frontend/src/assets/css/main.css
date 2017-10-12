@@ -66,9 +66,10 @@ p {
   border-radius: 0;
 }
 
-.btn:focus,.btn:active, .btn:enabled {
+.btn-primary, .btn:focus,.btn:active, .btn:enabled {
   outline: none !important;
   box-shadow: none;
+  border-color: transparent;
 }
 
 .form-group, .input-group {
@@ -99,7 +100,7 @@ p {
 }
 
 .form-control:focus {
-  border-color: #97be32;
+  border-color: #97be32 !important;
   background-color: #fff !important;
 }
 

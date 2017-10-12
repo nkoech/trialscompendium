@@ -11,7 +11,8 @@ function searchTrial() {
             'prop': '@',
             'multiple': '@',
             'trialSelected': '=',
-            'disableInputField': '='
+            'disableInputField': '=',
+            'selected': '='
             // 'selectOptions': '='
         },
         bindToController: true,
@@ -22,7 +23,6 @@ function searchTrial() {
 
 function SearchTrialController() {
     var vm = this;
-    vm.selected = undefined;
 
     vm.getSelectedTrial = function() {
         if (vm.selected.trial_id === 'INM3') {

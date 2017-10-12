@@ -2,7 +2,7 @@
     <label for="{{vm.prop}}">{{vm.label | ucfirst }}</label>
     <!-- Drop down list with single select -->
     <div ng-if="vm.multiple == 0">
-        <ui-select ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" ng-disabled="vm.disableInputField && vm.prop !== 'trial_id'" ng-change="vm.getSelectedTrial()">
+        <ui-select ng-model="vm.selected[vm.prop]" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" ng-disabled="vm.disableInputField && vm.prop !== 'trial_id'" ng-change="vm.getSelectedTrial()">
             <ui-select-match placeholder="Select {{vm.label}}...">{{$select.selected[vm.prop]}}</ui-select-match>
             <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search | uniqueObj track by $index">
                 <div ng-if="vm.trialSelected" ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
@@ -12,7 +12,7 @@
     </div>
     <!-- Drop down list with multiple select -->
     <div ng-if="vm.multiple == 1">
-        <ui-select multiple ng-model="vm.selected" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" close-on-select="true" ng-disabled="vm.disableInputField && vm.prop !== 'trial_id'">
+        <ui-select multiple ng-model="vm.selected[vm.prop]" name="search-{{vm.prop}}" id="{{vm.prop}}" theme="bootstrap" close-on-select="true" ng-disabled="vm.disableInputField && vm.prop !== 'trial_id'">
             <ui-select-match placeholder="Select {{vm.label}}...">{{$item[vm.prop]}}</ui-select-match>
             <ui-select-choices repeat="item in vm.selectOptions | filterBy: [vm.prop]: $select.search | uniqueObj track by $index">
                 <div ng-if="vm.trialSelected && !(vm.prop === 'tillage_practice' && (item[vm.prop] | startsWith: 'zero'))" ng-bind-html="item[vm.prop] | highlight: $select.search"></div>

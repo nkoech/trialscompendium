@@ -9,6 +9,7 @@
                 <div ng-if="!vm.trialSelected && !(vm.prop === 'observation' && (item[vm.prop] | startsWith: 'Tephrosia'))" ng-bind-html="item[vm.prop] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
+        <!--{{vm.selected}}-->
     </div>
     <!-- Drop down list with multiple select -->
     <div ng-if="vm.multiple == 1">

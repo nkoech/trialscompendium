@@ -30,14 +30,14 @@ function storeService(localStorageService, uniqueObjFilter) {
         return trials;
     }
 
-    function pickTrials(data, searchProp){
+    function pickTrials(data, filterProp){
         angular.forEach(data, function (value, key) {
             var obj = {};
             if (value !== undefined && value !== null){
                 if (typeof value === 'object'){
-                    pickTrials(value, searchProp);
+                    pickTrials(value, filterProp);
                 }else{
-                    angular.forEach(searchProp, function (prop) {
+                    angular.forEach(filterProp, function (prop) {
                         if (prop === key) {
                             // Replace true and false js values with Plus and Minus string respectively
                             value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;

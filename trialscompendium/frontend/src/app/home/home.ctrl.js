@@ -12,7 +12,7 @@ function HomeController(trialService, storeService, $timeout) {
     vm.trialSelected = false;
     vm.disableInputField = true;
     vm.selected = {};
-    vm.searchProp = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
+    vm.filterProp = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
     vm.uniqueTrials = undefined;
 
         // Search one or more records per page
@@ -33,7 +33,7 @@ function HomeController(trialService, storeService, $timeout) {
     vm.queryAllpages = function (apiNode, query) {
         vm.searching = true;
         trialService.searchAllPages(apiNode, query, []).then(function (response) {
-            vm.selectOptions = storeService.pickTrials(response, vm.searchProp);
+            vm.selectOptions = storeService.pickTrials(response, vm.filterProp);
             vm.uniqueTrials = storeService.uniqueTrials(vm.selectOptions);
             if (vm.uniqueTrials !== undefined || vm.uniqueTrials.length !== 0) {
                 storeService.addTrials(vm.uniqueTrials);

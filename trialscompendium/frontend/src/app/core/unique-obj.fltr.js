@@ -13,10 +13,12 @@ function uniqueObj() {
     function uniqueObjFilter(input) {
         var uniqueObj = [];
         var uniqueItems = [];
+        var keyValue = '';
         angular.forEach(input, function (obj) {
-            angular.forEach(obj, function (value) {
-                if (uniqueItems.indexOf(value) === -1){
-                    uniqueItems.push(value);
+            angular.forEach(obj, function (value, key) {
+                keyValue = value + key;
+                if (uniqueItems.indexOf(keyValue) == -1){
+                    uniqueItems.push(keyValue);
                     uniqueObj.push(obj);
                 }
             });

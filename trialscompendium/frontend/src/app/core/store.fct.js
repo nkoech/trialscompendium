@@ -2,9 +2,10 @@ angular
     .module('app.core')
     .factory('storeService', storeService);
 
-storeService.$inject = ['localStorageService'];
+storeService.$inject = ['localStorageService', 'uniqueObjFilter'];
 
-function storeService(localStorageService) {
+function storeService(localStorageService, uniqueObjFilter) {
+    // localStorageService.clearAll();
     var trials = [];
     var pickedTrials = [];
     var ls = localStorageService.get('store');
@@ -14,12 +15,13 @@ function storeService(localStorageService) {
     }
 
     return {
-        'addTrial': addTrial,
+        'addTrials': addTrials,
         'getTrials': getTrials,
-        'pickTrials': pickTrials
+        'pickTrials': pickTrials,
+        'uniqueTrials': uniqueTrials
     };
 
-    function addTrial(data) {
+    function addTrials(data) {
         trials.push(data);
         save();
     }
@@ -47,6 +49,10 @@ function storeService(localStorageService) {
             }
         });
         return pickedTrials;
+    }
+
+    function uniqueTrials(data){
+        return uniqueObjFilter(data);
     }
 
     function save() {

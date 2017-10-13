@@ -5,7 +5,7 @@ angular
 storeService.$inject = ['localStorageService', 'uniqueObjFilter'];
 
 function storeService(localStorageService, uniqueObjFilter) {
-    // localStorageService.clearAll();
+    localStorageService.clearAll();
     var trials = [];
     var pickedTrials = [];
     var ls = localStorageService.get('store');

@@ -21,7 +21,7 @@ function storeService(localStorageService) {
 
     function addTrial(data) {
         trials.push(data);
-        // save();
+        save();
     }
 
     function getTrials() {

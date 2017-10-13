@@ -13,7 +13,7 @@ function HomeController(trialService, storeService, $timeout) {
     vm.disableInputField = true;
     vm.selected = {};
     vm.filterProp = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
-    vm.uniqueTrials = undefined;
+    // vm.uniqueTrials = undefined;
 
         // Search one or more records per page
     // vm.query = function (apiNode, query) {
@@ -34,10 +34,9 @@ function HomeController(trialService, storeService, $timeout) {
         vm.searching = true;
         trialService.searchAllPages(apiNode, query, []).then(function (response) {
             vm.selectOptions = storeService.pickTrials(response, vm.filterProp);
-            vm.uniqueTrials = storeService.uniqueTrials(vm.selectOptions);
-            if (vm.uniqueTrials !== undefined || vm.uniqueTrials.length !== 0) {
-                storeService.addTrials(vm.uniqueTrials);
-            }
+            // if (vm.uniqueTrials !== undefined || vm.uniqueTrials.length !== 0) {
+            //     storeService.addTrials(vm.uniqueTrials);
+            // }
             $timeout(function () {
                 vm.searching = false;
             }, 500);

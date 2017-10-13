@@ -17,7 +17,7 @@ function pickObj() {
             var obj = {};
             if (value !== undefined && value !== null){
                 if (typeof value === 'object'){
-                    pickTrials(value, filterProp);
+                    pickObjFilter(value, filterProp);
                 }else{
                     angular.forEach(filterProp, function (prop) {
                         if (prop === key) {

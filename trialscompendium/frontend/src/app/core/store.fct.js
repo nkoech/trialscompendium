@@ -2,12 +2,11 @@ angular
     .module('app.core')
     .factory('storeService', storeService);
 
-storeService.$inject = ['localStorageService', 'uniqueObjFilter'];
+storeService.$inject = ['localStorageService', 'uniqueObjFilter', 'pickObjFilter'];
 
-function storeService(localStorageService, uniqueObjFilter) {
+function storeService(localStorageService, uniqueObjFilter, pickObjFilter) {
     localStorageService.clearAll();
     var trials = [];
-    var pickedTrials = [];
     var ls = localStorageService.get('store');
 
     if (ls !== null) {
@@ -31,24 +30,7 @@ function storeService(localStorageService, uniqueObjFilter) {
     }
 
     function pickTrials(data, filterProp){
-        angular.forEach(data, function (value, key) {
-            var obj = {};
-            if (value !== undefined && value !== null){
-                if (typeof value === 'object'){
-                    pickTrials(value, filterProp);
-                }else{
-                    angular.forEach(filterProp, function (prop) {
-                        if (prop === key) {
-                            // Replace true and false js values with Plus and Minus string respectively
-                            value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;
-                            obj[key] = value;
-                            pickedTrials = pickedTrials.concat(obj);
-                        }
-                    });
-                }
-            }
-        });
-        return pickedTrials;
+        return pickObjFilter(data, filterProp);
     }
 
     function uniqueTrials(data){

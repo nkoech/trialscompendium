@@ -25,6 +25,32 @@
     width: 25%;
 }
 
+.main-content .data-table {
+    padding: 20px 0 20px;
+}
+
+.data-table .top-bar .table-search {
+    text-align: right;
+}
+
+.data-table .top-bar .data-limit {
+    text-align: left;
+}
+
+.data-table .top-bar .form-label {
+    white-space: nowrap;
+    text-align: left;
+}
+
+.data-table .top-bar .form-control {
+    display: inline-block;
+    width: auto;
+}
+
+
+
+
+
 
 
 /* START OF INPUT GROUP SEARCH FIELD */

@@ -73,7 +73,41 @@
                 </form>
             </div>
         </section>
+
+        <!-- Table section -->
+        <section class="data-table">
+            <div class="container">
+                <div class="row top-bar">
+
+                    <div class="col-lg-6 col-md-6 pull-left">
+                        <div class="data-limit">
+                            <label for="data-limit-form" class="form-label">
+                                Page Size:
+                                <select class="form-control" id="data-limit-form" ng-model="vm.dataLimit">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6  pull-right">
+                        <div class="table-search">
+                            <label for="table-search-form" class="form-label">
+                                Search:
+                                <input type="text" class="form-control" id="table-search-form"  placeholder="Table search..." ng-change="filterFunc()">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
+
+
+
+
 
     <!--&lt;!&ndash; Map view section &ndash;&gt;-->
     <!--<section class="map-view" id="map-view">-->

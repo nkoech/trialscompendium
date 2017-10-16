@@ -4,7 +4,7 @@
 
 .main-content .search {
     padding: 50px 0 50px;
-    background-color: #fafafa;
+    background-color: #b8d8d8;
 }
 
 .search .bottom-btn {
@@ -29,6 +29,10 @@
     padding: 20px 0 20px;
 }
 
+.data-table .top-bar {
+    padding-bottom: 10px;
+}
+
 .data-table .top-bar .table-search {
     text-align: right;
 }
@@ -45,6 +49,13 @@
 .data-table .top-bar .form-control {
     display: inline-block;
     width: auto;
+}
+
+.table-striped tbody tr:nth-child(odd) td,
+
+.table-striped tbody tr:nth-child(odd) th {
+
+    background-color: #DDEAB7;
 }
 
 

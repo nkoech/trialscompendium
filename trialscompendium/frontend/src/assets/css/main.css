@@ -3,6 +3,7 @@
 @import 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto%20Mono';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css';
 @import '../../app/home/home.css';
+@import '../../app/widgets/search-trial/search-trial.css';
 
 /* Base styles */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0 }
@@ -72,6 +73,7 @@ p {
   border-color: transparent;
 }
 
+
 .form-group, .input-group {
   padding-bottom: 20px;
 }
@@ -88,6 +90,7 @@ p {
   border-radius: 0;
   box-shadow: none;
   background-color: #fff;
+  border: 0;
 }
 
 .form-control:hover {
@@ -97,6 +100,10 @@ p {
 .form-control:enabled {
   outline: none !important;
   box-shadow: none;
+}
+
+.form-control[disabled] {
+  background-color: #eceee8 !important;
 }
 
 .form-control:focus {

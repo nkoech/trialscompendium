@@ -3,9 +3,9 @@ angular
     .constant('BASE_URL', 'http://127.0.0.1:8000/api')
     .factory('trialService', trialService);
 
-trialService.$inject = ['$resource', 'BASE_URL', '$log'];
+trialService.$inject = ['$resource', 'BASE_URL', '$log', 'slugifyFilter'];
 
-function trialService($resource, BASE_URL, $log) {
+function trialService($resource, BASE_URL, $log, slugifyFilter) {
     var tableData = [];
     return {
         'search': search,
@@ -87,7 +87,15 @@ function trialService($resource, BASE_URL, $log) {
         return outObjArr;
     }
 
-    function _getObjectLevel(data){
+    function repWithUnderscrore(str){
+        if (angular.isString(str)) {
+            return str.replace(/ /g,"_").toLowerCase();
+        }
+        return false;
+    }
+
+    function _getObjLevel(data){
+        var newKey = '';
         var outObjArr = [];
         var innerObj = false;
         angular.forEach(data, function(obj) {
@@ -96,6 +104,11 @@ function trialService($resource, BASE_URL, $log) {
                 if (typeof value === 'object') {
                     innerObj = value;
                 } else {
+                    if (value === 'Short Rains' || value === 'Long Rains') {
+                        newKey = repWithUnderscrore(value)
+                    }else if(key === 'trial_yield') {
+                        key = newKey;
+                    }
                     outObj[key] = value;
                 }
             });
@@ -112,10 +125,10 @@ function trialService($resource, BASE_URL, $log) {
             var objLevel, firstLevelData, secondLevelData,  thirdLevelData = '';
             angular.forEach(obj, function(value){
                 if (value !== undefined && value !== null && typeof value === 'object'){
-                    objLevel = _getObjectLevel(value);
+                    objLevel = _getObjLevel(value);
                     secondLevelData = _filterObject(objLevel.outObjArr, filterProp);
                     if (objLevel.innerObj){
-                        objLevel = _getObjectLevel(objLevel.innerObj);
+                        objLevel = _getObjLevel(objLevel.innerObj);
                         thirdLevelData = _filterObject(objLevel.outObjArr, filterProp);
                     }
 

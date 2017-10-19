@@ -111,182 +111,250 @@
                                 <th>Plot&nbsp;<a ng-click="vm.sort_with('plot');"><i class="fa fa-sort"></i></a></th>
                                 <th>Observation&nbsp;<a ng-click="vm.sort_with('observation');"><i class="fa fa-sort"></i></a></th>
                                 <th>Year&nbsp;<a ng-click="vm.sort_with('year');"><i class="fa fa-sort"></i></a></th>
-                                <th>Season&nbsp;<a ng-click="vm.sort_with('season');"><i class="fa fa-sort"></i></a></th>
                                 <th>Tillage&nbsp;<a ng-click="vm.sort_with('tillage');"><i class="fa fa-sort"></i></a></th>
                                 <th>FYM&nbsp;<a ng-click="vm.sort_with('fym');"><i class="fa fa-sort"></i></a></th>
                                 <th>Residue&nbsp;<a ng-click="vm.sort_with('residue');"><i class="fa fa-sort"></i></a></th>
                                 <th>Rotation&nbsp;<a ng-click="vm.sort_with('rotation');"><i class="fa fa-sort"></i></a></th>
                                 <th>NP&nbsp;<a ng-click="vm.sort_with('np');"><i class="fa fa-sort"></i></a></th>
-                                <th>Yield&nbsp;<a ng-click="vm.sort_with('yield');"><i class="fa fa-sort"></i></a></th>
+                                <th>Short Rains&nbsp;<a ng-click="vm.sort_with('yield');"><i class="fa fa-sort"></i></a></th>
+                                <th>Long Rains&nbsp;<a ng-click="vm.sort_with('yield');"><i class="fa fa-sort"></i></a></th>
                             </tr>
                             </thead>
                             <tbody>
+                            <!-- TODO: Check ng-repeat - not working -->
+                                <!--<tr ng-repeat="trial in vm.results track by $index">-->
+                                    <!--<td>{{trial.trial_id}}</td>-->
+                                    <!--<td>{{trial.plot_id}}</td>-->
+                                    <!--<td>{{trial.observation}}</td>-->
+                                    <!--<td>{{trial.year}}</td>-->
+                                    <!--<td>{{trial.tillage_practice}}</td>-->
+                                    <!--<td>{{trial.farm_yard_manure}}</td>-->
+                                    <!--<td>{{trial.farm_residue}}</td>-->
+                                    <!--<td>{{trial.crops_grown}}</td>-->
+                                    <!--<td>{{trial.nitrogen_treatment}}</td>-->
+                                    <!--<td>{{trial.trial_yield}}</td> &lt;!&ndash; Short rains yield &ndash;&gt;-->
+                                    <!--<td>{{trial.trial_yield}}</td> &lt;!&ndash; Long rains yield &ndash;&gt;-->
+                                <!--</tr>-->
                             <tr>
                                 <!--<td><input type="checkbox"/></td>-->
                                 <td>INM3</td>
                                 <td>101</td>
                                 <td>Maize Y</td>
                                 <td>2004</td>
-                                <td>Long Rains</td>
                                 <td>Zero</td>
                                 <td>Plus</td>
                                 <td>Plus</td>
                                 <td>M-M</td>
                                 <td>P60N0</td>
                                 <td>4.29</td>
-                            </tr>
-                            <tr>
-                                <!--<td><input type="checkbox"/></td>-->
-                                <td>INM3</td>
-                                <td>102_a</td>
-                                <td>Maize AGB</td>
-                                <td>2016</td>
-                                <td>Short Rains</td>
-                                <td>Conventional</td>
-                                <td></td>
-                                <td>Minus</td>
-                                <td>M/S</td>
-                                <td>P60N30</td>
                                 <td>11.24</td>
                             </tr>
                             <tr>
-                                <!--<td><input type="checkbox"/></td>-->
                                 <td>INM3</td>
                                 <td>101</td>
                                 <td>Maize Y</td>
                                 <td>2004</td>
-                                <td>Long Rains</td>
                                 <td>Zero</td>
                                 <td>Plus</td>
                                 <td>Plus</td>
                                 <td>M-M</td>
                                 <td>P60N0</td>
                                 <td>4.29</td>
-                            </tr>
-                            <tr>
-                                <!--<td><input type="checkbox"/></td>-->
-                                <td>INM3</td>
-                                <td>102_a</td>
-                                <td>Maize AGB</td>
-                                <td>2016</td>
-                                <td>Short Rains</td>
-                                <td>Conventional</td>
-                                <td></td>
-                                <td>Minus</td>
-                                <td>M/S</td>
-                                <td>P60N30</td>
                                 <td>11.24</td>
                             </tr>
                             <tr>
-                                <!--<td><input type="checkbox"/></td>-->
                                 <td>INM3</td>
                                 <td>101</td>
                                 <td>Maize Y</td>
                                 <td>2004</td>
-                                <td>Long Rains</td>
                                 <td>Zero</td>
                                 <td>Plus</td>
                                 <td>Plus</td>
                                 <td>M-M</td>
                                 <td>P60N0</td>
                                 <td>4.29</td>
-                            </tr>
-                            <tr>
-                                <!--<td><input type="checkbox"/></td>-->
-                                <td>INM3</td>
-                                <td>102_a</td>
-                                <td>Maize AGB</td>
-                                <td>2016</td>
-                                <td>Short Rains</td>
-                                <td>Conventional</td>
-                                <td></td>
-                                <td>Minus</td>
-                                <td>M/S</td>
-                                <td>P60N30</td>
                                 <td>11.24</td>
                             </tr>
                             <tr>
-                                <!--<td><input type="checkbox"/></td>-->
                                 <td>INM3</td>
                                 <td>101</td>
                                 <td>Maize Y</td>
                                 <td>2004</td>
-                                <td>Long Rains</td>
                                 <td>Zero</td>
                                 <td>Plus</td>
                                 <td>Plus</td>
                                 <td>M-M</td>
                                 <td>P60N0</td>
                                 <td>4.29</td>
-                            </tr>
-                            <tr>
-                                <!--<td><input type="checkbox"/></td>-->
-                                <td>INM3</td>
-                                <td>102_a</td>
-                                <td>Maize AGB</td>
-                                <td>2016</td>
-                                <td>Short Rains</td>
-                                <td>Conventional</td>
-                                <td></td>
-                                <td>Minus</td>
-                                <td>M/S</td>
-                                <td>P60N30</td>
                                 <td>11.24</td>
                             </tr>
                             <tr>
-                                <!--<td><input type="checkbox"/></td>-->
                                 <td>INM3</td>
                                 <td>101</td>
                                 <td>Maize Y</td>
                                 <td>2004</td>
-                                <td>Long Rains</td>
                                 <td>Zero</td>
                                 <td>Plus</td>
                                 <td>Plus</td>
                                 <td>M-M</td>
                                 <td>P60N0</td>
                                 <td>4.29</td>
-                            </tr>
-                            <tr>
-                                <!--<td><input type="checkbox"/></td>-->
-                                <td>INM3</td>
-                                <td>102_a</td>
-                                <td>Maize AGB</td>
-                                <td>2016</td>
-                                <td>Short Rains</td>
-                                <td>Conventional</td>
-                                <td></td>
-                                <td>Minus</td>
-                                <td>M/S</td>
-                                <td>P60N30</td>
                                 <td>11.24</td>
                             </tr>
                             <tr>
-                                <!--<td><input type="checkbox"/></td>-->
                                 <td>INM3</td>
                                 <td>101</td>
                                 <td>Maize Y</td>
                                 <td>2004</td>
-                                <td>Long Rains</td>
                                 <td>Zero</td>
                                 <td>Plus</td>
                                 <td>Plus</td>
                                 <td>M-M</td>
                                 <td>P60N0</td>
                                 <td>4.29</td>
+                                <td>11.24</td>
                             </tr>
                             <tr>
-                                <!--<td><input type="checkbox"/></td>-->
                                 <td>INM3</td>
-                                <td>102_a</td>
-                                <td>Maize AGB</td>
-                                <td>2016</td>
-                                <td>Short Rains</td>
-                                <td>Conventional</td>
-                                <td></td>
-                                <td>Minus</td>
-                                <td>M/S</td>
-                                <td>P60N30</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
+                                <td>11.24</td>
+                            </tr>
+                            <tr>
+                                <td>INM3</td>
+                                <td>101</td>
+                                <td>Maize Y</td>
+                                <td>2004</td>
+                                <td>Zero</td>
+                                <td>Plus</td>
+                                <td>Plus</td>
+                                <td>M-M</td>
+                                <td>P60N0</td>
+                                <td>4.29</td>
                                 <td>11.24</td>
                             </tr>
                             </tbody>

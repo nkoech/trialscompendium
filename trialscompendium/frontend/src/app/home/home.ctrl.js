@@ -12,11 +12,11 @@ function HomeController(trialService, storeService, $timeout) {
     vm.trialSelected = false;
     vm.disableInputField = true;
     vm.selected = {};
-    vm.filterProp = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
-    // vm.uniqueTrials = undefined;
+    vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
+    vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', '', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'trial_yield'];
 
-        // Search one or more records per page
-    // vm.query = function (apiNode, query) {
+    // Search one or more records per page
+    // vm.queryPage = function (apiNode, query) {
     //     vm.searching = true;
     //     trialService.search(apiNode, query).then(function (response) {
     //         vm.results = response.results;
@@ -29,18 +29,30 @@ function HomeController(trialService, storeService, $timeout) {
     // };
     // vm.query("trials/treatment/", {offset: vm.offset, limit: vm.limit});
 
-    // Search one or more records in all pages
-    vm.queryAllpages = function (apiNode, query) {
+    // Search one or more records per page
+    vm.queryPage = function (apiNode, query) {
         vm.searching = true;
-        trialService.searchAllPages(apiNode, query, []).then(function (response) {
-            vm.selectOptions = storeService.pickTrials(response, vm.filterProp);
-            // if (vm.uniqueTrials !== undefined || vm.uniqueTrials.length !== 0) {
-            //     storeService.addTrials(vm.uniqueTrials);
-            // }
+        trialService.search(apiNode, query).then(function (response) {
+            // vm.results = response.results;
+            vm.results = trialService.getTrials(response.results, vm.filterTableData);
+
             $timeout(function () {
                 vm.searching = false;
             }, 500);
         });
     };
-    vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
+    vm.queryPage("trials/treatment/", {offset: 0, limit: 50});
+
+
+    // Search one or more records in all pages
+    vm.queryAllpages = function (apiNode, query) {
+        vm.searching = true;
+        trialService.searchAllPages(apiNode, query, []).then(function (response) {
+            vm.selectOptions = storeService.pickTrials(response, vm.filterSelectOptions);
+            $timeout(function () {
+                vm.searching = false;
+            }, 500);
+        });
+    };
+    // vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
 }

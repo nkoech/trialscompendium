@@ -13,18 +13,18 @@ function storeService(localStorageService, uniqueObjFilter, pickObjFilter) {
     }
 
     return {
-        'addTrials': addTrials,
-        'getTrials': getTrials,
+        'storeTrials': storeTrials,
+        'getStoredTrials': getStoredTrials,
         'pickTrials': pickTrials,
         'uniqueTrials': uniqueTrials
     };
 
-    function addTrials(data) {
+    function storeTrials(data) {
         trials.push(data);
         save();
     }
 
-    function getTrials() {
+    function getStoredTrials() {
         return trials;
     }
 

@@ -6,10 +6,12 @@ angular
 trialService.$inject = ['$resource', 'BASE_URL', '$log'];
 
 function trialService($resource, BASE_URL, $log) {
+    var tableData = [];
     return {
         'search': search,
         'get': get,
-        'searchAllPages': searchAllPages
+        'searchAllPages': searchAllPages,
+        'getTrials': getTrials
     };
 
     function makeRequest(url, params) {
@@ -65,6 +67,73 @@ function trialService($resource, BASE_URL, $log) {
             }
             return list;
         });
+    }
+
+    function _filterObject(data, filterProp) {
+        var outObjArr = [];
+        angular.forEach(data, function(obj){
+            var outObj = {};
+            angular.forEach(obj, function (value, key) {
+                angular.forEach(filterProp, function (prop) {
+                    if (prop === key) {
+                        // Replace true and false js values with Plus and Minus string respectively
+                        value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;
+                        outObj[key] = value;
+                    }
+                });
+            });
+            outObjArr = outObjArr.concat(outObj);
+        });
+        return outObjArr;
+    }
+
+    function _getObjectLevel(data){
+        var outObjArr = [];
+        var innerObj = false;
+        angular.forEach(data, function(obj) {
+            var outObj = {};
+            angular.forEach(obj, function (value, key) {
+                if (typeof value === 'object') {
+                    innerObj = value;
+                } else {
+                    outObj[key] = value;
+                }
+            });
+            outObjArr = outObjArr.concat(outObj);
+        });
+        return {
+            outObjArr: outObjArr,
+            innerObj: innerObj
+        };
+    }
+
+    function getTrials(data, filterProp) {
+        angular.forEach(data, function (obj) {
+            var objLevel, firstLevelData, secondLevelData,  thirdLevelData = '';
+            angular.forEach(obj, function(value){
+                if (value !== undefined && value !== null && typeof value === 'object'){
+                    objLevel = _getObjectLevel(value);
+                    secondLevelData = _filterObject(objLevel.outObjArr, filterProp);
+                    if (objLevel.innerObj){
+                        objLevel = _getObjectLevel(objLevel.innerObj);
+                        thirdLevelData = _filterObject(objLevel.outObjArr, filterProp);
+                    }
+
+                }else{
+                    // Get API first level objects
+                    firstLevelData = _filterObject([obj], filterProp);
+                }
+            });
+            
+            angular.forEach(thirdLevelData, function(thirdObj){
+                angular.forEach(secondLevelData, function(secondObj){
+                    angular.forEach(firstLevelData, function(firstObj){
+                        tableData = tableData.concat(angular.merge({}, firstObj, secondObj, thirdObj));
+                    });
+                });
+            });
+        });
+        return tableData;
     }
 
     function dataServiceError(errorResponse) {

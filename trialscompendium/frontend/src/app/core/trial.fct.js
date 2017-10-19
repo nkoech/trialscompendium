@@ -3,9 +3,9 @@ angular
     .constant('BASE_URL', 'http://127.0.0.1:8000/api')
     .factory('trialService', trialService);
 
-trialService.$inject = ['$resource', 'BASE_URL', '$log', 'slugifyFilter'];
+trialService.$inject = ['$resource', 'BASE_URL', '$log'];
 
-function trialService($resource, BASE_URL, $log, slugifyFilter) {
+function trialService($resource, BASE_URL, $log) {
     var tableData = [];
     return {
         'search': search,

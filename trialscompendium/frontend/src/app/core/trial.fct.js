@@ -6,7 +6,7 @@ angular
 trialService.$inject = ['$resource', 'BASE_URL', '$log'];
 
 function trialService($resource, BASE_URL, $log) {
-    var tableData = [];
+    var initTableData = [];
     return {
         'search': search,
         'get': get,
@@ -69,13 +69,13 @@ function trialService($resource, BASE_URL, $log) {
         });
     }
 
-    function _filterObject(data, filterProp) {
+    function filterObj(data, filterProp) {
         var outObjArr = [];
         angular.forEach(data, function(obj){
             var outObj = {};
             angular.forEach(obj, function (value, key) {
-                angular.forEach(filterProp, function (prop) {
-                    if (prop === key) {
+                angular.forEach(filterProp, function (item) {
+                    if (item === key) {
                         // Replace true and false js values with Plus and Minus string respectively
                         value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;
                         outObj[key] = value;
@@ -94,7 +94,7 @@ function trialService($resource, BASE_URL, $log) {
         return false;
     }
 
-    function _getObjLevel(data){
+    function getObjLevel(data){
         var newKey = '';
         var outObjArr = [];
         var innerObj = false;
@@ -120,33 +120,49 @@ function trialService($resource, BASE_URL, $log) {
         };
     }
 
+    function mergeObj(data, mergeProp){
+        var outObjArr = [];
+        angular.forEach(data, function(obj){
+            var existing = outObjArr.filter(function(item) {
+                return item[mergeProp] == obj[mergeProp];
+            });
+            if (existing.length) {
+                var existingIndex = outObjArr.indexOf(existing[0]);
+                angular.merge(outObjArr[existingIndex], obj);
+            } else {
+                outObjArr = outObjArr.concat(obj);
+            }
+        });
+        return outObjArr;
+    }
+
     function getTrials(data, filterProp) {
         angular.forEach(data, function (obj) {
             var objLevel, firstLevelData, secondLevelData,  thirdLevelData = '';
             angular.forEach(obj, function(value){
                 if (value !== undefined && value !== null && typeof value === 'object'){
-                    objLevel = _getObjLevel(value);
-                    secondLevelData = _filterObject(objLevel.outObjArr, filterProp);
+                    objLevel = getObjLevel(value);
+                    secondLevelData = filterObj(objLevel.outObjArr, filterProp);
                     if (objLevel.innerObj){
-                        objLevel = _getObjLevel(objLevel.innerObj);
-                        thirdLevelData = _filterObject(objLevel.outObjArr, filterProp);
+                        objLevel = getObjLevel(objLevel.innerObj);
+                        thirdLevelData = filterObj(objLevel.outObjArr, filterProp);
+                        thirdLevelData = mergeObj(thirdLevelData, 'observation');
                     }
-
                 }else{
                     // Get API first level objects
-                    firstLevelData = _filterObject([obj], filterProp);
+                    firstLevelData = filterObj([obj], filterProp);
                 }
             });
-            
+
             angular.forEach(thirdLevelData, function(thirdObj){
                 angular.forEach(secondLevelData, function(secondObj){
                     angular.forEach(firstLevelData, function(firstObj){
-                        tableData = tableData.concat(angular.merge({}, firstObj, secondObj, thirdObj));
+                        initTableData = initTableData.concat(angular.merge({}, firstObj, secondObj, thirdObj));
                     });
                 });
             });
         });
-        return tableData;
+        return initTableData;
     }
 
     function dataServiceError(errorResponse) {

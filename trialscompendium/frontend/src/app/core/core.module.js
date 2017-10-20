@@ -23,5 +23,6 @@ require('./store.fct');
 require('./unique-obj.fltr');
 require('./pick-obj.fltr');
 require('./str-replace.fltr');
+require('./val-replace.fltr');
 // require('./bool-replace.fltr');
 

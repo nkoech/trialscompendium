@@ -3,9 +3,9 @@ angular
     .constant('BASE_URL', 'http://127.0.0.1:8000/api')
     .factory('trialService', trialService);
 
-trialService.$inject = ['$resource', 'BASE_URL', '$log', 'strReplaceFilter'];
+trialService.$inject = ['$resource', 'BASE_URL', '$log', 'strReplaceFilter', 'valReplaceFilter'];
 
-function trialService($resource, BASE_URL, $log, strReplaceFilter) {
+function trialService($resource, BASE_URL, $log, strReplaceFilter, valReplaceFilter) {
     var initTableData = [];
     return {
         'search': search,
@@ -108,18 +108,19 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
         };
     }
 
-    function filterObj(data, filterProp) {
+    function pickMultiObj(data, filterProp, valueOptions) {
         var outObjArr = [];
+        valueOptions = typeof valueOptions !== undefined || valueOptions !== null ? valueOptions : false;
+        if ((!angular.isArray(data) && (data === undefined || data === null)) || (filterProp === undefined || filterProp === null)) {return data;}
         angular.forEach(data, function(obj){
             var outObj = {};
             angular.forEach(obj, function (value, key) {
-                angular.forEach(filterProp, function (item) {
-                    if (item === key) {
-                        // Replace true and false js values with Plus and Minus string respectively
-                        value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;
-                        outObj[key] = value;
-                    }
-                });
+                value = valReplaceFilter(value, valueOptions);
+                if (angular.isArray(filterProp) && filterProp.length){
+                    angular.forEach(filterProp, function (item) {item === key ? outObj[key] = value : value;});
+                }else{
+                    filterProp === key ? outObj[key] = value : value;
+                }
             });
             outObjArr = outObjArr.concat(outObj);
         });
@@ -149,15 +150,15 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
             angular.forEach(obj, function(value){
                 if (value !== undefined && value !== null && typeof value === 'object'){
                     objLevel = getNestedTrials(value);
-                    secondLevelData = filterObj(objLevel.outObjArr, filterProp);
+                    secondLevelData = pickMultiObj(objLevel.outObjArr, filterProp);
                     if (objLevel.nestedObj){
                         objLevel = getNestedTrials(objLevel.nestedObj, 'trial_yield', ['Short Rains', 'Long Rains']);
-                        thirdLevelData = filterObj(objLevel.outObjArr, filterProp);
+                        thirdLevelData = pickMultiObj(objLevel.outObjArr, filterProp);
                         thirdLevelData = mergeObj(thirdLevelData, 'observation');
                     }
                 }else{
                     // Get API first level objects
-                    firstLevelData = filterObj([obj], filterProp);
+                    firstLevelData = pickMultiObj([obj], filterProp, {Plus: true, Minus: false});
                 }
             });
 

@@ -1,7 +1,7 @@
 /**
  * String replace filter
  * Replace a string from to
- * Usage: {{string | slugify}}
+ * Usage: {{strReplace | from : to}}
  **/
 
 angular

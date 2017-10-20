@@ -1,7 +1,7 @@
 /**
  * String replace filter
  * Replace a string from to
- * Usage: {{strReplace | from : to}}
+ * Usage: {{string | strReplace: from : to}}
  **/
 
 angular

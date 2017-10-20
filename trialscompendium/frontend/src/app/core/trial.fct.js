@@ -3,9 +3,9 @@ angular
     .constant('BASE_URL', 'http://127.0.0.1:8000/api')
     .factory('trialService', trialService);
 
-trialService.$inject = ['$resource', 'BASE_URL', '$log', 'strReplaceFilter', 'valReplaceFilter'];
+trialService.$inject = ['$resource', 'BASE_URL', '$log', 'strReplaceFilter', 'pickMultiObjFilter'];
 
-function trialService($resource, BASE_URL, $log, strReplaceFilter, valReplaceFilter) {
+function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjFilter) {
     var initTableData = [];
     return {
         'search': search,
@@ -108,23 +108,8 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, valReplaceFil
         };
     }
 
-    function pickMultiObj(data, filterProp, valueOptions) {
-        var outObjArr = [];
-        valueOptions = typeof valueOptions !== undefined || valueOptions !== null ? valueOptions : false;
-        if ((!angular.isArray(data) && (data === undefined || data === null)) || (filterProp === undefined || filterProp === null)) {return data;}
-        angular.forEach(data, function(obj){
-            var outObj = {};
-            angular.forEach(obj, function (value, key) {
-                value = valReplaceFilter(value, valueOptions);
-                if (angular.isArray(filterProp) && filterProp.length){
-                    angular.forEach(filterProp, function (item) {item === key ? outObj[key] = value : value;});
-                }else{
-                    filterProp === key ? outObj[key] = value : value;
-                }
-            });
-            outObjArr = outObjArr.concat(outObj);
-        });
-        return outObjArr;
+    function filterMultiObj(data, filterProp, replaceValue) {
+        return pickMultiObjFilter(data, filterProp, replaceValue);
     }
 
     function mergeObj(data, mergeProp){
@@ -150,15 +135,15 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, valReplaceFil
             angular.forEach(obj, function(value){
                 if (value !== undefined && value !== null && typeof value === 'object'){
                     objLevel = getNestedTrials(value);
-                    secondLevelData = pickMultiObj(objLevel.outObjArr, filterProp);
+                    secondLevelData = filterMultiObj(objLevel.outObjArr, filterProp);
                     if (objLevel.nestedObj){
                         objLevel = getNestedTrials(objLevel.nestedObj, 'trial_yield', ['Short Rains', 'Long Rains']);
-                        thirdLevelData = pickMultiObj(objLevel.outObjArr, filterProp);
+                        thirdLevelData = filterMultiObj(objLevel.outObjArr, filterProp);
                         thirdLevelData = mergeObj(thirdLevelData, 'observation');
                     }
                 }else{
                     // Get API first level objects
-                    firstLevelData = pickMultiObj([obj], filterProp, {Plus: true, Minus: false});
+                    firstLevelData = filterMultiObj([obj], filterProp, {Plus: true, Minus: false});
                 }
             });
 

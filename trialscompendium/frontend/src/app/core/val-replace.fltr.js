@@ -1,7 +1,7 @@
 /**
  * Value replace filter
  * Replace a specific input value with object key  
- * Usage: {{string | {key: value}}}
+ * Usage: {{value |valReplace: {key: value}}}
  **/
 
 angular

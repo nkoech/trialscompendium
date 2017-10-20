@@ -69,21 +69,34 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
         });
     }
 
-    function getNestedTrials(data){
+    function strToKey(keyOptions, str) {
+        // Convert string to key by replacing space with an underscore
+        if (keyOptions) {
+            var newKey = false;
+            str = typeof str !== undefined || str !== null ? str : false;
+            angular.forEach(keyOptions, function(opt){
+                if (str === opt){
+                    newKey = strReplaceFilter(str, ' ', '_').toLowerCase();
+                }
+            });
+            return newKey;
+        }
+    }
+
+    function getNestedTrials(data, replaceKey, keyOptions){
         var newKey = '';
         var outObjArr = [];
         var nestedObj = false;
+        replaceKey = typeof replaceKey !== undefined || replaceKey !== null ? replaceKey : false;
+        keyOptions = typeof keyOptions !== undefined || keyOptions !== null ? keyOptions : false;
         angular.forEach(data, function(obj) {
             var outObj = {};
             angular.forEach(obj, function (value, key) {
                 if (typeof value === 'object') {
                     nestedObj = value;
                 } else {
-                    if (value === 'Short Rains' || value === 'Long Rains') {
-                        newKey = strReplaceFilter(value, ' ', '_').toLowerCase()
-                    }else if(key === 'trial_yield') {
-                        key = newKey;
-                    }
+                    newKey = strToKey(keyOptions, value) ? strToKey(keyOptions, value) : newKey;
+                    key = key === replaceKey ? newKey : key;
                     outObj[key] = value;
                 }
             });
@@ -138,7 +151,7 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
                     objLevel = getNestedTrials(value);
                     secondLevelData = filterObj(objLevel.outObjArr, filterProp);
                     if (objLevel.nestedObj){
-                        objLevel = getNestedTrials(objLevel.nestedObj);
+                        objLevel = getNestedTrials(objLevel.nestedObj, 'trial_yield', ['Short Rains', 'Long Rains']);
                         thirdLevelData = filterObj(objLevel.outObjArr, filterProp);
                         thirdLevelData = mergeObj(thirdLevelData, 'observation');
                     }

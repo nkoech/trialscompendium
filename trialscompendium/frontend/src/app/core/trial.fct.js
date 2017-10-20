@@ -3,9 +3,9 @@ angular
     .constant('BASE_URL', 'http://127.0.0.1:8000/api')
     .factory('trialService', trialService);
 
-trialService.$inject = ['$resource', 'BASE_URL', '$log'];
+trialService.$inject = ['$resource', 'BASE_URL', '$log', 'strReplaceFilter'];
 
-function trialService($resource, BASE_URL, $log) {
+function trialService($resource, BASE_URL, $log, strReplaceFilter) {
     var initTableData = [];
     return {
         'search': search,
@@ -69,6 +69,32 @@ function trialService($resource, BASE_URL, $log) {
         });
     }
 
+    function getObjLevel(data){
+        var newKey = '';
+        var outObjArr = [];
+        var innerObj = false;
+        angular.forEach(data, function(obj) {
+            var outObj = {};
+            angular.forEach(obj, function (value, key) {
+                if (typeof value === 'object') {
+                    innerObj = value;
+                } else {
+                    if (value === 'Short Rains' || value === 'Long Rains') {
+                        newKey = strReplaceFilter(value, ' ', '_').toLowerCase()
+                    }else if(key === 'trial_yield') {
+                        key = newKey;
+                    }
+                    outObj[key] = value;
+                }
+            });
+            outObjArr = outObjArr.concat(outObj);
+        });
+        return {
+            outObjArr: outObjArr,
+            innerObj: innerObj
+        };
+    }
+
     function filterObj(data, filterProp) {
         var outObjArr = [];
         angular.forEach(data, function(obj){
@@ -87,40 +113,8 @@ function trialService($resource, BASE_URL, $log) {
         return outObjArr;
     }
 
-    function repWithUnderscrore(str){
-        if (angular.isString(str)) {
-            return str.replace(/ /g,"_").toLowerCase();
-        }
-        return false;
-    }
-
-    function getObjLevel(data){
-        var newKey = '';
-        var outObjArr = [];
-        var innerObj = false;
-        angular.forEach(data, function(obj) {
-            var outObj = {};
-            angular.forEach(obj, function (value, key) {
-                if (typeof value === 'object') {
-                    innerObj = value;
-                } else {
-                    if (value === 'Short Rains' || value === 'Long Rains') {
-                        newKey = repWithUnderscrore(value)
-                    }else if(key === 'trial_yield') {
-                        key = newKey;
-                    }
-                    outObj[key] = value;
-                }
-            });
-            outObjArr = outObjArr.concat(outObj);
-        });
-        return {
-            outObjArr: outObjArr,
-            innerObj: innerObj
-        };
-    }
-
     function mergeObj(data, mergeProp){
+        // Merge similar objects into one
         var outObjArr = [];
         angular.forEach(data, function(obj){
             var existing = outObjArr.filter(function(item) {

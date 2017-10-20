@@ -72,12 +72,12 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
     function getNestedTrials(data){
         var newKey = '';
         var outObjArr = [];
-        var innerObj = false;
+        var nestedObj = false;
         angular.forEach(data, function(obj) {
             var outObj = {};
             angular.forEach(obj, function (value, key) {
                 if (typeof value === 'object') {
-                    innerObj = value;
+                    nestedObj = value;
                 } else {
                     if (value === 'Short Rains' || value === 'Long Rains') {
                         newKey = strReplaceFilter(value, ' ', '_').toLowerCase()
@@ -91,7 +91,7 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
         });
         return {
             outObjArr: outObjArr,
-            innerObj: innerObj
+            nestedObj: nestedObj
         };
     }
 
@@ -137,8 +137,8 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
                 if (value !== undefined && value !== null && typeof value === 'object'){
                     objLevel = getNestedTrials(value);
                     secondLevelData = filterObj(objLevel.outObjArr, filterProp);
-                    if (objLevel.innerObj){
-                        objLevel = getNestedTrials(objLevel.innerObj);
+                    if (objLevel.nestedObj){
+                        objLevel = getNestedTrials(objLevel.nestedObj);
                         thirdLevelData = filterObj(objLevel.outObjArr, filterProp);
                         thirdLevelData = mergeObj(thirdLevelData, 'observation');
                     }

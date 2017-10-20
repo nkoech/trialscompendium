@@ -69,7 +69,7 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
         });
     }
 
-    function getObjLevel(data){
+    function getNestedTrials(data){
         var newKey = '';
         var outObjArr = [];
         var innerObj = false;
@@ -135,10 +135,10 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter) {
             var objLevel, firstLevelData, secondLevelData,  thirdLevelData = '';
             angular.forEach(obj, function(value){
                 if (value !== undefined && value !== null && typeof value === 'object'){
-                    objLevel = getObjLevel(value);
+                    objLevel = getNestedTrials(value);
                     secondLevelData = filterObj(objLevel.outObjArr, filterProp);
                     if (objLevel.innerObj){
-                        objLevel = getObjLevel(objLevel.innerObj);
+                        objLevel = getNestedTrials(objLevel.innerObj);
                         thirdLevelData = filterObj(objLevel.outObjArr, filterProp);
                         thirdLevelData = mergeObj(thirdLevelData, 'observation');
                     }

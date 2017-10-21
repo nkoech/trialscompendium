@@ -2,9 +2,9 @@ angular
     .module('app.core')
     .factory('storeService', storeService);
 
-storeService.$inject = ['localStorageService', 'uniqueObjFilter', 'pickSingleObjFilter'];
+storeService.$inject = ['localStorageService'];
 
-function storeService(localStorageService, uniqueObjFilter, pickSingleObjFilter) {
+function storeService(localStorageService) {
     var trials = [];
     var ls = localStorageService.get('store');
 
@@ -14,9 +14,7 @@ function storeService(localStorageService, uniqueObjFilter, pickSingleObjFilter)
 
     return {
         'storeTrials': storeTrials,
-        'getStoredTrials': getStoredTrials,
-        'pickTrials': pickTrials,
-        'uniqueTrials': uniqueTrials
+        'getStoredTrials': getStoredTrials
     };
 
     function storeTrials(data) {
@@ -26,14 +24,6 @@ function storeService(localStorageService, uniqueObjFilter, pickSingleObjFilter)
 
     function getStoredTrials() {
         return trials;
-    }
-
-    function pickTrials(data, filterProp, replaceValue){
-        return pickSingleObjFilter(data, filterProp, replaceValue);
-    }
-
-    function uniqueTrials(data){
-        return uniqueObjFilter(data);
     }
 
     function save() {

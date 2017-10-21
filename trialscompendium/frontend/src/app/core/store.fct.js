@@ -28,8 +28,8 @@ function storeService(localStorageService, uniqueObjFilter, pickSingleObjFilter)
         return trials;
     }
 
-    function pickTrials(data, filterProp){
-        return pickSingleObjFilter(data, filterProp, {Plus: true, Minus: false});
+    function pickTrials(data, filterProp, replaceValue){
+        return pickSingleObjFilter(data, filterProp, replaceValue);
     }
 
     function uniqueTrials(data){

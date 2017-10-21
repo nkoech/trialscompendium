@@ -129,7 +129,7 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjF
         return outObjArr;
     }
 
-    function getTrials(data, filterProp) {
+    function getTrials(data, filterProp, replaceValue ) {
         angular.forEach(data, function (obj) {
             var objLevel, firstLevelData, secondLevelData,  thirdLevelData = '';
             angular.forEach(obj, function(value){
@@ -143,7 +143,7 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjF
                     }
                 }else{
                     // Get API first level objects
-                    firstLevelData = filterMultiObj([obj], filterProp, {Plus: true, Minus: false});
+                    firstLevelData = filterMultiObj([obj], filterProp, replaceValue);
                 }
             });
 
@@ -154,6 +154,7 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjF
                     });
                 });
             });
+            
         });
         return initTableData;
     }

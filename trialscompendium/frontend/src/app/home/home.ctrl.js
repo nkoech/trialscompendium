@@ -52,7 +52,6 @@ function HomeController(trialService, storeService, $timeout) {
         vm.searching = true;
         trialService.search(apiNode, query).then(function (response) {
             vm.results = vm.getTrials(response.results);
-            // vm.results = trialService.getTrials(response.results, vm.filterTableData, vm.replaceValue);
             $timeout(function () {
                 vm.searching = false;
             }, 500);

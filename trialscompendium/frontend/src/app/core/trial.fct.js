@@ -6,12 +6,14 @@ angular
 trialService.$inject = ['$resource', 'BASE_URL', '$log', 'strReplaceFilter', 'pickMultiObjFilter'];
 
 function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjFilter) {
-    var initTableData = [];
     return {
         'search': search,
         'get': get,
         'searchAllPages': searchAllPages,
-        'getTrials': getTrials
+        'strToKey': strToKey,
+        'getNestedTrials': getNestedTrials,
+        'filterMultiObj': filterMultiObj,
+        'mergeObj': mergeObj
     };
 
     function makeRequest(url, params) {
@@ -127,36 +129,6 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjF
             }
         });
         return outObjArr;
-    }
-
-    function getTrials(data, filterProp, replaceValue ) {
-        angular.forEach(data, function (obj) {
-            var objLevel, firstLevelData, secondLevelData,  thirdLevelData = '';
-            angular.forEach(obj, function(value){
-                if (value !== undefined && value !== null && typeof value === 'object'){
-                    objLevel = getNestedTrials(value);
-                    secondLevelData = filterMultiObj(objLevel.outObjArr, filterProp);
-                    if (objLevel.nestedObj){
-                        objLevel = getNestedTrials(objLevel.nestedObj, 'trial_yield', ['Short Rains', 'Long Rains']);
-                        thirdLevelData = filterMultiObj(objLevel.outObjArr, filterProp);
-                        thirdLevelData = mergeObj(thirdLevelData, 'observation');
-                    }
-                }else{
-                    // Get API first level objects
-                    firstLevelData = filterMultiObj([obj], filterProp, replaceValue);
-                }
-            });
-
-            angular.forEach(thirdLevelData, function(thirdObj){
-                angular.forEach(secondLevelData, function(secondObj){
-                    angular.forEach(firstLevelData, function(firstObj){
-                        initTableData = initTableData.concat(angular.merge({}, firstObj, secondObj, thirdObj));
-                    });
-                });
-            });
-            
-        });
-        return initTableData;
     }
 
     function dataServiceError(errorResponse) {

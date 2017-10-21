@@ -28,10 +28,9 @@ function HomeController(trialService, storeService, $timeout) {
                     if (objLevel.nestedObj){
                         objLevel = trialService.getNestedTrials(objLevel.nestedObj, 'trial_yield', ['Short Rains', 'Long Rains']);
                         thirdLevelData = trialService.filterMultiObj(objLevel.outObjArr, vm.filterTableData);
-                        thirdLevelData = trialService.mergeObj(thirdLevelData, 'observation');
+                        thirdLevelData = trialService.mergeObj(thirdLevelData, ['observation', 'year']);
                     }
                 }else{
-                    // Get API first level objects
                     firstLevelData = trialService.filterMultiObj([obj], vm.filterTableData, vm.replaceValue);
                 }
             });

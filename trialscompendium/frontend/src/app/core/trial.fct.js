@@ -86,7 +86,7 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjF
     }
 
     function getNestedTrials(data, replaceKey, keyOptions){
-        var newKey = '';
+        var newKey = false;
         var outObjArr = [];
         var nestedObj = false;
         replaceKey = typeof replaceKey !== undefined || replaceKey !== null ? replaceKey : false;
@@ -98,7 +98,7 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjF
                     nestedObj = value;
                 } else {
                     newKey = strToKey(keyOptions, value) ? strToKey(keyOptions, value) : newKey;
-                    key = key === replaceKey ? newKey : key;
+                    key = newKey && key === replaceKey ? newKey : key;
                     outObj[key] = value;
                 }
             });
@@ -118,8 +118,21 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjF
         // Merge similar objects into one
         var outObjArr = [];
         angular.forEach(data, function(obj){
-            var existing = outObjArr.filter(function(item) {
-                return item[mergeProp] == obj[mergeProp];
+            var existing = outObjArr.filter(function(value){
+                if (angular.isArray(mergeProp) && mergeProp.length) {
+                    var filterEval = '';
+                    mergeProp.map(function (prop, propIndex) {
+                        if (value[prop] === obj[prop]) {
+                            filterEval += 'value["' + prop +'"] === obj["' + prop + '"]';
+                            if ((propIndex + 1) < mergeProp.length){
+                                filterEval += ' && '
+                            }
+                        }
+                    });
+                    return (mergeProp.length > 1 && filterEval.indexOf('&&') > -1) ? eval(filterEval) : (mergeProp.length === 1 && filterEval) ? eval(filterEval) : false;
+                }else{
+                    return value[mergeProp] === obj[mergeProp];
+                }
             });
             if (existing.length) {
                 var existingIndex = outObjArr.indexOf(existing[0]);

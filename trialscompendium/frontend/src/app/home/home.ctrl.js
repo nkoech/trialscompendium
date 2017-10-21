@@ -38,5 +38,5 @@ function HomeController(trialService, storeService, $timeout) {
             }, 500);
         });
     };
-    vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
+    // vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
 }

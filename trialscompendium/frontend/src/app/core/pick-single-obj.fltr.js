@@ -1,23 +1,23 @@
 /**
- * Pick object based on filter
- * Filter flat objects - not nested
- * Usage: {{obj | pickObj: filterProperty}}
+ * Pick single object based on filter
+ * Filter flat objects only - not nested
+ * Usage: {{obj | pickSingleObj: filterProperty}}
  * Usage: filterProperty is an array of properties
  **/
 
 angular
     .module('app.core')
-    .filter('pickObj', pickObj);
+    .filter('pickSingleObj', pickSingleObj);
 
-function pickObj() {
+function pickSingleObj() {
     var pickedTrials = [];
-    return pickObjFilter;
-    function pickObjFilter(input, filterProp) {
+    return pickSingleObjFilter;
+    function pickSingleObjFilter(input, filterProp) {
         angular.forEach(input, function (value, key) {
             var obj = {};
             if (value !== undefined || value !== null){
                 if (typeof value === 'object'){
-                    pickObjFilter(value, filterProp);
+                    pickSingleObjFilter(value, filterProp);
                 }else{
                     angular.forEach(filterProp, function (item) {
                         if (item === key) {

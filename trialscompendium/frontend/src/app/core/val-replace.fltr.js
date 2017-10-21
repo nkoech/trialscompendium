@@ -1,6 +1,9 @@
 /**
  * Value replace filter
- * Replace a specific input value with object key  
+ * Replace a specific input value with object key
+ * Object settings i.e. {key: value}:
+ *      value: The value to be replaced in the input
+ *      key: The value to replace the input
  * Usage: {{value |valReplace: {key: value}}}
  **/
 

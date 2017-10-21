@@ -9,27 +9,29 @@ angular
     .module('app.core')
     .filter('pickSingleObj', pickSingleObj);
 
-function pickSingleObj() {
-    var pickedTrials = [];
+pickSingleObj.$inject = ['valReplaceFilter'];
+
+function pickSingleObj(valReplaceFilter) {
+    var outObjArr = [];
     return pickSingleObjFilter;
-    function pickSingleObjFilter(input, filterProp) {
+    function pickSingleObjFilter(input, filterProp, replaceValue) {
+        if ((!angular.isArray(input) && (input === undefined || input === null)) || (filterProp === undefined || filterProp === null)) {return input;}
         angular.forEach(input, function (value, key) {
-            var obj = {};
+            var outObj = {};
             if (value !== undefined || value !== null){
                 if (typeof value === 'object'){
-                    pickSingleObjFilter(value, filterProp);
+                    pickSingleObjFilter(value, filterProp, replaceValue);
                 }else{
-                    angular.forEach(filterProp, function (item) {
-                        if (item === key) {
-                            // Replace true and false js values with Plus and Minus string respectively
-                            value = (value === true) ? 'Plus' : (value === false) ? 'Minus' : value;
-                            obj[key] = value;
-                            pickedTrials = pickedTrials.concat(obj);
-                        }
-                    });
+                    value = valReplaceFilter(value, replaceValue);                    
+                    if (angular.isArray(filterProp) && filterProp.length){
+                        angular.forEach(filterProp, function (item) {item === key ? outObj[key] = value : value;});
+                    }else{
+                        filterProp === key ? outObj[key] = value : value;
+                    }
+                    outObjArr = outObjArr.concat(outObj);
                 }
             }
         });
-        return pickedTrials;
+        return outObjArr;
     }
 }

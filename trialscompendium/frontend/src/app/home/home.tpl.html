@@ -80,7 +80,7 @@
                 <div class="row top-bottom-bar" ng-if="vm.results.length > 0">
                     <div class="col-lg-6 col-md-6 pull-left">
                         <div class="left-widget">
-                            <label for="data-limit-form" class="widget-label">
+                            <span for="data-limit-form" class="widget-label">
                                 Page Size:
                                 <select class="form-control" id="data-limit-form" ng-model="vm.dataLimit">
                                     <option>10</option>
@@ -88,20 +88,20 @@
                                     <option>50</option>
                                     <option>100</option>
                                 </select>
-                            </label>
+                            </span>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6  pull-right">
                         <div class="right-widget">
-                            <label for="table-search-form" class="widget-label">
+                            <span for="table-search-form" class="widget-label">
                                 Search:
                                 <input type="text" class="form-control" id="table-search-form"  placeholder="Table search ..." ng-model="vm.searchTable" ng-change="vm.onSearchTable()">
-                            </label>
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 col-md-12" ng-show="vm.filterData > 0">
+                    <div class="col-lg-12 col-md-12" ng-show="vm.filterData> 0">
                         <table class="table table-striped table-hover table-sm">
                             <thead>
                                 <tr>
@@ -143,26 +143,20 @@
                         <i class="fa fa-info-circle"></i> Our search did not return any results.
                     </div>
                 </div>
-                <div class="row top-bottom-bar" ng-if="vm.results.length > 0">
+                <div class="row top-bottom-bar" ng-if="vm.filterData > 0">
                     <div class="col-lg-6 col-md-6 pull-left">
                         <div class="left-widget">
-                            <label for="data-limit-form" class="widget-label">
-                                Page Size:
-                                <select class="form-control" id="data-limit-form" ng-model="vm.dataLimit">
-                                    <option>10</option>
-                                    <option>20</option>
-                                    <option>50</option>
-                                    <option>100</option>
-                                </select>
-                            </label>
+                            <span class="widget-label">
+                                Showing {{vm.searched.length}} of {{vm.results.length}} entries
+                            </span>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6  pull-right">
                         <div class="right-widget">
-                            <label for="table-search-form" class="widget-label">
+                            <span for="table-search-form" class="widget-label">
                                 Search:
                                 <input type="text" class="form-control" id="table-search-form"  placeholder="Table search ..." ng-model="vm.searchTable" ng-change="vm.onSearchTable()">
-                            </label>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -170,372 +164,329 @@
         </section>
     </section>
 
-
-
-
-
-    <!--&lt;!&ndash; Map view section &ndash;&gt;-->
-    <!--<section class="map-view" id="map-view">-->
-        <!--<div id="map">-->
-
-            <!--<div class="search">-->
-                <!--<div class="global-search">-->
-                    <!--<div class="input-group">-->
-                        <!--<div class="input-group-btn">-->
-                            <!--<button class="btn btn-default input-component input-lg" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>-->
+    <!--&lt;!&ndash; Main content section &ndash;&gt;-->
+    <!--<section class="main-content">-->
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--&lt;!&ndash; Sidebar layout &ndash;&gt;-->
+                <!--<div class="layout-sidebar col-lg-3 col-md-3">-->
+                    <!--<div class="sidebar-highlights">-->
+                        <!--<div class="highlights-all">-->
+                            <!--<h1 class="sidebar-title">Results Summary</h1>-->
+                            <!--<span>10,218</span>-->
                         <!--</div>-->
-                        <!--<input type="text" class="form-control input-lg" placeholder="Search keyword" name="search-keyword">-->
+                        <!--<div class="highlights-countries">-->
+                            <!--<h1 class="sidebar-title">Countries</h1>-->
+                            <!--<span>10</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="sidebar-content">-->
+                        <!--<h1 class="sidebar-title sidebar-list-title">Filter By Practices</h1>-->
+                        <!--<ul class="sidebar-filter-list">-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Post harvest Storage<span class="badge"> 12 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Intercropping<span class="badge"> 6 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Fallows<span class="badge"> 100 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Water Management<span class="badge"> 3 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Postharvest<span class="badge"> 7 </span></a></li></div>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="sidebar-content">-->
+                        <!--<h1 class="sidebar-title sidebar-list-title">Filter By Indicators</h1>-->
+                        <!--<ul class="sidebar-filter-list">-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Income<span class="badge"> 12 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">GHG Emissions<span class="badge"> 6 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Cost<span class="badge"> 100 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Soil Quality<span class="badge"> 3 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Pest & Pathogen damage<span class="badge"> 7 </span></a></li></div>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="sidebar-content">-->
+                        <!--<h1 class="sidebar-title sidebar-list-title">Filter By Countries</h1>-->
+                        <!--<ul class="sidebar-filter-list">-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Central African Republic<span class="badge"> 12 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Kenya<span class="badge"> 6 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Zimbabwe<span class="badge"> 100 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">South Sudan<span class="badge"> 3 </span></a></li></div>-->
+                            <!--<div class="aller-container"><li><a class="aller" href="#">Chad<span class="badge"> 7 </span></a></li></div>-->
+                        <!--</ul>-->
                     <!--</div>-->
                 <!--</div>-->
-                <!--<form class="form-inline search-filters" ng-submit="vm.setSearchObj(val);">-->
-                    <!--<div class="filter-field">-->
-                        <!--<label class="sr-only" for="country">Name</label>-->
-                        <!--<input type="text" name="search_country" class="form-control input-lg" id="country" placeholder="Country Name" ng-model="val.country">-->
+                <!--&lt;!&ndash; Layout spacer&ndash;&gt;-->
+                <!--<div class="layout-spacer col-lg-1 col-md-1"></div>-->
+                <!--&lt;!&ndash; Search results section&ndash;&gt;-->
+                <!--<div class="layout-content col-lg-8 col-md-8">-->
+                    <!--<h1 class="content-title">All Practices</h1>-->
+                    <!--<div class="content-item">-->
+                        <!--<article>-->
+                            <!--<h3><a href="#">low protein | high protein </a></h3>-->
+                            <!--<div>-->
+                                <!--<h1>Country:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Scale of Practice:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Practices:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Outcomes:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</article>-->
                     <!--</div>-->
-                    <!--<div class="filter-field">-->
-                        <!--<label class="sr-only" for="scale">Name</label>-->
-                        <!--<input type="text" name="search_scale" class="form-control input-lg" id="scale" placeholder="Scale of Practice" ng-model="val.scale">-->
+                    <!--<div class="content-item">-->
+                        <!--<article>-->
+                            <!--<h3>-->
+                                <!--<a href="#">pig pellets, wheat bran | shrimp meal, cottonseed meal, pig pellets</a>-->
+                            <!--</h3>-->
+                            <!--<div>-->
+                                <!--<h1>Country:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Scale of Practice:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Practices:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Outcomes:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</article>-->
                     <!--</div>-->
-                    <!--<div class="filter-field">-->
-                        <!--<label class="sr-only" for="practice">Name</label>-->
-                        <!--<input type="text" name="search_practice" class="form-control input-lg" id="practice" placeholder="CSA Practice" ng-model="val.practice">-->
+                    <!--<div class="content-item">-->
+                        <!--<article>-->
+                            <!--<h3>-->
+                                <!--<a href="#">basal, 100 maize germ | control, 10 % Tithonia</a>-->
+                            <!--</h3>-->
+                            <!--<div>-->
+                                <!--<h1>Country:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Scale of Practice:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Practices:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Outcomes:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</article>-->
                     <!--</div>-->
-                    <!--<div class="filter-field">-->
-                        <!--<label class="sr-only" for="outcome">Name</label>-->
-                        <!--<input type="text" name="search_outcome" class="form-control input-lg" id="outcome" placeholder="Outcome/Indicator" ng-model="val.outcome">-->
+                    <!--<div class="content-item">-->
+                        <!--<article>-->
+                            <!--<h3>-->
+                                <!--<a href="#">0P | 10P, 25P, Caliandra,Senna, Croton, Lantana, Sesbania, Tithonia</a>-->
+                            <!--</h3>-->
+                            <!--<div>-->
+                                <!--<h1>Country:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Scale of Practice:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Practices:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Outcomes:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</article>-->
                     <!--</div>-->
-                    <!--<div class="bottom-btn">-->
-                        <!--<button type="submit" class="btn btn-primary input-lg">Search</button>-->
+                    <!--<div class="content-item">-->
+                        <!--<article>-->
+                            <!--<h3>-->
+                                <!--<a href="#">N0P0 | N60P60, P30FYM2.5, 5tFYM</a>-->
+                            <!--</h3>-->
+                            <!--<div>-->
+                                <!--<h1>Country:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Scale of Practice:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Practices:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Outcomes:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</article>-->
                     <!--</div>-->
-                <!--</form>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</section>-->
-
-    <!-- Main content section -->
-    <section class="main-content">
-        <div class="container">
-            <div class="row">
-                <!-- Sidebar layout -->
-                <div class="layout-sidebar col-lg-3 col-md-3">
-                    <div class="sidebar-highlights">
-                        <div class="highlights-all">
-                            <h1 class="sidebar-title">Results Summary</h1>
-                            <span>10,218</span>
-                        </div>
-                        <div class="highlights-countries">
-                            <h1 class="sidebar-title">Countries</h1>
-                            <span>10</span>
-                        </div>
-                    </div>
-                    <div class="sidebar-content">
-                        <h1 class="sidebar-title sidebar-list-title">Filter By Practices</h1>
-                        <ul class="sidebar-filter-list">
-                            <div class="aller-container"><li><a class="aller" href="#">Post harvest Storage<span class="badge"> 12 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Intercropping<span class="badge"> 6 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Fallows<span class="badge"> 100 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Water Management<span class="badge"> 3 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Postharvest<span class="badge"> 7 </span></a></li></div>
-                        </ul>
-                    </div>
-                    <div class="sidebar-content">
-                        <h1 class="sidebar-title sidebar-list-title">Filter By Indicators</h1>
-                        <ul class="sidebar-filter-list">
-                            <div class="aller-container"><li><a class="aller" href="#">Income<span class="badge"> 12 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">GHG Emissions<span class="badge"> 6 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Cost<span class="badge"> 100 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Soil Quality<span class="badge"> 3 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Pest & Pathogen damage<span class="badge"> 7 </span></a></li></div>
-                        </ul>
-                    </div>
-                    <div class="sidebar-content">
-                        <h1 class="sidebar-title sidebar-list-title">Filter By Countries</h1>
-                        <ul class="sidebar-filter-list">
-                            <div class="aller-container"><li><a class="aller" href="#">Central African Republic<span class="badge"> 12 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Kenya<span class="badge"> 6 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Zimbabwe<span class="badge"> 100 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">South Sudan<span class="badge"> 3 </span></a></li></div>
-                            <div class="aller-container"><li><a class="aller" href="#">Chad<span class="badge"> 7 </span></a></li></div>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Layout spacer-->
-                <div class="layout-spacer col-lg-1 col-md-1"></div>
-                <!-- Search results section-->
-                <div class="layout-content col-lg-8 col-md-8">
-                    <h1 class="content-title">All Practices</h1>
-                    <div class="content-item">
-                        <article>
-                            <h3><a href="#">low protein | high protein </a></h3>
-                            <div>
-                                <h1>Country:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Scale of Practice:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Practices:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Outcomes:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="content-item">
-                        <article>
-                            <h3>
-                                <a href="#">pig pellets, wheat bran | shrimp meal, cottonseed meal, pig pellets</a>
-                            </h3>
-                            <div>
-                                <h1>Country:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Scale of Practice:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Practices:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Outcomes:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="content-item">
-                        <article>
-                            <h3>
-                                <a href="#">basal, 100 maize germ | control, 10 % Tithonia</a>
-                            </h3>
-                            <div>
-                                <h1>Country:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Scale of Practice:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Practices:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Outcomes:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="content-item">
-                        <article>
-                            <h3>
-                                <a href="#">0P | 10P, 25P, Caliandra,Senna, Croton, Lantana, Sesbania, Tithonia</a>
-                            </h3>
-                            <div>
-                                <h1>Country:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Scale of Practice:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Practices:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Outcomes:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="content-item">
-                        <article>
-                            <h3>
-                                <a href="#">N0P0 | N60P60, P30FYM2.5, 5tFYM</a>
-                            </h3>
-                            <div>
-                                <h1>Country:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Scale of Practice:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Practices:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Outcomes:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="content-item">
-                        <article>
-                            <h3>
-                                <a href="#">ox-intercrop, monocrop, no manure | tied ridge, intercrop, manure</a>
-                            </h3>
-                            <div>
-                                <h1>Country:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Scale of Practice:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Practices:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Outcomes:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="content-item">
-                        <article>
-                            <h3>
-                                <a href="#">ox-intercrop, monocrop, no manure | tied ridge, intercrop, manure</a>
-                            </h3>
-                            <div>
-                                <h1>Country:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Scale of Practice:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Practices:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h1>Outcomes:</h1>
-                                <ul>
-                                    <li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Increased income</a>,</span></li>
-                                    <li><span><a href="#" rel="tag">Landscape Effects</a></span></li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
+                    <!--<div class="content-item">-->
+                        <!--<article>-->
+                            <!--<h3>-->
+                                <!--<a href="#">ox-intercrop, monocrop, no manure | tied ridge, intercrop, manure</a>-->
+                            <!--</h3>-->
+                            <!--<div>-->
+                                <!--<h1>Country:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Scale of Practice:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Practices:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Outcomes:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</article>-->
+                    <!--</div>-->
+                    <!--<div class="content-item">-->
+                        <!--<article>-->
+                            <!--<h3>-->
+                                <!--<a href="#">ox-intercrop, monocrop, no manure | tied ridge, intercrop, manure</a>-->
+                            <!--</h3>-->
+                            <!--<div>-->
+                                <!--<h1>Country:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Scale of Practice:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Practices:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<h1>Outcomes:</h1>-->
+                                <!--<ul>-->
+                                    <!--<li><span><a href="#" rel="tag">Food security and nutrition</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Increased income</a>,</span></li>-->
+                                    <!--<li><span><a href="#" rel="tag">Landscape Effects</a></span></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</article>-->
+                    <!--</div>-->
                     <!-- Pagination section -->
                     <div class="content-pagination">
                         <nav>

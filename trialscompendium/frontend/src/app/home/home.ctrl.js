@@ -7,6 +7,8 @@ HomeController.$inject = ['trialService', '$timeout'];
 function HomeController(trialService, $timeout) {
     var vm = this;
     vm.results = false;
+    vm.searched = false;
+    vm.filterData = 0;
     vm.trialsData = [];
     vm.selectOptions = false;
     vm.searching = false;
@@ -54,6 +56,7 @@ function HomeController(trialService, $timeout) {
         vm.searching = true;
         trialService.search(apiNode, query).then(function (response) {
             vm.results = vm.getTrials(response.results);
+            vm.filterData = vm.results.length;
             $timeout(function () {
                 vm.searching = false;
             }, 500);
@@ -71,15 +74,16 @@ function HomeController(trialService, $timeout) {
             }, 500);
         });
     };
-    // vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
+    vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
 
     vm.sort_with = function(column) {
         vm.reverse = (vm.sortColumn === column) ? !vm.reverse : false;
         vm.sortColumn = column;
     };
 
-    // vm.sort_with = function(base) {
-    //     vm.base = base;
-    //     vm.reverse = !vm.reverse;
-    // };
+    vm.onSearchTable = function() {
+        $timeout(function() {
+            vm.filterData = vm.searched.length;
+        }, 20);
+    };
 }

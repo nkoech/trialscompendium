@@ -28,7 +28,7 @@ function HomeController(trialService, $timeout) {
                     if (objLevel.nestedObj){
                         objLevel = trialService.getNestedTrials(objLevel.nestedObj, 'trial_yield', ['Short Rains', 'Long Rains']);
                         thirdLevelData = trialService.filterMultiObj(objLevel.outObjArr, vm.filterTableData);
-                        thirdLevelData = trialService.mergeObj(thirdLevelData, ['observation', 'year']);
+                        thirdLevelData = trialService.mergeOnSearch(thirdLevelData, ['observation', 'year']);
                     }
                 }else{
                     firstLevelData = trialService.filterMultiObj([obj], vm.filterTableData, vm.replaceValue);

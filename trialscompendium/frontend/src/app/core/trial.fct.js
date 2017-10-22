@@ -14,7 +14,7 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         'strToKey': strToKey,
         'getNestedTrials': getNestedTrials,
         'filterMultiObj': filterMultiObj,
-        'mergeObj': mergeObj
+        'mergeOnSearch': mergeOnSearch
     };
 
     function makeRequest(url, params) {
@@ -119,7 +119,7 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         return pickMultiObjFilter(data, filterProp, replaceValue);
     }
 
-    function mergeObj(data, mergeProp){
+    function mergeOnSearch(data, mergeProp){
         // Merge similar objects into one
         var outObjArr = [];
         angular.forEach(data, function(obj){

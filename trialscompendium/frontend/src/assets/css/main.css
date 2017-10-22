@@ -67,7 +67,11 @@ p {
   border-radius: 0;
 }
 
-.btn-primary, .btn:focus,.btn:active, .btn:enabled {
+.btn-primary,  .btn-primary[disabled]:hover,
+.btn-primary[disabled]:focus,
+.btn-primary:active:focus,
+.btn:focus, .btn:hover,
+.btn:active, .btn:enabled {
   outline: none !important;
   box-shadow: none;
   border-color: transparent;

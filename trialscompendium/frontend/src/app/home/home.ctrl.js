@@ -13,7 +13,7 @@ function HomeController(trialService, $timeout) {
     vm.trialSelected = false;
     vm.disableInputField = true;
     vm.selected = {};
-    vm.base = false;
+    vm.sortColumn = 'plot_id';
     vm.reverse = false;
     vm.replaceValue = {Plus: true, Minus: false};
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
@@ -73,8 +73,13 @@ function HomeController(trialService, $timeout) {
     };
     // vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
 
-    vm.sort_with = function(base) {
-        vm.base = base;
-        vm.reverse = !vm.reverse;
+    vm.sort_with = function(column) {
+        vm.reverse = (vm.sortColumn === column) ? !vm.reverse : false;
+        vm.sortColumn = column;
     };
+
+    // vm.sort_with = function(base) {
+    //     vm.base = base;
+    //     vm.reverse = !vm.reverse;
+    // };
 }

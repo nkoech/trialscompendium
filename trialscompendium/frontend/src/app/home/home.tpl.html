@@ -95,7 +95,7 @@
                         <div class="table-search">
                             <label for="table-search-form" class="form-label">
                                 Search:
-                                <input type="text" class="form-control" id="table-search-form"  placeholder="Table search...">
+                                <input type="text" class="form-control" id="table-search-form"  placeholder="Table search..." ng-model="vm.searchTable">
                             </label>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="trial in vm.results track by $index">
+                                <tr ng-repeat="trial in vm.searched = (vm.results | filter: vm.searchTable) track by $index">
                                     <td>{{trial.trial_id}}</td>
                                     <td>{{trial.plot_id}}{{trial.sub_plot_id}}</td>
                                     <td>{{trial.observation}}</td>

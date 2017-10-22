@@ -2,7 +2,7 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-HomeController.$inject = ['trialService', 'storeService', '$timeout'];
+HomeController.$inject = ['trialService', '$timeout'];
 
 function HomeController(trialService, $timeout) {
     var vm = this;

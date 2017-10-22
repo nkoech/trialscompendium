@@ -72,7 +72,7 @@
                     </div>
                 </form>
             </div>
-            {{vm.results}}
+            <!--{{vm.results}}-->
         </section>
 
         <!-- Table section -->
@@ -121,242 +121,241 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <!-- TODO: Check ng-repeat - not working -->
-                                <!--<tr ng-repeat="trial in vm.results track by $index">-->
-                                    <!--<td>{{trial.trial_id}}</td>-->
-                                    <!--<td>{{trial.plot_id}}</td>-->
-                                    <!--<td>{{trial.observation}}</td>-->
-                                    <!--<td>{{trial.year}}</td>-->
-                                    <!--<td>{{trial.tillage_practice}}</td>-->
-                                    <!--<td>{{trial.farm_yard_manure}}</td>-->
-                                    <!--<td>{{trial.farm_residue}}</td>-->
-                                    <!--<td>{{trial.crops_grown}}</td>-->
-                                    <!--<td>{{trial.nitrogen_treatment}}</td>-->
-                                    <!--<td>{{trial.short_rains}}</td>-->
-                                    <!--<td>{{trial.long_rains}}</td>-->
+                                <tr ng-repeat="trial in vm.results track by $index">
+                                    <td>{{trial.trial_id}}</td>
+                                    <td>{{trial.plot_id}}</td>
+                                    <td>{{trial.observation}}</td>
+                                    <td>{{trial.year}}</td>
+                                    <td>{{trial.tillage_practice}}</td>
+                                    <td>{{trial.farm_yard_manure}}</td>
+                                    <td>{{trial.farm_residue}}</td>
+                                    <td>{{trial.crops_grown}}</td>
+                                    <td>{{trial.nitrogen_treatment}}</td>
+                                    <td>{{trial.short_rains}}</td>
+                                    <td>{{trial.long_rains}}</td>
+                                </tr>
+                                <!--<tr>-->
+                                    <!--&lt;!&ndash;<td><input type="checkbox"/></td>&ndash;&gt;-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
                                 <!--</tr>-->
-                                <tr>
-                                    <!--<td><input type="checkbox"/></td>-->
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
-                                <tr>
-                                    <td>INM3</td>
-                                    <td>101</td>
-                                    <td>Maize Y</td>
-                                    <td>2004</td>
-                                    <td>Zero</td>
-                                    <td>Plus</td>
-                                    <td>Plus</td>
-                                    <td>M-M</td>
-                                    <td>P60N0</td>
-                                    <td>4.29</td>
-                                    <td>11.24</td>
-                                </tr>
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
+                                <!--<tr>-->
+                                    <!--<td>INM3</td>-->
+                                    <!--<td>101</td>-->
+                                    <!--<td>Maize Y</td>-->
+                                    <!--<td>2004</td>-->
+                                    <!--<td>Zero</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>Plus</td>-->
+                                    <!--<td>M-M</td>-->
+                                    <!--<td>P60N0</td>-->
+                                    <!--<td>4.29</td>-->
+                                    <!--<td>11.24</td>-->
+                                <!--</tr>-->
                             </tbody>
                         </table>
                     </div>

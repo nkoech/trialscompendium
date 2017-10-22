@@ -33,24 +33,24 @@
     padding: 20px 0 20px;
 }
 
-.data-table .top-bar {
+.data-table .top-bottom-bar {
     padding-bottom: 10px;
 }
 
-.data-table .top-bar .table-search {
-    text-align: right;
-}
-
-.data-table .top-bar .data-limit {
+.data-table .top-bottom-bar .left-widget {
     text-align: left;
 }
 
-.data-table .top-bar .form-label {
+.data-table .top-bottom-bar .right-widget {
+    text-align: right;
+}
+
+.data-table .top-bottom-bar .widget-label {
     white-space: nowrap;
     text-align: left;
 }
 
-.data-table .top-bar .form-control {
+.data-table .top-bottom-bar .form-control {
     display: inline-block;
     width: auto;
 }

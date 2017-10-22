@@ -77,10 +77,10 @@
         <!-- Table section -->
         <section class="data-table">
             <div class="container">
-                <div class="row top-bar" ng-if="vm.results.length > 0">
+                <div class="row top-bottom-bar" ng-if="vm.results.length > 0">
                     <div class="col-lg-6 col-md-6 pull-left">
-                        <div class="data-limit">
-                            <label for="data-limit-form" class="form-label">
+                        <div class="left-widget">
+                            <label for="data-limit-form" class="widget-label">
                                 Page Size:
                                 <select class="form-control" id="data-limit-form" ng-model="vm.dataLimit">
                                     <option>10</option>
@@ -92,8 +92,8 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6  pull-right">
-                        <div class="table-search">
-                            <label for="table-search-form" class="form-label">
+                        <div class="right-widget">
+                            <label for="table-search-form" class="widget-label">
                                 Search:
                                 <input type="text" class="form-control" id="table-search-form"  placeholder="Table search ..." ng-model="vm.searchTable" ng-change="vm.onSearchTable()">
                             </label>
@@ -141,6 +141,29 @@
                     </div>
                     <div class="col-lg-12 col-md-12 alert alert-warning no-data" ng-if="vm.filterData == 0">
                         <i class="fa fa-info-circle"></i> Our search did not return any results.
+                    </div>
+                </div>
+                <div class="row top-bottom-bar" ng-if="vm.results.length > 0">
+                    <div class="col-lg-6 col-md-6 pull-left">
+                        <div class="left-widget">
+                            <label for="data-limit-form" class="widget-label">
+                                Page Size:
+                                <select class="form-control" id="data-limit-form" ng-model="vm.dataLimit">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6  pull-right">
+                        <div class="right-widget">
+                            <label for="table-search-form" class="widget-label">
+                                Search:
+                                <input type="text" class="form-control" id="table-search-form"  placeholder="Table search ..." ng-model="vm.searchTable" ng-change="vm.onSearchTable()">
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

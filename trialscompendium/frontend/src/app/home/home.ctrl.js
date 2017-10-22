@@ -4,7 +4,7 @@ angular
 
 HomeController.$inject = ['trialService', 'storeService', '$timeout'];
 
-function HomeController(trialService, storeService, $timeout) {
+function HomeController(trialService, $timeout) {
     var vm = this;
     vm.results = false;
     vm.trialsData = [];
@@ -63,7 +63,7 @@ function HomeController(trialService, storeService, $timeout) {
     vm.queryAllpages = function (apiNode, query) {
         vm.searching = true;
         trialService.searchAllPages(apiNode, query, []).then(function (response) {
-            vm.selectOptions = storeService.pickTrials(response, vm.filterSelectOptions, vm.replaceValue);
+            vm.selectOptions = trialService.filterSingleObj(response, vm.filterSelectOptions, vm.replaceValue);
             $timeout(function () {
                 vm.searching = false;
             }, 500);

@@ -3,13 +3,14 @@ angular
     .constant('BASE_URL', 'http://127.0.0.1:8000/api')
     .factory('trialService', trialService);
 
-trialService.$inject = ['$resource', 'BASE_URL', '$log', 'strReplaceFilter', 'pickMultiObjFilter'];
+trialService.$inject = ['$resource', 'BASE_URL', '$log', 'pickSingleObjFilter', 'strReplaceFilter', 'pickMultiObjFilter'];
 
-function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjFilter) {
+function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplaceFilter, pickMultiObjFilter) {
     return {
         'search': search,
         'get': get,
         'searchAllPages': searchAllPages,
+        'filterSingleObj': filterSingleObj,
         'strToKey': strToKey,
         'getNestedTrials': getNestedTrials,
         'filterMultiObj': filterMultiObj,
@@ -69,6 +70,10 @@ function trialService($resource, BASE_URL, $log, strReplaceFilter, pickMultiObjF
             }
             return list;
         });
+    }
+
+    function filterSingleObj(data, filterProp, replaceValue){
+        return pickSingleObjFilter(data, filterProp, replaceValue);
     }
 
     function strToKey(keyOptions, str) {

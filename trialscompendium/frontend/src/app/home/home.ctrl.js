@@ -35,7 +35,7 @@ function HomeController(trialService, $timeout) {
                 }
             });
 
-            // TODO: Code below can be put in a different function
+            // Merge all level data starting with the third level repeating the succeeding levels
             angular.forEach(thirdLevelData, function(thirdObj){
                 angular.forEach(secondLevelData, function(secondObj){
                     angular.forEach(firstLevelData, function(firstObj){

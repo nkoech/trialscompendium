@@ -37,30 +37,59 @@
     padding-bottom: 10px;
 }
 
-.data-table .top-bottom-bar .left-widget {
+.top-bottom-bar .left-widget {
     text-align: left;
 }
 
-.data-table .top-bottom-bar .right-widget {
+.top-bottom-bar .right-widget {
     text-align: right;
 }
 
-.data-table .top-bottom-bar .widget-label {
+.top-bottom-bar .widget-label {
     white-space: nowrap;
     text-align: left;
 }
 
-.data-table .top-bottom-bar .form-control {
+.top-bottom-bar .form-control {
     display: inline-block;
     width: auto;
 }
 
 .table-striped tbody tr:nth-child(odd) td,
-
 .table-striped tbody tr:nth-child(odd) th {
 
     background-color: #DDEAB7;
 }
+
+.top-bottom-bar .content-pagination .pagination {
+    margin: 0;
+}
+
+.content-pagination .pagination .page-link {
+    color: #34495e;
+    border: 0;
+    background-color: transparent;
+}
+
+.pagination .active .page-link {
+    color: #fff;
+    background-color: #97be32;
+}
+
+.pagination .page-link:hover {
+    background-color: #eceee8 !important;
+}
+
+.pagination li:first-child .page-link, .pagination li:first-child span {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.pagination li:last-child .page-link, .pagination li:last-child span {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 
 
 /*.main-content .layout-sidebar {*/
@@ -185,43 +214,14 @@
     /*color: #99CC00;*/
 /*}*/
 
-.content-pagination {
-    text-align: center;
-    margin: 25px 0 25px;
-    /*padding: 6px 0 0;*/
-    /*margin: 25px 100px 0 100px;*/
-    /*background-color: #eceee8;*/
-    /*border-radius: 23px;*/
-}
-
-.content-pagination .pagination {
-    margin: 0;
-}
-
-.content-pagination .pagination .page-link {
-    color: #34495e;
-    border: 0;
-    background-color: transparent;
-}
-
-.pagination .active .page-link {
-    color: #fff;
-    background-color: #97be32;
-}
-
-.pagination .page-link:hover {
-    background-color: #eceee8 !important;
-}
-
-.pagination li:first-child .page-link, .pagination li:first-child span {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.pagination li:last-child .page-link, .pagination li:last-child span {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
+/*.content-pagination {*/
+    /*text-align: center;*/
+    /*margin: 25px 0 25px;*/
+    /*!*padding: 6px 0 0;*!*/
+    /*!*margin: 25px 100px 0 100px;*!*/
+    /*!*background-color: #eceee8;*!*/
+    /*!*border-radius: 23px;*!*/
+/*}*/
 
 @media (max-width: 992px) {
     /*.home-page .search {*/

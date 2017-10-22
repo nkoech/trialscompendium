@@ -25,5 +25,6 @@ require('./str-replace.fltr');
 require('./val-replace.fltr');
 require('./pick-single-obj.fltr');
 require('./pick-multi-obj.fltr');
+require('./parse-num.fltr');
 // require('./bool-replace.fltr');
 

@@ -9,9 +9,9 @@ angular
     .module('app.core')
     .filter('pickMultiObj', pickMultiObj);
 
-pickMultiObj.$inject = ['valReplaceFilter'];
+pickMultiObj.$inject = ['valReplaceFilter', 'parseNumFilter'];
 
-function pickMultiObj(valReplaceFilter) {
+function pickMultiObj(valReplaceFilter, parseNumFilter) {
     return pickMultiObjFilter;
     function pickMultiObjFilter(input, filterProp, replaceValue) {
         var outObjArr = [];
@@ -20,6 +20,7 @@ function pickMultiObj(valReplaceFilter) {
             var outObj = {};
             angular.forEach(obj, function (value, key) {
                 value = valReplaceFilter(value, replaceValue);
+                value = parseNumFilter(value);
                 if (angular.isArray(filterProp) && filterProp.length){
                     angular.forEach(filterProp, function (item) {item === key ? outObj[key] = value : value;});
                 }else{

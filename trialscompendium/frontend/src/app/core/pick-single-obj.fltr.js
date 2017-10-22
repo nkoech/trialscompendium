@@ -9,9 +9,9 @@ angular
     .module('app.core')
     .filter('pickSingleObj', pickSingleObj);
 
-pickSingleObj.$inject = ['valReplaceFilter'];
+pickSingleObj.$inject = ['valReplaceFilter', 'parseNumFilter'];
 
-function pickSingleObj(valReplaceFilter) {
+function pickSingleObj(valReplaceFilter, parseNumFilter) {
     var outObjArr = [];
     return pickSingleObjFilter;
     function pickSingleObjFilter(input, filterProp, replaceValue) {
@@ -22,7 +22,8 @@ function pickSingleObj(valReplaceFilter) {
                 if (typeof value === 'object'){
                     pickSingleObjFilter(value, filterProp, replaceValue);
                 }else{
-                    value = valReplaceFilter(value, replaceValue);                    
+                    value = valReplaceFilter(value, replaceValue);
+                    value = parseNumFilter(value);
                     if (angular.isArray(filterProp) && filterProp.length){
                         angular.forEach(filterProp, function (item) {item === key ? outObj[key] = value : value;});
                     }else{

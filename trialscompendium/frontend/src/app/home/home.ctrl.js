@@ -13,6 +13,8 @@ function HomeController(trialService, $timeout) {
     vm.trialSelected = false;
     vm.disableInputField = true;
     vm.selected = {};
+    vm.base = false;
+    vm.reverse = false;
     vm.replaceValue = {Plus: true, Minus: false};
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
     vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', '', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
@@ -20,7 +22,7 @@ function HomeController(trialService, $timeout) {
     // Get table trials data
     vm.getTrials = function(data) {
         angular.forEach(data, function (obj) {
-            var objLevel, firstLevelData, secondLevelData,  thirdLevelData = '';
+            var objLevel = '', firstLevelData = '', secondLevelData = '',  thirdLevelData = '';
             angular.forEach(obj, function(value){
                 if (value !== undefined && value !== null && typeof value === 'object'){
                     objLevel = trialService.getNestedTrials(value);
@@ -70,4 +72,9 @@ function HomeController(trialService, $timeout) {
         });
     };
     // vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
+
+    vm.sort_with = function(base) {
+        vm.base = base;
+        vm.reverse = !vm.reverse;
+    };
 }

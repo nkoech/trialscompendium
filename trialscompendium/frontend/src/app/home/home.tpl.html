@@ -95,7 +95,7 @@
                         <div class="table-search">
                             <label for="table-search-form" class="form-label">
                                 Search:
-                                <input type="text" class="form-control" id="table-search-form"  placeholder="Table search..." ng-model="vm.searchTable">
+                                <input type="text" class="form-control" id="table-search-form"  placeholder="Table search ..." ng-model="vm.searchTable.phosphate_treatment">
                             </label>
                         </div>
                     </div>
@@ -106,21 +106,21 @@
                             <thead>
                                 <tr>
                                     <!--<th><input type="checkbox" id="checkall" /></th>-->
-                                    <th>Trial&nbsp;<a ng-click="vm.sort_with('trial');"><i class="fa fa-sort"></i></a></th>
-                                    <th>Plot&nbsp;<a ng-click="vm.sort_with('plot');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Trial&nbsp;<a ng-click="vm.sort_with('trial_id');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Plot&nbsp;<a ng-click="vm.sort_with('plot_id');"><i class="fa fa-sort"></i></a></th>
                                     <th>Observation&nbsp;<a ng-click="vm.sort_with('observation');"><i class="fa fa-sort"></i></a></th>
                                     <th>Year&nbsp;<a ng-click="vm.sort_with('year');"><i class="fa fa-sort"></i></a></th>
-                                    <th>Tillage&nbsp;<a ng-click="vm.sort_with('tillage');"><i class="fa fa-sort"></i></a></th>
-                                    <th>FYM&nbsp;<a ng-click="vm.sort_with('fym');"><i class="fa fa-sort"></i></a></th>
-                                    <th>Residue&nbsp;<a ng-click="vm.sort_with('residue');"><i class="fa fa-sort"></i></a></th>
-                                    <th>Rotation&nbsp;<a ng-click="vm.sort_with('rotation');"><i class="fa fa-sort"></i></a></th>
-                                    <th>NP&nbsp;<a ng-click="vm.sort_with('np');"><i class="fa fa-sort"></i></a></th>
-                                    <th>Short Rains&nbsp;<a ng-click="vm.sort_with('yield');"><i class="fa fa-sort"></i></a></th>
-                                    <th>Long Rains&nbsp;<a ng-click="vm.sort_with('yield');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Tillage&nbsp;<a ng-click="vm.sort_with('tillage_practice');"><i class="fa fa-sort"></i></a></th>
+                                    <th>FYM&nbsp;<a ng-click="vm.sort_with('farm_yard_manure');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Residue&nbsp;<a ng-click="vm.sort_with('farm_residue');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Rotation&nbsp;<a ng-click="vm.sort_with('crops_grown');"><i class="fa fa-sort"></i></a></th>
+                                    <th>NP&nbsp;<a ng-click="vm.sort_with('phosphate_treatment');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Short Rains&nbsp;<a ng-click="vm.sort_with('short_rains');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Long Rains&nbsp;<a ng-click="vm.sort_with('long_rains');"><i class="fa fa-sort"></i></a></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="trial in vm.searched = (vm.results | filter: vm.searchTable) track by $index">
+                                <tr ng-repeat="trial in vm.searched = (vm.results | filter: vm.searchTable | orderBy: vm.base: vm.reverse) track by $index">
                                     <td>{{trial.trial_id}}</td>
                                     <td>{{trial.plot_id}}{{trial.sub_plot_id}}</td>
                                     <td>{{trial.observation}}</td>

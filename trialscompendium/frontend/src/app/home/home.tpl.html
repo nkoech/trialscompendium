@@ -80,14 +80,9 @@
                 <div class="row top-bottom-bar" ng-if="vm.results.length > 0">
                     <div class="col-lg-6 col-md-6 pull-left">
                         <div class="left-widget">
-                            <span for="data-limit-form" class="widget-label">
+                            <span class="widget-label">
                                 Page Size:
-                                <select class="form-control" id="data-limit-form" ng-model="vm.dataLimit">
-                                    <option>10</option>
-                                    <option>20</option>
-                                    <option>50</option>
-                                    <option>100</option>
-                                </select>
+                                <select class="form-control" ng-options="opt for opt in vm.options.psize" ng-model="vm.pageSize" ng-change="vm.queryPage(vm.baseURL, vm.pageParams)"></select>
                             </span>
                         </div>
                     </div>
@@ -120,7 +115,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="trial in vm.searched = (vm.results | filter: vm.searchTable | orderBy: vm.sortColumn: vm.reverse) track by $index">
+                                <tr ng-repeat="trial in vm.searched = (vm.results | filter: vm.searchTable | orderBy: vm.sortColumn: vm.reverse ) track by $index">
                                     <td>{{trial.trial_id}}</td>
                                     <td>{{trial.plot_id}}{{trial.sub_plot_id}}</td>
                                     <td>{{trial.observation}}</td>

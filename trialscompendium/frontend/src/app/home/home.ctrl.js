@@ -18,6 +18,14 @@ function HomeController(trialService, $timeout) {
     vm.sortColumn = 'plot_id';
     vm.reverse = false;
     vm.replaceValue = {Plus: true, Minus: false};
+    vm.totalResults = 0;
+    vm.pageSize = 5; // Maximum page size
+    vm.pageOffset = 0;
+    vm.pageParams = {offset: vm.pageOffset, limit: vm.pageSize};
+    vm.baseURL = "trials/treatment/";
+    vm.options = {
+        psize: [5, 10, 25, 50]
+    };
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
     vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', '', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
 
@@ -53,8 +61,9 @@ function HomeController(trialService, $timeout) {
 
     // Search one or more records per page
     vm.queryPage = function (apiNode, query) {
-        vm.searching = true;
+        vm.searching = false;
         trialService.search(apiNode, query).then(function (response) {
+            vm.totalResults = response.count;
             vm.results = vm.getTrials(response.results);
             vm.filterData = vm.results.length;
             $timeout(function () {
@@ -62,7 +71,8 @@ function HomeController(trialService, $timeout) {
             }, 500);
         });
     };
-    vm.queryPage("trials/treatment/", {offset: 0, limit: 50});
+    // vm.queryPage(vm.baseURL, {offset: 0, limit: 10});
+    vm.queryPage(vm.baseURL, vm.pageParams);
 
     // Search one or more records in all pages
     vm.queryAllpages = function (apiNode, query) {
@@ -74,7 +84,7 @@ function HomeController(trialService, $timeout) {
             }, 500);
         });
     };
-    vm.queryAllpages("trials/treatment/", {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
+    vm.queryAllpages(vm.baseURL, {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
 
     vm.sort_with = function(column) {
         vm.reverse = (vm.sortColumn === column) ? !vm.reverse : false;

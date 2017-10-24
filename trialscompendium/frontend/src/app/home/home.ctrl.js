@@ -62,7 +62,7 @@ function HomeController(trialService, $timeout) {
             }, 500);
         });
     };
-    vm.queryPage("trials/treatment/", {offset: 0, limit: 10});
+    vm.queryPage("trials/treatment/", {offset: 0, limit: 50});
 
     // Search one or more records in all pages
     vm.queryAllpages = function (apiNode, query) {

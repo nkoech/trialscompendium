@@ -84,7 +84,8 @@ function HomeController(trialService, $timeout) {
             }, 500);
         });
     };
-    vm.queryAllpages(vm.baseURL, {/*nitrogen_treatment__iexact: 'N0',*/ offset: 0, limit: 50});
+    // vm.queryAllpages(vm.baseURL, vm.pageParams);
+    // vm.queryAllpages(vm.baseURL, angular.merge(vm.pageParams, {nitrogen_treatment__iexact: 'N0'})); //Adding more objects using merge
 
     vm.sort_with = function(column) {
         vm.reverse = (vm.sortColumn === column) ? !vm.reverse : false;

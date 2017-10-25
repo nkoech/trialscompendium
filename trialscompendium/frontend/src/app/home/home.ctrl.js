@@ -99,6 +99,7 @@ function HomeController(trialService, $timeout) {
     };
 
     vm.changePageSize = function () {
+        vm.pageParams.limit = vm.pageSize;
         vm.queryPage(vm.baseURL, vm.pageParams);
     };
 }

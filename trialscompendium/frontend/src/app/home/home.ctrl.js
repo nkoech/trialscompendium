@@ -97,4 +97,8 @@ function HomeController(trialService, $timeout) {
             vm.filterData = vm.searched.length;
         }, 20);
     };
+
+    vm.changePageSize = function () {
+        vm.queryPage(vm.baseURL, vm.pageParams);
+    };
 }

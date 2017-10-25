@@ -82,7 +82,7 @@
                         <div class="left-widget">
                             <span class="widget-label">
                                 Page Size:
-                                <select class="form-control" ng-options="opt for opt in vm.options.psize" ng-model="vm.pageSize" ng-change="vm.queryPage(vm.baseURL, vm.pageParams)"></select>
+                                <select class="form-control" ng-options="opt for opt in vm.options.psize" ng-model="vm.pageSize" ng-change="vm.changePageSize()"></select>
                             </span>
                         </div>
                     </div>

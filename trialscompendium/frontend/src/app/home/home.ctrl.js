@@ -9,7 +9,6 @@ function HomeController(trialService, $timeout) {
     vm.results = false;
     vm.searched = false;
     vm.filterData = 0;
-    vm.trialsData = [];
     vm.selectOptions = false;
     vm.searching = false;
     vm.trialSelected = false;
@@ -31,6 +30,7 @@ function HomeController(trialService, $timeout) {
 
     // Get table trials data
     vm.getTrials = function(data) {
+        vm.trialsData = [];
         angular.forEach(data, function (obj) {
             var objLevel = '', firstLevelData = '', secondLevelData = '',  thirdLevelData = '';
             angular.forEach(obj, function(value){

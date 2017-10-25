@@ -71,7 +71,6 @@ function HomeController(trialService, $timeout) {
             }, 500);
         });
     };
-    // vm.queryPage(vm.baseURL, {offset: 0, limit: 10});
     vm.queryPage(vm.baseURL, vm.pageParams);
 
     // Search one or more records in all pages

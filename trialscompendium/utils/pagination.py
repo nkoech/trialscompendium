@@ -6,7 +6,7 @@ class APILimitOffsetPagination(LimitOffsetPagination):
     Pagination class
     """
     default_limit = 5
-    max_limit = 50
+    max_limit = 100
 
     # def paginate_queryset(self, queryset, request, view=None):
     #     model_count = 0

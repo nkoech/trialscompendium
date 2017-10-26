@@ -2,9 +2,9 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-HomeController.$inject = ['trialService', '$timeout'];
+HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout'];
 
-function HomeController(trialService, $timeout) {
+function HomeController(pageTrials, allTrials, trialService, $timeout) {
     var vm = this;
     vm.results = false;
     vm.searched = false;
@@ -62,32 +62,58 @@ function HomeController(trialService, $timeout) {
         return vm.trialsData;
     };
 
-    // Search one or more records per page
-    vm.queryPage = function (apiNode, query) {
+    vm.setResults = function (response) {
+        vm.totalResults = response.count;
+        vm.results = vm.getTrials(response.results);
+        vm.filterData = vm.results.length;
+    };
+
+    vm.getTrialsSearchOptions = function () {
         vm.searching = false;
-        trialService.search(apiNode, query).then(function (response) {
-            vm.totalResults = response.count;
-            vm.results = vm.getTrials(response.results);
-            vm.filterData = vm.results.length;
+        vm.selectOptions = trialService.filterSingleObj(allTrials, vm.filterSelectOptions, vm.replaceValue);
+        $timeout(function () {
+            vm.searching = false;
+        }, 500);
+    };
+    vm.getTrialsSearchOptions();
+
+    vm.getPageTrials = function () {
+        if (pageTrials !== undefined || pageTrials !== null) {
+            vm.searching = false;
+            vm.setResults(pageTrials);
             $timeout(function () {
                 vm.searching = false;
             }, 500);
-        });
+        }
     };
-    vm.queryPage(vm.baseURL, vm.pageParams);
+    vm.getPageTrials();
 
     // Search one or more records in all pages
-    vm.queryAllpages = function (apiNode, query) {
+    // Usage: Default params: vm.queryAllpages("trials/treatment/",{offset: 0, limit: 50})
+    vm.queryPage = function (apiNode, query) {
         vm.searching = true;
-        trialService.searchAllPages(apiNode, query, []).then(function (response) {
-            vm.selectOptions = trialService.filterSingleObj(response, vm.filterSelectOptions, vm.replaceValue);
+        trialService.search(apiNode, query).then(function (response) {
+            vm.setResults(response);
             $timeout(function () {
                 vm.searching = false;
             }, 500);
         });
     };
-    // vm.queryAllpages(vm.baseURL, vm.pageParams);
-    // vm.queryAllpages(vm.baseURL, angular.merge(vm.pageParams, {nitrogen_treatment__iexact: 'N0'})); //Adding more objects using merge
+
+    // /**
+    //  * TODO: DO NOT DELETE this function is so important.
+    //  * Search one or more records in all pages
+    //  * Usage: Default params: vm.queryAllpages("trials/treatment/",{offset: 0, limit: 50})
+    //  **/
+    // vm.queryAllpages = function (apiNode, query) {
+    //     vm.searching = true;
+    //     trialService.searchAllPages(apiNode, query, []).then(function (response) {
+    //         vm.selectOptions = trialService.filterSingleObj(response, vm.filterSelectOptions, vm.replaceValue);
+    //         $timeout(function () {
+    //             vm.searching = false;
+    //         }, 500);
+    //     });
+    // };
 
     vm.sort_with = function(column) {
         vm.reverse = (vm.sortColumn === column) ? !vm.reverse : false;

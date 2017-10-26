@@ -19,7 +19,7 @@ function HomeController(pageTrials, allTrials, trialService, $timeout) {
     vm.replaceValue = {Plus: true, Minus: false};
     vm.maxSize = 5;
     vm.totalResults = 0;
-    vm.pageIndex = 1;
+    vm.currentPage = 1;
     vm.pageSize = 5; // Maximum page size
     // vm.pageOffset = 0;
     // vm.pageParams = {offset: vm.pageOffset, limit: vm.pageSize};
@@ -132,7 +132,7 @@ function HomeController(pageTrials, allTrials, trialService, $timeout) {
     };
 
     vm.pageChanged = function () {
-        vm.pageParams.offset = (vm.pageIndex - 1) * vm.pageSize;
+        vm.pageParams.offset = (vm.currentPage - 1) * vm.pageSize;
         vm.queryPage(vm.baseURL, vm.pageParams);
     };
 }

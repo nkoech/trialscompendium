@@ -17,10 +17,13 @@ function HomeController(trialService, $timeout) {
     vm.sortColumn = 'plot_id';
     vm.reverse = false;
     vm.replaceValue = {Plus: true, Minus: false};
+    vm.maxSize = 5;
     vm.totalResults = 0;
+    vm.pageIndex = 1;
     vm.pageSize = 5; // Maximum page size
-    vm.pageOffset = 0;
-    vm.pageParams = {offset: vm.pageOffset, limit: vm.pageSize};
+    // vm.pageOffset = 0;
+    // vm.pageParams = {offset: vm.pageOffset, limit: vm.pageSize};
+    vm.pageParams = {offset: 0, limit: vm.pageSize};
     vm.baseURL = "trials/treatment/";
     vm.options = {
         psize: [5, 10, 25, 50]
@@ -99,6 +102,11 @@ function HomeController(trialService, $timeout) {
 
     vm.changePageSize = function () {
         vm.pageParams.limit = vm.pageSize;
+        vm.queryPage(vm.baseURL, vm.pageParams);
+    };
+
+    vm.pageChanged = function () {
+        vm.pageParams.offset = (vm.pageIndex - 1) * vm.pageSize;
         vm.queryPage(vm.baseURL, vm.pageParams);
     };
 }

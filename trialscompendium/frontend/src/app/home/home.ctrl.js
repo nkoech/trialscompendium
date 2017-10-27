@@ -115,6 +115,10 @@ function HomeController(pageTrials, allTrials, trialService, $timeout) {
     //     });
     // };
 
+    vm.searchTrials = function (){
+        trialService.filterSingleObj(vm.selected, [], {true: "Plus", false: "Minus"});
+    };
+
     vm.sort_with = function(column) {
         vm.reverse = (vm.sortColumn === column) ? !vm.reverse : false;
         vm.sortColumn = column;

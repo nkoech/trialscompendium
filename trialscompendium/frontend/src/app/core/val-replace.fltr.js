@@ -16,7 +16,11 @@ function valReplace() {
     function valReplaceFilter(input, obj) {
         if (obj && typeof obj === 'object'){
             angular.forEach(obj, function (v, k) {
-                input = input === v ? k : input;
+                if(eval('typeof '+ k) !== "undefined"){
+                    input = input === v ? eval(k) : input;
+                }else {
+                    input = input === v ? k : input;
+                }
             });
         }
         return input;

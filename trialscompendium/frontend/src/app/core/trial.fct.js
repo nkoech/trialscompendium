@@ -149,6 +149,26 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         return outObjArr;
     }
 
+    //TODO: To finished. This function is meant to handle searching on click of the search button
+    // function getSearchedTrials(data, filterObj, replaceValue) {
+    //     angular.forEach(data, function (value, key) {
+    //         match = [];
+    //         if (typeof value === 'object'){
+    //             // getSearchedTrials(value, filterObj);
+    //         }else{
+    //             angular.forEach(filterObj, function (ftrObj) {
+    //                 angular.forEach(ftrObj, function (fValue, fKey) {
+    //                     if () {
+    //
+    //                     }
+    //                 });
+    //                 // item === key ? outObj[key] = value : value;
+    //             });
+    //             // outObjArr = outObjArr.concat(outObj);
+    //         }
+    //     });
+    // }
+
     function dataServiceError(errorResponse) {
         $log.error('XHR Failed for ShowService');
         $log.error(errorResponse);

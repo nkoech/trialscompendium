@@ -2,15 +2,19 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout'];
+// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout'];
+HomeController.$inject = ['pageTrials', 'trialService', '$timeout'];
 
-function HomeController(pageTrials, allTrials, trialService, $timeout) {
+// function HomeController(pageTrials, allTrials, trialService, $timeout) {
+function HomeController(pageTrials, trialService, $timeout) {
     var vm = this;
     vm.results = false;
     vm.searched = false;
     vm.filterData = 0;
     vm.selectOptions = false;
     vm.searching = false;
+    vm.userSearchOptions = false;
+    vm.searchBtnClicked = false;
     vm.trialSelected = false;
     vm.disableInputField = true;
     vm.selected = {};
@@ -21,17 +25,15 @@ function HomeController(pageTrials, allTrials, trialService, $timeout) {
     vm.totalResults = 0;
     vm.currentPage = 1;
     vm.pageSize = 5; // Maximum page size
-    // vm.pageOffset = 0;
-    // vm.pageParams = {offset: vm.pageOffset, limit: vm.pageSize};
     vm.pageParams = {offset: 0, limit: vm.pageSize};
     vm.baseURL = "trials/treatment/";
     vm.options = {
         psize: [5, 10, 25, 50]
     };
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
-    vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', '', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
+    vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', '', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains', 'season'];
 
-    // Get table trials data
+        // Get table trials data
     vm.getTrials = function(data) {
         vm.trialsData = [];
         angular.forEach(data, function (obj) {
@@ -63,19 +65,45 @@ function HomeController(pageTrials, allTrials, trialService, $timeout) {
     };
 
     vm.setResults = function (response) {
-        vm.totalResults = response.count;
-        vm.results = vm.getTrials(response.results);
-        vm.filterData = vm.results.length;
+        var outObj = [];
+        var respResults = vm.getTrials(response.results);
+        if (vm.searchBtnClicked) {
+            angular.forEach(respResults, function (resultsObj){
+                var objMatch = [];
+                angular.forEach(vm.selected, function (selValue, selKey){
+                    if (angular.isArray(selValue)){
+                        var inObjMatch = [];
+                        angular.forEach(selValue, function (subSelValue) {
+                            
+                            if (subSelValue[selKey] === resultsObj[selKey]) {
+                                inObjMatch.push(true);
+                            } else {
+                                inObjMatch.push(false);
+                            }
+                        });
+                        (inObjMatch.indexOf(true) !== -1 || selValue.length === 0) ? objMatch.push(true) : objMatch.push(false);
+                    }else if (typeof selValue === 'object'){
+                        selValue[selKey] === resultsObj[selKey] ? objMatch.push(true) : objMatch.push(false);
+                    }
+                });
+                if (objMatch.indexOf(false) === -1) outObj = outObj.concat(resultsObj);
+            });
+            vm.results = outObj;
+        }else{
+            vm.totalResults = response.count;
+            vm.results = respResults;
+            vm.filterData = vm.results.length;
+        }
     };
 
-    vm.getTrialsSearchOptions = function () {
-        vm.searching = false;
-        vm.selectOptions = trialService.filterSingleObj(allTrials, vm.filterSelectOptions, vm.replaceValue);
-        $timeout(function () {
-            vm.searching = false;
-        }, 500);
-    };
-    vm.getTrialsSearchOptions();
+    // vm.getTrialsSearchOptions = function () {
+    //     vm.searching = false;
+    //     vm.selectOptions = trialService.filterSingleObj(allTrials, vm.filterSelectOptions, vm.replaceValue);
+    //     $timeout(function () {
+    //         vm.searching = false;
+    //     }, 500);
+    // };
+    // vm.getTrialsSearchOptions();
 
     vm.getPageTrials = function () {
         if (pageTrials !== undefined || pageTrials !== null) {
@@ -116,7 +144,15 @@ function HomeController(pageTrials, allTrials, trialService, $timeout) {
     // };
 
     vm.searchTrials = function (){
-        trialService.filterSingleObj(vm.selected, [], {true: "Plus", false: "Minus"});
+        // vm.userSearchOptions = trialService.filterSingleObj(vm.selected, [], {true: "Plus", false: "Minus"});
+        vm.userSearchOptions = trialService.filterSingleObj(vm.selected, []);
+        if (vm.userSearchOptions.length) {
+            vm.searchBtnClicked = true;
+            vm.queryPage(vm.baseURL, vm.pageParams);
+        }else{
+            vm.searchBtnClicked = false;
+        }
+
     };
 
     vm.sort_with = function(column) {

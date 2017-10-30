@@ -62,9 +62,10 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
 
     vm.setResults = function (response) {
         var outObj = [];
-        var respResults = vm.getTrials(response.results);
+        vm.totalResults = response.count;
+        vm.results = vm.getTrials(response.results);
         if (vm.searchBtnClicked) {
-            angular.forEach(respResults, function (resultsObj){
+            angular.forEach(vm.results, function (resultsObj){
                 var objMatch = [];
                 angular.forEach(vm.selected, function (selValue, selKey){
                     if (angular.isArray(selValue)){
@@ -85,11 +86,8 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
                 if (objMatch.indexOf(false) === -1) outObj = outObj.concat(resultsObj);
             });
             vm.results = outObj;
-        }else{
-            vm.totalResults = response.count;
-            vm.results = respResults;
-            vm.filterData = vm.results.length;
         }
+        vm.filterData = vm.results.length;
     };
 
     // vm.getTrialsSearchOptions = function () {

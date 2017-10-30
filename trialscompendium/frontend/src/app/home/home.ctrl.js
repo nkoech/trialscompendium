@@ -89,7 +89,6 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
             vm.totalResults = vm.totalResults - (vm.results.length - outObj.length);
             vm.results = outObj;
         }
-        // vm.filterData = vm.results.length;
     };
 
     // vm.getTrialsSearchOptions = function () {

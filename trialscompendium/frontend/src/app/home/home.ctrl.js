@@ -8,7 +8,7 @@ HomeController.$inject = ['pageTrials', 'trialService', '$timeout', 'isEmptyFilt
 // function HomeController(pageTrials, allTrials, trialService, $timeout, isEmptyFilter, strReplaceFilter) {
 function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strReplaceFilter) {
     var vm = this;
-    vm.results = false;
+    vm.results = [];
     vm.searched = false;
     vm.filterData = 0;
     vm.selectOptions = false;
@@ -48,7 +48,6 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
                     firstLevelData = trialService.filterMultiObj([obj], vm.filterTableData, vm.replaceValue);
                 }
             });
-
             // Merge all level data starting with the third level repeating the succeeding levels
             angular.forEach(thirdLevelData, function(thirdObj){
                 angular.forEach(secondLevelData, function(secondObj){

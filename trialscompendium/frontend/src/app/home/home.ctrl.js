@@ -2,11 +2,11 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout', 'isEmptyFilter'];
-HomeController.$inject = ['pageTrials', 'trialService', '$timeout', 'isEmptyFilter'];
+// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout', 'isEmptyFilter', 'strReplaceFilter'];
+HomeController.$inject = ['pageTrials', 'trialService', '$timeout', 'isEmptyFilter', 'strReplaceFilter'];
 
-// function HomeController(pageTrials, allTrials, trialService, $timeout, isEmptyFilter) {
-function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
+// function HomeController(pageTrials, allTrials, trialService, $timeout, isEmptyFilter, strReplaceFilter) {
+function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strReplaceFilter) {
     var vm = this;
     vm.results = false;
     vm.searched = false;
@@ -26,11 +26,9 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     vm.pageSize = 5; // Maximum page size
     vm.pageParams = {offset: 0, limit: vm.pageSize};
     vm.baseURL = "trials/treatment/";
-    vm.options = {
-        psize: [5, 10, 25, 50]
-    };
+    vm.options = {psize: [5, 10, 25, 50]};
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
-    vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', '', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains', 'season'];
+    vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', '', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
 
         // Get table trials data
     vm.getTrials = function(data) {
@@ -73,11 +71,11 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
                     if (angular.isArray(selValue)){
                         var inObjMatch = [];
                         angular.forEach(selValue, function (subSelValue) {
-                            
-                            if (subSelValue[selKey] === resultsObj[selKey]) {
-                                inObjMatch.push(true);
-                            } else {
-                                inObjMatch.push(false);
+                            if (subSelValue[selKey] === 'Short Rains' || subSelValue[selKey] === 'Long Rains'){
+                                var newKey = strReplaceFilter(subSelValue[selKey], ' ', '_').toLowerCase();
+                                resultsObj.hasOwnProperty(newKey) ? inObjMatch.push(true) : inObjMatch.push(false);
+                            }else{
+                                subSelValue[selKey] === resultsObj[selKey] ? inObjMatch.push(true) : inObjMatch.push(false);
                             }
                         });
                         (inObjMatch.indexOf(true) !== -1 || selValue.length === 0) ? objMatch.push(true) : objMatch.push(false);

@@ -10,15 +10,16 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
     var vm = this;
     vm.results = [];
     vm.searched = false;
-    vm.filterData = 0;
+    vm.filterData = 1;
     vm.selectOptions = false;
     vm.searching = false;
     vm.searchBtnClicked = false;
     vm.trialSelected = false;
     vm.disableInputField = true;
+    vm.reverse = false;
+    vm.searchingTable = false;
     vm.selected = {};
     vm.sortColumn = 'plot_id';
-    vm.reverse = false;
     vm.replaceValue = {Plus: true, Minus: false};
     vm.maxSize = 5;
     vm.totalResults = 0;
@@ -85,9 +86,10 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
                 });
                 if (objMatch.indexOf(false) === -1) outObj = outObj.concat(resultsObj);
             });
+            vm.totalResults = vm.totalResults - (vm.results.length - outObj.length);
             vm.results = outObj;
         }
-        vm.filterData = vm.results.length;
+        // vm.filterData = vm.results.length;
     };
 
     // vm.getTrialsSearchOptions = function () {
@@ -147,12 +149,13 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
 
     };
 
-    vm.sort_with = function(column) {
+    vm.sort_with = function (column) {
         vm.reverse = (vm.sortColumn === column) ? !vm.reverse : false;
         vm.sortColumn = column;
     };
 
-    vm.onSearchTable = function() {
+    vm.onSearchTable = function (t) {
+        vm.searchingTable = t;
         $timeout(function() {
             vm.filterData = vm.searched.length;
         }, 20);

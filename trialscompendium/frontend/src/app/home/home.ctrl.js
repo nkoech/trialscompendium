@@ -2,18 +2,17 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout'];
-HomeController.$inject = ['pageTrials', 'trialService', '$timeout'];
+// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout', 'isEmptyFilter'];
+HomeController.$inject = ['pageTrials', 'trialService', '$timeout', 'isEmptyFilter'];
 
-// function HomeController(pageTrials, allTrials, trialService, $timeout) {
-function HomeController(pageTrials, trialService, $timeout) {
+// function HomeController(pageTrials, allTrials, trialService, $timeout, isEmptyFilter) {
+function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     var vm = this;
     vm.results = false;
     vm.searched = false;
     vm.filterData = 0;
     vm.selectOptions = false;
     vm.searching = false;
-    vm.userSearchOptions = false;
     vm.searchBtnClicked = false;
     vm.trialSelected = false;
     vm.disableInputField = true;
@@ -144,9 +143,7 @@ function HomeController(pageTrials, trialService, $timeout) {
     // };
 
     vm.searchTrials = function (){
-        // vm.userSearchOptions = trialService.filterSingleObj(vm.selected, [], {true: "Plus", false: "Minus"});
-        vm.userSearchOptions = trialService.filterSingleObj(vm.selected, []);
-        if (vm.userSearchOptions.length) {
+        if (!isEmptyFilter(vm.selected)) {
             vm.searchBtnClicked = true;
             vm.queryPage(vm.baseURL, vm.pageParams);
         }else{

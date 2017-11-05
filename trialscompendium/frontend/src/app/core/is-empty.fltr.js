@@ -11,8 +11,7 @@ function isEmpty() {
     return isEmptyFilter;
     function isEmptyFilter(input) {
         for(var key in input) {
-            if(input.hasOwnProperty(key))
-                return false;
+            if(input.hasOwnProperty(key)) return false;
         }
         return true;
     }

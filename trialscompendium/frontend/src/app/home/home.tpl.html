@@ -139,13 +139,13 @@
                     <div class="col-lg-6 col-md-6 pull-left">
                         <div class="left-widget">
                             <span class="widget-label">
-                                Showing {{vm.searched.length}} of {{vm.totalResults}} entries
+                                Showing Page {{vm.currentPage }} of {{vm.numPages}}
                             </span>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6  pull-right">
                         <div class="right-widget content-pagination">
-                            <ul uib-pagination class="pagination" previous-text="&laquo;" next-text="&raquo;" total-items="vm.totalResults" items-per-page="vm.pageSize" ng-model="vm.currentPage" max-size="vm.maxSize" ng-change="vm.pageChanged()" rotate="true" boundary-link-numbers="true"></ul>
+                            <ul uib-pagination class="pagination" previous-text="&laquo;" next-text="&raquo;" total-items="vm.totalResults" items-per-page="vm.pageSize" ng-model="vm.currentPage" max-size="vm.maxSize" ng-change="vm.pageChanged()" rotate="true" boundary-link-numbers="true" num-pages="vm.numPages"></ul>
                         </div>
                     </div>
                 </div>

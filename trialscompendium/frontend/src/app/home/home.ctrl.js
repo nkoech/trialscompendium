@@ -145,7 +145,6 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
         }else{
             vm.searchBtnClicked = false;
         }
-
     };
 
     vm.sort_with = function (column) {
@@ -154,7 +153,7 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
     };
 
     vm.onSearchTable = function (t) {
-        vm.searchingTable = t;
+         vm.searchingTable = t;
         $timeout(function() {
             vm.filterData = vm.searched.length;
         }, 20);

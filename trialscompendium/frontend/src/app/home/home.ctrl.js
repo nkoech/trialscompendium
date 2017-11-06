@@ -31,7 +31,7 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
     vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', '', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
 
-        // Get table trials data
+    // Get table trials data
     vm.getTrials = function(data) {
         vm.trialsData = [];
         angular.forEach(data, function (obj) {
@@ -62,30 +62,10 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strRe
     };
 
     vm.setResults = function (response) {
-        var outObj = [];
         vm.totalResults = response.count;
         vm.results = vm.getTrials(response.results);
         if (vm.searchBtnClicked) {
-            angular.forEach(vm.results, function (resultsObj){
-                var objMatch = [];
-                angular.forEach(vm.selected, function (selValue, selKey){
-                    if (angular.isArray(selValue)){
-                        var inObjMatch = [];
-                        angular.forEach(selValue, function (subSelValue) {
-                            if (subSelValue[selKey] === 'Short Rains' || subSelValue[selKey] === 'Long Rains'){
-                                var newKey = strReplaceFilter(subSelValue[selKey], ' ', '_').toLowerCase();
-                                resultsObj.hasOwnProperty(newKey) ? inObjMatch.push(true) : inObjMatch.push(false);
-                            }else{
-                                subSelValue[selKey] === resultsObj[selKey] ? inObjMatch.push(true) : inObjMatch.push(false);
-                            }
-                        });
-                        (inObjMatch.indexOf(true) !== -1 || selValue.length === 0) ? objMatch.push(true) : objMatch.push(false);
-                    }else if (typeof selValue === 'object'){
-                        selValue[selKey] === resultsObj[selKey] ? objMatch.push(true) : objMatch.push(false);
-                    }
-                });
-                if (objMatch.indexOf(false) === -1) outObj = outObj.concat(resultsObj);
-            });
+            var outObj = trialService.getSearchedTrials(vm.results, vm.selected, ['Short Rains', 'Long Rains']);
             vm.totalResults = vm.totalResults - (vm.results.length - outObj.length);
             vm.results = outObj;
         }

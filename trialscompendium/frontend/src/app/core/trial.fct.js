@@ -14,7 +14,8 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         'strToKey': strToKey,
         'getNestedTrials': getNestedTrials,
         'filterMultiObj': filterMultiObj,
-        'mergeOnSearch': mergeOnSearch
+        'mergeOnSearch': mergeOnSearch,
+        'getSearchedTrials': getSearchedTrials
     };
 
     function makeRequest(url, params) {
@@ -147,6 +148,38 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
             }
         });
         return outObjArr;
+    }
+
+    function getSearchedTrials (results, searchObj, keyOptions) {
+        var outObj = [];
+        // keyOptions = typeof keyOptions !== undefined || keyOptions !== null ? keyOptions : false;
+        angular.forEach(results, function (resultsObj){
+            var objMatch = [];
+            angular.forEach(searchObj, function (srcValue, srcKey){
+                if (angular.isArray(srcValue)){
+                    var inObjMatch = [];
+                    angular.forEach(srcValue, function (subSrcValue) {
+
+                        // var newKey = strToKey(keyOptions, subSrcValue[srcKey]) ? strToKey(keyOptions, subSrcValue[srcKey]) : newKey;
+                        // if (resultsObj.hasOwnProperty(newKey)) {
+                        //     console.log(newKey);
+                        // }
+
+                        if (subSrcValue[srcKey] === 'Short Rains' || subSrcValue[srcKey] === 'Long Rains'){
+                            var newKey = strReplaceFilter(subSrcValue[srcKey], ' ', '_').toLowerCase();
+                            resultsObj.hasOwnProperty(newKey) ? inObjMatch.push(true) : inObjMatch.push(false);
+                        }else{
+                            subSrcValue[srcKey] === resultsObj[srcKey] ? inObjMatch.push(true) : inObjMatch.push(false);
+                        }
+                    });
+                    (inObjMatch.indexOf(true) !== -1 || srcValue.length === 0) ? objMatch.push(true) : objMatch.push(false);
+                }else if (typeof srcValue === 'object'){
+                    srcValue[srcKey] === resultsObj[srcKey] ? objMatch.push(true) : objMatch.push(false);
+                }
+            });
+            if (objMatch.indexOf(false) === -1) outObj = outObj.concat(resultsObj);
+        });
+        return outObj;
     }
 
     function dataServiceError(errorResponse) {

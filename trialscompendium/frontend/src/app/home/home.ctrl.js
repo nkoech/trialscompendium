@@ -2,11 +2,11 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout', 'isEmptyFilter', 'strReplaceFilter'];
-HomeController.$inject = ['pageTrials', 'trialService', '$timeout', 'isEmptyFilter', 'strReplaceFilter'];
+// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout', 'isEmptyFilter'];
+HomeController.$inject = ['pageTrials', 'trialService', '$timeout', 'isEmptyFilter'];
 
-// function HomeController(pageTrials, allTrials, trialService, $timeout, isEmptyFilter, strReplaceFilter) {
-function HomeController(pageTrials, trialService, $timeout, isEmptyFilter, strReplaceFilter) {
+// function HomeController(pageTrials, allTrials, trialService, $timeout, isEmptyFilter) {
+function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     var vm = this;
     vm.results = [];
     vm.searched = false;

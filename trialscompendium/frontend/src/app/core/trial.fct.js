@@ -79,16 +79,16 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
 
     function strToKey(keyOptions, str) {
         // Convert string to key by replacing space with an underscore
+        var newKey = false;
         if (keyOptions) {
-            var newKey = false;
             str = typeof str !== undefined || str !== null ? str : false;
             angular.forEach(keyOptions, function(opt){
                 if (str === opt){
                     newKey = strReplaceFilter(str, ' ', '_').toLowerCase();
                 }
             });
-            return newKey;
         }
+        return newKey;
     }
 
     function getNestedTrials(data, replaceKey, keyOptions){
@@ -103,8 +103,9 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
                 if (typeof value === 'object') {
                     nestedObj = value;
                 } else {
-                    newKey = strToKey(keyOptions, value) ? strToKey(keyOptions, value) : newKey;
-                    key = newKey && key === replaceKey ? newKey : key;
+                    var strKey = strToKey(keyOptions, value);
+                    newKey = strKey ? strKey : newKey;
+                    key = newKey && (key === replaceKey) ? newKey : key;
                     outObj[key] = value;
                 }
             });
@@ -152,22 +153,16 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
 
     function getSearchedTrials (results, searchObj, keyOptions) {
         var outObj = [];
-        // keyOptions = typeof keyOptions !== undefined || keyOptions !== null ? keyOptions : false;
+        keyOptions = typeof keyOptions !== undefined || keyOptions !== null ? keyOptions : false;
         angular.forEach(results, function (resultsObj){
             var objMatch = [];
             angular.forEach(searchObj, function (srcValue, srcKey){
                 if (angular.isArray(srcValue)){
                     var inObjMatch = [];
                     angular.forEach(srcValue, function (subSrcValue) {
-
-                        // var newKey = strToKey(keyOptions, subSrcValue[srcKey]) ? strToKey(keyOptions, subSrcValue[srcKey]) : newKey;
-                        // if (resultsObj.hasOwnProperty(newKey)) {
-                        //     console.log(newKey);
-                        // }
-
-                        if (subSrcValue[srcKey] === 'Short Rains' || subSrcValue[srcKey] === 'Long Rains'){
-                            var newKey = strReplaceFilter(subSrcValue[srcKey], ' ', '_').toLowerCase();
-                            resultsObj.hasOwnProperty(newKey) ? inObjMatch.push(true) : inObjMatch.push(false);
+                        var strKey = strToKey(keyOptions, subSrcValue[srcKey]);
+                        if (strKey) {
+                            resultsObj.hasOwnProperty(strKey) ? inObjMatch.push(true) : inObjMatch.push(false);
                         }else{
                             subSrcValue[srcKey] === resultsObj[srcKey] ? inObjMatch.push(true) : inObjMatch.push(false);
                         }

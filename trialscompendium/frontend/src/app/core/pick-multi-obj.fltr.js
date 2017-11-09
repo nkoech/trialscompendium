@@ -12,6 +12,32 @@ angular
 pickMultiObj.$inject = ['valReplaceFilter', 'parseNumFilter'];
 
 function pickMultiObj(valReplaceFilter, parseNumFilter) {
+    // return pickMultiObjFilter;
+    // function pickMultiObjFilter(input, filterProp, replaceValue) {
+    //     if ((!angular.isArray(input) && (input === undefined || input === null)) || (filterProp === undefined || filterProp === null)) {return input;}
+    //     // var outObjArr = input.map(function (obj) {
+    //     //     var outObj = {};
+    //     //     angular.forEach(filterProp, function (key) {
+    //     //         if (obj.hasOwnProperty(key)){
+    //     //             var value = valReplaceFilter(obj[key], replaceValue);
+    //     //             outObj[key] = parseNumFilter(value);
+    //     //         }
+    //     //     });
+    //     //     return outObj;
+    //     // });
+    //     // return outObjArr;
+    //
+    //     return input.map(function(obj){
+    //         return Object.keys(obj).filter(function(key){
+    //             return filterProp.includes(key);
+    //         }).reduce(function(newObj, key){
+    //             var value = valReplaceFilter(obj[key], replaceValue);
+    //             newObj[key] = parseNumFilter(value);
+    //             return newObj;
+    //         }, {});
+    //     });
+    // }
+
     return pickMultiObjFilter;
     function pickMultiObjFilter(input, filterProp, replaceValue) {
         var outObjArr = [];

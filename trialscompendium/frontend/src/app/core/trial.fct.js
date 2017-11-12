@@ -123,23 +123,22 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
 
     function mergeOnSearch(data, mergeProp){
         // Merge similar objects into one
+        var inData = [];
+        inData = inData.concat(data);
         var outObjArr = [];
-        angular.forEach(data, function(obj){
-            var existing = outObjArr.filter(function(value){
-                if (angular.isArray(mergeProp) && mergeProp.length) {
-                    var filterEval = '';
-                    mergeProp.map(function (prop, propIndex) {
-                        if (value[prop] === obj[prop]) {
-                            filterEval += 'value["' + prop +'"] === obj["' + prop + '"]';
-                            if ((propIndex + 1) < mergeProp.length){
-                                filterEval += ' && '
-                            }
-                        }
-                    });
-                    return (mergeProp.length > 1 && filterEval.indexOf('&&') > -1) ? eval(filterEval) : (mergeProp.length === 1 && filterEval) ? eval(filterEval) : false;
-                }else{
-                    return value[mergeProp] === obj[mergeProp];
+        angular.forEach(inData, function(obj){
+            var existing = outObjArr.filter(function(outObj){
+
+                if (obj['observation'] === outObj['observation'] && obj['year'] === outObj['year']) {
+                    return true;
                 }
+
+                // return angular.forEach(mergeProp, function (prop) {
+                //     if (obj[prop] === outObj[prop]) {
+                //         return true;
+                //     }
+                //     return false;
+                // });
             });
             if (existing.length) {
                 var existingIndex = outObjArr.indexOf(existing[0]);

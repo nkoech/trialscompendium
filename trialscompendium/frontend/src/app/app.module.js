@@ -1,5 +1,6 @@
 require('../assets/css/main.css');
 require('angular');
+require('immutable');
 require('./core/core.module');
 require('./layout/layout.module');
 require('./home/home.module');
@@ -8,7 +9,6 @@ require('./login/login.module');
 require('./sign-up/sign-up.module');
 require('./trial/trial.module');
 require('./widgets/widgets.module');
-
 
 angular.module('app', [
     'app.core',

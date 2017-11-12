@@ -76,11 +76,12 @@ module.exports = {
         ]
     },
     plugins: [
-        // new webpack.ProvidePlugin({
-        //     $: 'jquery',
-        //     jQuery: 'jquery',
-        //     "window.jQuery": "jquery"
-        // }),
+        new webpack.ProvidePlugin({
+            Immutable: 'immutable'
+            // $: 'jquery',
+            // jQuery: 'jquery',
+            // "window.jQuery": "jquery"
+        }),
         extractPlugin,
         new HtmlWebpackPlugin({
             filename: 'index.html',

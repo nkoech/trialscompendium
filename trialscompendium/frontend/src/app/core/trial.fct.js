@@ -14,7 +14,7 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         'strToKey': strToKey,
         'getNestedTrials': getNestedTrials,
         'filterMultiObj': filterMultiObj,
-        'mergeOnSearch': mergeOnSearch,
+        'groupObjBy': groupObjBy,
         'getSearchedTrials': getSearchedTrials
     };
 
@@ -121,31 +121,23 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         return pickMultiObjFilter(data, filterProp, replaceValue);
     }
 
-    function mergeOnSearch(data, mergeProp){
+    function groupObjBy(data, mergeProp){
         // Merge similar objects into one
-        var inData = [];
-        inData = inData.concat(data);
         var outObjArr = [];
-        angular.forEach(inData, function(obj){
+        angular.forEach(data, function(obj){
             var existing = outObjArr.filter(function(outObj){
-
-                if (obj['observation'] === outObj['observation'] && obj['year'] === outObj['year']) {
-                    return true;
+                var objComp = '';
+                if (angular.isArray(mergeProp) && mergeProp.length) {
+                    angular.forEach(mergeProp, function (prop, index) {
+                        objComp += ('"' + obj[prop] + '"==="' + outObj[prop] + '"');
+                        if (mergeProp.length > 1 && (index + 1) < mergeProp.length){
+                            objComp += (' && ');
+                        }
+                    });
                 }
-
-                // return angular.forEach(mergeProp, function (prop) {
-                //     if (obj[prop] === outObj[prop]) {
-                //         return true;
-                //     }
-                //     return false;
-                // });
+                if (eval(objComp)) return true;
             });
-            if (existing.length) {
-                var existingIndex = outObjArr.indexOf(existing[0]);
-                angular.merge(outObjArr[existingIndex], obj);
-            } else {
-                outObjArr = outObjArr.concat(obj);
-            }
+            existing.length ? angular.merge(outObjArr[outObjArr.indexOf(existing[0])], obj) : outObjArr = outObjArr.concat(obj);
         });
         return outObjArr;
     }

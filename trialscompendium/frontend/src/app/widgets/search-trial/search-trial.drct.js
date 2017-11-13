@@ -62,17 +62,17 @@ function SearchTrialController() {
     },{
         "trial_id": "CT1"
     }, {
-        "observation": "Maize Grain Yield"
+        "observation": "Maize Y"
     }, {
         "observation": "Maize AGB"
     },{
-        "observation": "Soya Grain yield"
+        "observation": "Soy Y"
     },{
-        "observation": "Soya AGB"
+        "observation": "Soy AGB"
     },{
-        "observation": "Tephrosia Grain Yield"
+        "observation": "Teph Y"
     },{
-        "observation": "Tephrosia - AGB"
+        "observation": "Teph AGB"
     }, {
         "year": 2004
     }, {

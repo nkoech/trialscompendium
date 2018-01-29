@@ -97,7 +97,6 @@
                         <table class="table table-striped table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th>Index&nbsp;<a ng-click="vm.sort_with('trial_id');"><i class="fa fa-sort"></i></a></th>
                                     <th>Trial&nbsp;<a ng-click="vm.sort_with('trial_id');"><i class="fa fa-sort"></i></a></th>
                                     <th>Plot&nbsp;<a ng-click="vm.sort_with('plot_id');"><i class="fa fa-sort"></i></a></th>
                                     <th>Observation&nbsp;<a ng-click="vm.sort_with('observation');"><i class="fa fa-sort"></i></a></th>
@@ -113,7 +112,6 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="trial in vm.searched = (vm.results | filter: vm.searchTable | orderBy: vm.sortColumn: vm.reverse) track by $index">
-                                    <td>{{$index}}</td>
                                     <td>{{trial.trial_id}}</td>
                                     <td>{{trial.plot_id}}{{trial.sub_plot_id}}</td>
                                     <td>{{trial.observation}}</td>

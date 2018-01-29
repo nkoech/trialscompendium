@@ -107,6 +107,10 @@ function SearchTrialController() {
         "phosphate_treatment": "P0"
     },{
         "phosphate_treatment": "P60"
+    },{
+        "tillage_practice": "Zero Tillage"
+    },{
+        "tillage_practice": "Conventional Tillage"
     }];
 
     // vm.selectOptions = [{

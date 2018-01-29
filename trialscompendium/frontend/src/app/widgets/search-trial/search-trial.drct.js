@@ -56,6 +56,8 @@ function SearchTrialController() {
     },{
         "trial_id": "INM3"
     },{
+        "trial_id": "CT1"
+    },{
         "observation": "Maize Y"
     },{
         "observation": "Maize AGB"

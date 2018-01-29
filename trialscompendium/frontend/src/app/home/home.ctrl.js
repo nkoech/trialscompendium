@@ -21,13 +21,15 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     vm.selected = {};
     vm.sortColumn = 'plot_id';
     vm.replaceValue = {Plus: true, Minus: false};
-    vm.maxSize = 5;
-    vm.totalResults = 0;
-    vm.currentPage = 1;
-    vm.pageSize = 5; // Maximum page size
-    vm.pageParams = {offset: 0, limit: vm.pageSize};
+    vm.pagination = {
+        maxSize: 5,
+        pageSize: 5,
+        totalResults: 0,
+        currentPage: 1,
+        pageOptions: {psize: [5, 10, 25, 50]}
+    };
+    vm.pageParams = {offset: 0, limit: vm.pagination.pageSize};
     vm.baseURL = "trials/treatment/";
-    vm.options = {psize: [5, 10, 25, 50]};
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
     vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
 
@@ -62,12 +64,22 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     };
 
     vm.setResults = function (response) {
-        vm.totalResults = response.count;
+        vm.pagination.totalResults = response.count;
         vm.results = vm.getTrials(response.results);
         if (vm.searchBtnClicked) {
             var outObj = trialService.getSearchedTrials(vm.results, vm.selected, ['Short Rains', 'Long Rains']);
-            vm.totalResults = vm.totalResults - (vm.results.length - outObj.length);
-            vm.results = outObj;
+
+            if (outObj.length === 0){
+                vm.pagination.currentPage = 35;
+                vm.pageParams.offset = (vm.pagination.currentPage - 1) * vm.pagination.pageSize;
+                vm.queryPage(vm.baseURL, vm.pageParams);
+            }else{
+                // vm.pagination.totalResults = vm.pagination.totalResults - (vm.results.length - outObj.length);
+                vm.results = outObj;
+            }
+
+            // vm.pagination.totalResults = vm.pagination.totalResults - (vm.results.length - outObj.length);
+            // vm.results = outObj;
         }
     };
 
@@ -140,12 +152,12 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     };
 
     vm.changePageSize = function () {
-        vm.pageParams.limit = vm.pageSize;
+        vm.pageParams.limit = vm.pagination.pageSize;
         vm.queryPage(vm.baseURL, vm.pageParams);
     };
 
     vm.pageChanged = function () {
-        vm.pageParams.offset = (vm.currentPage - 1) * vm.pageSize;
+        vm.pageParams.offset = (vm.pagination.currentPage - 1) * vm.pagination.pageSize;
         vm.queryPage(vm.baseURL, vm.pageParams);
     };
 }

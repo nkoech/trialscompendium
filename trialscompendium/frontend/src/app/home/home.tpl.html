@@ -79,7 +79,7 @@
                         <div class="left-widget">
                             <span class="widget-label">
                                 Page Size:
-                                <select class="form-control" ng-options="opt for opt in vm.options.psize" ng-model="vm.pageSize" ng-change="vm.changePageSize()"></select>
+                                <select class="form-control" ng-options="opt for opt in vm.pagination.pageOptions.psize" ng-model="vm.pagination.pageSize" ng-change="vm.changePageSize()"></select>
                             </span>
                         </div>
                     </div>
@@ -140,13 +140,13 @@
                     <div class="col-lg-6 col-md-6 pull-left">
                         <div class="left-widget">
                             <span class="widget-label">
-                                Showing Page {{vm.currentPage }} of {{vm.numPages}}
+                                Showing Page {{vm.pagination.currentPage }} of {{vm.pagination.numPages}}
                             </span>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6  pull-right">
                         <div class="right-widget content-pagination">
-                            <ul uib-pagination class="pagination" previous-text="&laquo;" next-text="&raquo;" total-items="vm.totalResults" items-per-page="vm.pageSize" ng-model="vm.currentPage" max-size="vm.maxSize" ng-change="vm.pageChanged()" rotate="true" boundary-link-numbers="true" num-pages="vm.numPages"></ul>
+                            <ul uib-pagination class="pagination" previous-text="&laquo;" next-text="&raquo;" total-items="vm.pagination.totalResults" items-per-page="vm.pagination.pageSize" ng-model="vm.pagination.currentPage" max-size="vm.pagination.maxSize" ng-change="vm.pageChanged()" rotate="true" boundary-link-numbers="true" num-pages="vm.pagination.numPages"></ul>
                         </div>
                     </div>
                 </div>

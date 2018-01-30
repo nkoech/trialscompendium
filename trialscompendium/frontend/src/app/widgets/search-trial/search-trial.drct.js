@@ -6,7 +6,8 @@ function searchTrial() {
     return {
         templateUrl: require('./search-trial.tpl.html'),
         restrict: 'EA',
-        scope: {
+        scope: {},
+        bindToController: {
             'label': '@',
             'prop': '@',
             'multiple': '@',
@@ -15,7 +16,6 @@ function searchTrial() {
             'selected': '='
             // 'selectOptions': '='
         },
-        bindToController: true,
         controller: SearchTrialController,
         controllerAs: 'vm'
     };

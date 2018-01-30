@@ -58,7 +58,7 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
     function get(apiNode, query) {
         // Get one record per page
         var id = Object.keys(query)[0];
-        return makeRequest(apiNode + '/:' + id, query).get().$promise;
+        return makeRequest(apiNode + ':' + id, query).get().$promise;
     }
 
     function searchAllPages(apiNode, query, list) {

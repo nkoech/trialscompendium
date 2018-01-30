@@ -49,7 +49,7 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
 
     function search(apiNode, query){
         // Search one or more records per page
-        return makeRequest(apiNode + '/', query).query().$promise.
+        return makeRequest(apiNode, query).query().$promise.
         then(function(data){
             return data;
         });
@@ -63,7 +63,7 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
 
     function searchAllPages(apiNode, query, list) {
         // Search one or more records in all pages
-        return makeRequest(apiNode + '/', query).query().$promise.then(function(data){
+        return makeRequest(apiNode, query).query().$promise.then(function(data){
             list = list.concat(data.results);
             if (data.next) {
                 query.offset += query.limit;

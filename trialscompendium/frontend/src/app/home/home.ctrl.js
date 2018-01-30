@@ -69,17 +69,17 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
         if (vm.searchBtnClicked) {
             var outObj = trialService.getSearchedTrials(vm.results, vm.selected, ['Short Rains', 'Long Rains']);
 
-            if (outObj.length === 0){
-                vm.pagination.currentPage = 35;
-                vm.pageParams.offset = (vm.pagination.currentPage - 1) * vm.pagination.pageSize;
-                vm.queryPage(vm.baseURL, vm.pageParams);
-            }else{
-                // vm.pagination.totalResults = vm.pagination.totalResults - (vm.results.length - outObj.length);
-                vm.results = outObj;
-            }
+            // if (outObj.length === 0){
+            //     vm.pagination.currentPage = 35;
+            //     vm.pageParams.offset = (vm.pagination.currentPage - 1) * vm.pagination.pageSize;
+            //     vm.queryPage(vm.baseURL, vm.pageParams);
+            // }else{
+            //     // vm.pagination.totalResults = vm.pagination.totalResults - (vm.results.length - outObj.length);
+            //     vm.results = outObj;
+            // }
 
-            // vm.pagination.totalResults = vm.pagination.totalResults - (vm.results.length - outObj.length);
-            // vm.results = outObj;
+            vm.pagination.totalResults = vm.pagination.totalResults - (vm.results.length - outObj.length);
+            vm.results = outObj;
         }
     };
 

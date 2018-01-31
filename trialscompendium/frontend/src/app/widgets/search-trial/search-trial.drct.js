@@ -110,7 +110,7 @@ function SearchTrialController() {
     },{
         "tillage_practice": "Zero Tillage"
     },{
-        "tillage_practice": "Conventional Tillage"
+        "tillage_practice": "Conventional"
     }];
 
     // vm.selectOptions = [{

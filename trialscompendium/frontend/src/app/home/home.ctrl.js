@@ -47,10 +47,9 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
                         thirdLevelData = trialService.filterMultiObj(objLevel.outObjArr, vm.filterTableData);
                         thirdLevelData = trialService.groupObjBy(thirdLevelData, ['observation', 'year']);
                     }
-                }else{
-                    firstLevelData = trialService.filterMultiObj([obj], vm.filterTableData, vm.replaceValue);
                 }
             });
+            firstLevelData = trialService.filterMultiObj([obj], vm.filterTableData, vm.replaceValue);
             // Merge all level data starting with the third level repeating the succeeding levels
             angular.forEach(thirdLevelData, function(thirdObj){
                 angular.forEach(secondLevelData, function(secondObj){

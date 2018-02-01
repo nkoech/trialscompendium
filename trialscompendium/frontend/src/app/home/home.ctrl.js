@@ -22,13 +22,14 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     vm.sortColumn = 'plot_id';
     vm.replaceValue = {Plus: true, Minus: false};
     vm.pagination = {
+        offset:0,
         maxSize: 5,
         pageSize: 5,
         totalResults: 0,
         currentPage: 1,
         pageOptions: {psize: [5, 10, 25, 50]}
     };
-    vm.pageParams = {offset: 0, limit: vm.pagination.pageSize};
+    vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
     vm.baseURL = "trials/treatment/";
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
     vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
@@ -132,6 +133,7 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     vm.searchTrials = function (){
         if (!isEmptyFilter(vm.selected)) {
             vm.searchBtnClicked = true;
+            vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
             vm.queryPage(vm.baseURL, vm.pageParams);
         }else{
             vm.searchBtnClicked = false;

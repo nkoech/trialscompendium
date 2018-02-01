@@ -135,6 +135,7 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
             vm.searchBtnClicked = true;
             vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
             vm.queryPage(vm.baseURL, vm.pageParams);
+            vm.pagination.currentPage = 1;
         }else{
             vm.searchBtnClicked = false;
         }

@@ -46,17 +46,11 @@ function SearchTrialController() {
     };
 
     vm.selectOptions = [{
-        "farm_yard_manure": "Plus"
-    },{
-        "farm_yard_manure": "Minus"
-    },{
-        "farm_residue": "Plus"
-    },{
-        "farm_residue": "Minus"
-    },{
         "trial_id": "INM3"
     },{
         "trial_id": "CT1"
+    },{
+        "observation": "All Observations"
     },{
         "observation": "Maize Y"
     },{
@@ -96,6 +90,18 @@ function SearchTrialController() {
     },{
         "season": "Long Rains"
     },{
+        "tillage_practice": "Zero Tillage"
+    },{
+        "tillage_practice": "Conventional"
+    },{
+        "farm_yard_manure": "Plus"
+    },{
+        "farm_yard_manure": "Minus"
+    },{
+        "farm_residue": "Plus"
+    },{
+        "farm_residue": "Minus"
+    },{
         "nitrogen_treatment": "N0"
     },{
         "nitrogen_treatment": "N30"
@@ -107,10 +113,6 @@ function SearchTrialController() {
         "phosphate_treatment": "P0"
     },{
         "phosphate_treatment": "P60"
-    },{
-        "tillage_practice": "Zero Tillage"
-    },{
-        "tillage_practice": "Conventional"
     }];
 
     // vm.selectOptions = [{

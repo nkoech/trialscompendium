@@ -3,9 +3,9 @@ angular
     .constant('BASE_URL', 'http://127.0.0.1:8000/api')
     .factory('trialService', trialService);
 
-trialService.$inject = ['$resource', 'BASE_URL', '$log', 'pickSingleObjFilter', 'strReplaceFilter', 'pickMultiObjFilter'];
+trialService.$inject = ['$resource', 'BASE_URL', '$log', 'pickSingleObjFilter', 'strReplaceFilter', 'pickMultiObjFilter', '$timeout'];
 
-function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplaceFilter, pickMultiObjFilter) {
+function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplaceFilter, pickMultiObjFilter, $timeout) {
     return {
         'search': search,
         'get': get,
@@ -15,7 +15,10 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         'getNestedTrials': getNestedTrials,
         'filterMultiObj': filterMultiObj,
         'groupObjBy': groupObjBy,
-        'getSearchedTrials': getSearchedTrials
+        'getSearchedTrials': getSearchedTrials,
+        'insertToArray': insertToArray,
+        'applyArray':applyArray
+
     };
 
     function makeRequest(url, params) {
@@ -166,6 +169,34 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
             if (objMatch.indexOf(false) === -1) outObj = outObj.concat(resultsObj);
         });
         return outObj;
+    }
+
+    function insertToArray (input, nextElement, newElement) {
+        var itemInserted = false;
+        Array.prototype.insert = function (index) {
+            this.splice.apply(this, [index, 0].concat(this.slice.call(arguments, 1)));
+        };
+        angular.forEach(input, function (obj, index) {
+            if (!itemInserted){
+                angular.forEach(obj, function (value, key) {
+                    if (key === nextElement && !itemInserted){
+                        input.insert(index, newElement);
+                        itemInserted = true;
+                    }
+                });
+            }
+        });
+        return input;
+    }
+
+    function applyArray (container, key) {
+        $timeout(function() {
+            var arrayCopy = container[key];
+            container[key] = [];
+            container.$apply();
+            container[key] = arrayCopy;
+            container.$apply();
+        }, 0);
     }
 
     function dataServiceError(errorResponse) {

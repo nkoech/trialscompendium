@@ -64,10 +64,12 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     };
 
     vm.setResults = function (response) {
+        var selectedCopy = angular.copy(vm.selected);
         vm.pagination.totalResults = response.count;
         vm.results = vm.getTrials(response.results);
         if (vm.searchBtnClicked) {
-            var outObj = trialService.getSearchedTrials(vm.results, vm.selected, ['Short Rains', 'Long Rains']);
+            selectedCopy = trialService.removeProperty(selectedCopy, 'All');
+            var outObj = trialService.getSearchedTrials(vm.results, selectedCopy, ['Short Rains', 'Long Rains']);
 
             // if (outObj.length === 0){
             //     vm.pagination.currentPage = 35;

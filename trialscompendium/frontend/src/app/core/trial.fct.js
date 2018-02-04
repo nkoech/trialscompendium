@@ -17,7 +17,8 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         'groupObjBy': groupObjBy,
         'getSearchedTrials': getSearchedTrials,
         'insertToArray': insertToArray,
-        'applyArray':applyArray
+        'applyArray': applyArray,
+        'removeProperty': removeProperty
 
     };
 
@@ -197,6 +198,15 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
             container[key] = arrayCopy;
             container.$apply();
         }, 0);
+    }
+
+    function removeProperty(obj, propValue){
+        angular.forEach(obj, function(value, key){
+            if (!angular.isArray(value) && value[key].startsWith(propValue)){
+                obj[key] = undefined;
+            }
+        });
+        return obj;
     }
 
     function dataServiceError(errorResponse) {

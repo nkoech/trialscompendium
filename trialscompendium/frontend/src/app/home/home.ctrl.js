@@ -3,10 +3,10 @@ angular
     .controller('HomeController', HomeController);
 
 // HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', 'searchUrlService', '$timeout', 'isEmptyFilter'];
-HomeController.$inject = ['pageTrials', 'trialService', 'searchUrlService','$timeout', 'isEmptyFilter', 'valReplaceFilter'];
+HomeController.$inject = ['pageTrials', 'trialService', 'searchUrlService','$timeout', 'isEmptyFilter'];
 
 // function HomeController(pageTrials, allTrials, trialService, searchUrlService, $timeout, isEmptyFilter) {
-function HomeController(pageTrials, trialService, searchUrlService, $timeout, isEmptyFilter, valReplaceFilter) {
+function HomeController(pageTrials, trialService, searchUrlService, $timeout, isEmptyFilter) {
     var vm = this;
     vm.results = [];
     vm.searched = false;
@@ -20,7 +20,7 @@ function HomeController(pageTrials, trialService, searchUrlService, $timeout, is
     vm.searchingTable = false;
     vm.selected = {};
     vm.sortColumn = 'plot_id';
-    vm.replaceFilterVal = {true: "Plus", false: "Minus"}
+    vm.replaceFilterVal = {true: "Plus", false: "Minus"};
     vm.replaceValue = {Plus: true, Minus: false};
     vm.pagination = {
         offset: 0,

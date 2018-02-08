@@ -11,10 +11,10 @@ class PlotListFilter(FilterSet):
     class Meta:
         model = Plot
         fields = {'id': ['exact', 'in'],
-                  'trial_id': ['iexact', 'icontains'],
-                  'plot_id': ['iexact', 'icontains'],
-                  'sub_plot_id': ['iexact', 'icontains'],
-                  'treatment': ['exact'],
+                  'trial_id': ['iexact', 'in', 'icontains'],
+                  'plot_id': ['iexact', 'in', 'icontains'],
+                  'sub_plot_id': ['iexact', 'in', 'icontains'],
+                  'treatment': ['exact', 'in'],
                   }
         order_by = ['plot_id']
 

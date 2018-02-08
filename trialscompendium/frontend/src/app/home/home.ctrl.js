@@ -2,11 +2,11 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', 'searchUrlService', '$timeout', 'isEmptyFilter'];
-HomeController.$inject = ['pageTrials', 'trialService', 'searchUrlService','$timeout', 'isEmptyFilter'];
+// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', 'searchParamService', '$timeout', 'isEmptyFilter'];
+HomeController.$inject = ['pageTrials', 'trialService', 'searchParamService','$timeout', 'isEmptyFilter'];
 
-// function HomeController(pageTrials, allTrials, trialService, searchUrlService, $timeout, isEmptyFilter) {
-function HomeController(pageTrials, trialService, searchUrlService, $timeout, isEmptyFilter) {
+// function HomeController(pageTrials, allTrials, trialService, searchParamService, $timeout, isEmptyFilter) {
+function HomeController(pageTrials, trialService, searchParamService, $timeout, isEmptyFilter) {
     var vm = this;
     vm.results = [];
     vm.searched = false;
@@ -150,26 +150,25 @@ function HomeController(pageTrials, trialService, searchUrlService, $timeout, is
     //     });
     // };
 
-    // /**
-    //  * TODO: DO NOT DELETE this function is so important.
-    //  * Search one or more records in all pages
-    //  * Usage: Default params: vm.queryAllpages("trials/treatment/",{offset: 0, limit: 50})
-    //  **/
-    // vm.queryAllpages = function (apiNode, query) {
-    //     vm.searching = true;
-    //     trialService.searchAllPages(apiNode, query, []).then(function (response) {
-    //         vm.selectOptions = trialService.filterSingleObj(response, vm.filterSelectOptions, vm.replaceValue);
-    //         $timeout(function () {
-    //             vm.searching = false;
-    //         }, 500);
-    //     });
-    // };
+    /**
+     * TODO: DO NOT DELETE this function is so important.
+     * Search one or more records in all pages
+     * Usage: Default params: vm.queryAllpages("trials/treatment/",{offset: 0, limit: 50})
+     **/
+    vm.queryAllpages = function (apiNode, query) {
+        vm.searching = true;
+        trialService.searchAllPages(apiNode, query, []).then(function (response) {
+            vm.selectOptions = trialService.filterSingleObj(response, vm.filterSelectOptions, vm.replaceValue);
+            $timeout(function () {
+                vm.searching = false;
+            }, 500);
+        });
+    };
 
     vm.searchTrials = function (){
         if (!isEmptyFilter(vm.selected)) {
-            var baseURLFilter = searchUrlService.getSearchUrl(vm.baseURLs, vm.selected, vm.replaceFilterVal);
-            console.log(baseURLFilter);
             vm.searchBtnClicked = true;
+            searchParamService.setSearchParam(vm.baseURLs, vm.selected, vm.replaceFilterVal);
             vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
             vm.queryPage(vm.baseURL, vm.pageParams);
             vm.pagination.currentPage = 1;

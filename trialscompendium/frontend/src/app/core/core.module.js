@@ -20,7 +20,7 @@ angular.module('app.core', [
 
 require('./trial.fct');
 require('./store.fct');
-require('./search-url.fct');
+require('./search-param.fct');
 require('./unique-obj.fltr');
 require('./str-replace.fltr');
 require('./val-replace.fltr');

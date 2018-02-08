@@ -95,6 +95,20 @@ function searchParamService(trialService, isEmptyFilter, valReplaceFilter) {
     //     return baseURLFilter;
     // }
 
+    function createParamObj (searchParam, apiURL, selKey, obj){
+        var lookup = selKey + '__in';
+        if (Object.keys(searchParam).length === 0 || !(apiURL in searchParam)) {
+            searchParam[apiURL] = {};
+            searchParam[apiURL][lookup] = obj[selKey];
+        } else {
+            if (lookup in searchParam[apiURL]){
+                searchParam[apiURL][lookup] += ',' + obj[selKey];
+            } else {
+                searchParam[apiURL][lookup] = obj[selKey];
+            }
+        }
+    }
+
     function setSearchParam (baseURLs, userOption, replaceFilterVal){
         var searchParam = {};
         var selectedCopy = angular.copy(userOption);
@@ -105,35 +119,16 @@ function searchParamService(trialService, isEmptyFilter, valReplaceFilter) {
                     angular.forEach(selValue, function(arrObj){
                         if (fieldId === selKey) {
                             arrObj[selKey] = valReplaceFilter(arrObj[selKey], replaceFilterVal);
-                            if (Object.keys(searchParam).length === 0 || !(apiURL in searchParam)) {
-                                searchParam[apiURL] = {};
-                                searchParam[apiURL][selKey + '__in'] = arrObj[selKey];
-                            } else {
-                                if (selKey + '__in' in searchParam[apiURL]){
-                                    searchParam[apiURL][selKey + '__in'] += ',' + arrObj[selKey];
-                                } else {
-                                    searchParam[apiURL][selKey + '__in'] = arrObj[selKey];
-                                }
-                            }
+                            createParamObj(searchParam, apiURL, selKey, arrObj);
                         }
                     });
                 }else{
                     if (fieldId === selKey) {
-                        if (Object.keys(searchParam).length === 0 || !(apiURL in searchParam)) {
-                            searchParam[apiURL] = {};
-                            searchParam[apiURL][selKey + '__in'] = selValue[selKey];
-                        } else {
-                            if (selKey + '__in' in searchParam[apiURL]){
-                                searchParam[apiURL][selKey + '__in'] += ',' + selValue[selKey];
-                            } else {
-                                searchParam[apiURL][selKey + '__in'] = selValue[selKey];
-                            }
-                        }
+                        createParamObj(searchParam, apiURL, selKey, selValue);
                     }
                 }
             });
         });
-        console.log(searchParam);
-        // return searchParam;
+        return searchParam;
     }
 }

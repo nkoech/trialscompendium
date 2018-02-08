@@ -10,9 +10,10 @@ class TrialYieldListFilter(FilterSet):
     """
     class Meta:
         model = TrialYield
-        fields = {'plot': ['exact'],
+        fields = {'id': ['exact', 'in'],
+                  'plot': ['exact'],
                   'observation': ['iexact', 'icontains'],
-                  'year': ['exact', 'gte', 'lte'],
+                  'year': ['exact', 'in', 'gte', 'lte'],
                   'season': ['iexact', 'icontains'],
                   'trial_yield': ['exact', 'gte', 'lte'],
                   }

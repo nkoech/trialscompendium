@@ -2,11 +2,11 @@ angular
     .module('app.home')
     .controller('HomeController', HomeController);
 
-// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', '$timeout', 'isEmptyFilter'];
-HomeController.$inject = ['pageTrials', 'trialService', '$timeout', 'isEmptyFilter'];
+// HomeController.$inject = ['pageTrials', 'allTrials', 'trialService', 'searchUrlService', '$timeout', 'isEmptyFilter'];
+HomeController.$inject = ['pageTrials', 'trialService', 'searchUrlService','$timeout', 'isEmptyFilter', 'valReplaceFilter'];
 
-// function HomeController(pageTrials, allTrials, trialService, $timeout, isEmptyFilter) {
-function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
+// function HomeController(pageTrials, allTrials, trialService, searchUrlService, $timeout, isEmptyFilter) {
+function HomeController(pageTrials, trialService, searchUrlService, $timeout, isEmptyFilter, valReplaceFilter) {
     var vm = this;
     vm.results = [];
     vm.searched = false;
@@ -20,19 +20,32 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     vm.searchingTable = false;
     vm.selected = {};
     vm.sortColumn = 'plot_id';
+    vm.replaceFilterVal = {true: "Plus", false: "Minus"}
     vm.replaceValue = {Plus: true, Minus: false};
     vm.pagination = {
-        offset:0,
+        offset: 0,
         maxSize: 5,
         pageSize: 5,
         totalResults: 0,
         currentPage: 1,
+        totalPages: 0,
         pageOptions: {psize: [5, 10, 25, 50]}
     };
     vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
     vm.baseURL = "trials/treatment/";
     vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
     vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
+    vm.baseURLs = {
+        trial_id: 'trials/',
+        observation: 'trials/yield/',
+        year: 'trials/yield/',
+        season: 'trials/yield/',
+        tillage_practice: 'trials/treatment/',
+        farm_yard_manure: 'trials/treatment/',
+        farm_residue: 'trials/treatment/',
+        nitrogen_treatment: 'trials/treatment/',
+        phosphate_treatment: 'trials/treatment/'
+    };
 
     // Get table trials data
     vm.getTrials = function(data) {
@@ -66,21 +79,20 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     vm.setResults = function (response) {
         var selectedCopy = angular.copy(vm.selected);
         vm.pagination.totalResults = response.count;
+        // vm.pagination.totalResults = response.length;
+        vm.pagination.totalPages = trialService.calculateTotalPages(vm.pagination.pageSize, vm.pagination.totalResults);
         vm.results = vm.getTrials(response.results);
+        // vm.results = vm.getTrials(response);
         if (vm.searchBtnClicked) {
             selectedCopy = trialService.removeProperty(selectedCopy, 'All');
             var outObj = trialService.getSearchedTrials(vm.results, selectedCopy, ['Short Rains', 'Long Rains']);
 
             // if (outObj.length === 0){
-            //     vm.pagination.currentPage = 35;
-            //     vm.pageParams.offset = (vm.pagination.currentPage - 1) * vm.pagination.pageSize;
-            //     vm.queryPage(vm.baseURL, vm.pageParams);
+            //     vm.nextPage();
             // }else{
-            //     // vm.pagination.totalResults = vm.pagination.totalResults - (vm.results.length - outObj.length);
             //     vm.results = outObj;
             // }
 
-            vm.pagination.totalResults = vm.pagination.totalResults - (vm.results.length - outObj.length);
             vm.results = outObj;
         }
     };
@@ -117,6 +129,27 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
         });
     };
 
+    // // TODO: DELETE when done. This a test function.
+    // vm.queryAllXxx = function (apiNode, query) {
+    //     vm.searching = true;
+    //     trialService.searchAllPages(apiNode, query, []).then(function (response) {
+    //
+    //         console.log(response.length);
+    //         var resultsX = vm.getTrials(response);
+    //         console.log(resultsX.length);
+    //         console.log('yyyyyyyyy');
+    //
+    //         // var selectedCopyX = angular.copy(vm.selected);
+    //         // var selectedCopyX = trialService.removeProperty(selectedCopyX, 'All');
+    //         // var outObjX = trialService.getSearchedTrials(resultsX, selectedCopyX, ['Short Rains', 'Long Rains']);
+    //         // console.log(outObjX.length);
+    //
+    //         $timeout(function () {
+    //             vm.searching = false;
+    //         }, 500);
+    //     });
+    // };
+
     // /**
     //  * TODO: DO NOT DELETE this function is so important.
     //  * Search one or more records in all pages
@@ -134,10 +167,18 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
 
     vm.searchTrials = function (){
         if (!isEmptyFilter(vm.selected)) {
+            var baseURLFilter = searchUrlService.getSearchUrl(vm.baseURLs, vm.selected, vm.replaceFilterVal);
+            console.log(baseURLFilter);
             vm.searchBtnClicked = true;
             vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
             vm.queryPage(vm.baseURL, vm.pageParams);
             vm.pagination.currentPage = 1;
+
+            // // // TODO: DELETE when done. This are test lines.
+            // console.log('xxxxxxxxx');
+            // var queryx = {offset: 0, limit: 200};
+            // vm.queryAllXxx(vm.baseURL, queryx);
+
         }else{
             vm.searchBtnClicked = false;
         }
@@ -156,12 +197,46 @@ function HomeController(pageTrials, trialService, $timeout, isEmptyFilter) {
     };
 
     vm.changePageSize = function () {
+        vm.pagination.totalPages = trialService.calculateTotalPages(vm.pagination.pageSize, vm.pagination.totalResults);
         vm.pageParams.limit = vm.pagination.pageSize;
+        vm.queryPage(vm.baseURL, vm.pageParams);
+        vm.pagination.currentPage = 1;
+    };
+
+    vm.resetOffset = function () {
+        vm.pageParams.offset = (vm.pagination.currentPage - 1) * vm.pagination.pageSize;
+    };
+
+
+    vm.pageChanged = function () {
+        vm.resetOffset();
         vm.queryPage(vm.baseURL, vm.pageParams);
     };
 
-    vm.pageChanged = function () {
-        vm.pageParams.offset = (vm.pagination.currentPage - 1) * vm.pagination.pageSize;
-        vm.queryPage(vm.baseURL, vm.pageParams);
-    };
+    // TODO: DO NOT DELETE. To be used with ui-bootstrap pagination
+    // vm.previousPage = function () {
+    //     if (vm.pagination.currentPage > 1) {
+    //         vm.pagination.currentPage--;
+    //         vm.resetOffset();
+    //         console.log(vm.pageParams.offset);
+    //         vm.queryPage(vm.baseURL, vm.pageParams);
+    //     }
+    // };
+    //
+    // vm.nextPage = function () {
+    //     if (vm.pagination.currentPage < vm.pagination.totalPages) {
+    //         vm.pagination.currentPage++;
+    //         vm.resetOffset();
+    //         console.log(vm.pageParams.offset);
+    //         vm.queryPage(vm.baseURL, vm.pageParams);
+    //     }
+    // };
+    //
+    // vm.noPrevious = function() {
+    //     return vm.pagination.currentPage === 1;
+    // };
+    //
+    // vm.noNext = function() {
+    //     return vm.pagination.currentPage === vm.pagination.totalPages;
+    // };
 }

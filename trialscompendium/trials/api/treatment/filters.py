@@ -10,13 +10,14 @@ class TreatmentListFilter(FilterSet):
     """
     class Meta:
         model = Treatment
-        fields = {'no_replicate': ['exact', 'gte', 'lte'],
+        fields = {'id': ['exact', 'in'],
+                  'no_replicate': ['exact', 'gte', 'lte'],
                   'nitrogen_treatment': ['iexact', 'icontains'],
                   'phosphate_treatment': ['iexact', 'icontains'],
                   'tillage_practice': ['iexact', 'icontains'],
                   'cropping_system': ['iexact', 'icontains'],
                   'crops_grown': ['iexact', 'icontains'],
-                  'farm_yard_manure': ['iexact', 'icontains'],
-                  'farm_residue': ['iexact', 'icontains'],
+                  'farm_yard_manure': ['iexact', 'in', 'icontains'],
+                  'farm_residue': ['iexact', 'in', 'icontains'],
                   }
         order_by = ['tillage_practice', 'cropping_system', 'crops_grown']

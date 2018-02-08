@@ -10,7 +10,8 @@ class PlotListFilter(FilterSet):
     """
     class Meta:
         model = Plot
-        fields = {'trial_id': ['iexact', 'icontains'],
+        fields = {'id': ['exact', 'in'],
+                  'trial_id': ['iexact', 'icontains'],
                   'plot_id': ['iexact', 'icontains'],
                   'sub_plot_id': ['iexact', 'icontains'],
                   'treatment': ['exact'],

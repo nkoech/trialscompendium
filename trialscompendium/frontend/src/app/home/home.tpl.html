@@ -66,7 +66,7 @@
                     </div>
                 </form>
             </div>
-            <!--{{vm.selected}} <br>-->
+            {{vm.selected}} <br>
             <!--{{vm.userSearchOptions}} <br>-->
             <!--{{vm.results}}-->
         </section>
@@ -138,13 +138,16 @@
                     <div class="col-lg-6 col-md-6 pull-left">
                         <div class="left-widget">
                             <span class="widget-label">
-                                Showing Page {{vm.pagination.currentPage }} of {{vm.pagination.numPages}}
+                                Showing Page {{vm.pagination.currentPage }} of {{vm.pagination.totalPages}}
                             </span>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6  pull-right">
-                        <div class="right-widget content-pagination">
+                        <div class="bottom-btn right-widget content-pagination">
                             <ul uib-pagination class="pagination" previous-text="&laquo;" next-text="&raquo;" total-items="vm.pagination.totalResults" items-per-page="vm.pagination.pageSize" ng-model="vm.pagination.currentPage" max-size="vm.pagination.maxSize" ng-change="vm.pageChanged()" rotate="true" boundary-link-numbers="true" num-pages="vm.pagination.numPages"></ul>
+                            <!--<ul uib-pagination class="pagination" total-items="vm.pagination.totalResults" items-per-page="vm.pagination.pageSize" ng-model="vm.pagination.currentPage" max-size="vm.pagination.maxSize" ng-change="vm.pageChanged()" rotate="true" boundary-link-numbers="true" num-pages="vm.pagination.numPages"></ul>-->
+                            <!--<button type="button" class="btn btn-primary input-lg" ng-disabled="vm.noPrevious()" ng-click="vm.previousPage()">Previous</button>-->
+                            <!--<button type="button" class="btn btn-primary input-lg" ng-disabled="vm.noNext()" ng-click="vm.nextPage()">Next</button>-->
                         </div>
                     </div>
                 </div>

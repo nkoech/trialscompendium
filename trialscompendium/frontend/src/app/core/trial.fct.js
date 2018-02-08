@@ -18,7 +18,8 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         'getSearchedTrials': getSearchedTrials,
         'insertToArray': insertToArray,
         'applyArray': applyArray,
-        'removeProperty': removeProperty
+        'removeProperty': removeProperty,
+        'calculateTotalPages': calculateTotalPages
 
     };
 
@@ -200,13 +201,18 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         }, 0);
     }
 
-    function removeProperty(obj, propValue){
+    function removeProperty (obj, propValue){
         angular.forEach(obj, function(value, key){
             if (!angular.isArray(value) && value[key].startsWith(propValue)){
-                obj[key] = undefined;
+                delete obj[key];
             }
         });
         return obj;
+    }
+
+    function calculateTotalPages (pageSize, totalItems) {
+        var totalPages = pageSize < 1 ? 1 : Math.ceil(totalItems / pageSize);
+        return Math.max(totalPages || 0, 1);
     }
 
     function dataServiceError(errorResponse) {

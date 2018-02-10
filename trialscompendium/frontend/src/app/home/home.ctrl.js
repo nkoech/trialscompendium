@@ -46,6 +46,8 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         nitrogen_treatment: 'trials/treatment/',
         phosphate_treatment: 'trials/treatment/'
     };
+    vm.idResults = '';
+    vm.test = '';
 
     // Get table trials data
     vm.getTrials = function(data) {
@@ -155,10 +157,20 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
      * Search one or more records in all pages
      * Usage: Default params: vm.queryAllpages("trials/treatment/",{offset: 0, limit: 50})
      **/
-    vm.queryAllpages = function (apiNode, query) {
+    // vm.queryAllpages = function (apiNode, query) {
+    //     vm.searching = true;
+    //     trialService.searchAllPages(apiNode, query, []).then(function (response) {
+    //         vm.selectOptions = trialService.filterSingleObj(response, vm.filterSelectOptions, vm.replaceValue);
+    //         $timeout(function () {
+    //             vm.searching = false;
+    //         }, 500);
+    //     });
+    // };
+
+    vm.queryId = function (apiNode, query, key) {
         vm.searching = true;
-        trialService.searchAllPages(apiNode, query, []).then(function (response) {
-            vm.selectOptions = trialService.filterSingleObj(response, vm.filterSelectOptions, vm.replaceValue);
+        trialService.searchId(apiNode, query, key, {}).then(function (response) {
+            vm.idResults = response;
             $timeout(function () {
                 vm.searching = false;
             }, 500);
@@ -168,10 +180,28 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
     vm.searchTrials = function (){
         if (!isEmptyFilter(vm.selected)) {
             vm.searchBtnClicked = true;
-            searchParamService.setSearchParam(vm.baseURLs, vm.selected, vm.replaceFilterVal);
-            vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
-            vm.queryPage(vm.baseURL, vm.pageParams);
-            vm.pagination.currentPage = 1;
+
+
+            var searchParam = searchParamService.setSearchParam(vm.baseURLs, vm.selected, vm.replaceFilterVal);
+            vm.test = searchParam;
+            var offset = 0, limit = 200;
+            if (Object.keys(searchParam).length > 0){
+                angular.forEach(searchParam, function (value, key) {
+                    searchParam[key]['offset'] = offset;
+                    searchParam[key]['limit'] = limit;
+                    if (key === 'trials/yield/') {
+                        vm.queryId(key, searchParam[key], 'plot');
+                        // console.log(vm.idResults);
+                    } else if (key === 'trials/'){
+                        console.log('sdsdsdsdsdsds');
+                        console.log(vm.idResults);
+                    }
+                });
+            }
+
+            // vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
+            // vm.queryPage(vm.baseURL, vm.pageParams);
+            // vm.pagination.currentPage = 1;
 
             // // // TODO: DELETE when done. This are test lines.
             // console.log('xxxxxxxxx');

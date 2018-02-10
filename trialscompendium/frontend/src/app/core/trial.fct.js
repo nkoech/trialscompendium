@@ -6,10 +6,12 @@ angular
 trialService.$inject = ['$resource', 'BASE_URL', '$log', 'pickSingleObjFilter', 'strReplaceFilter', 'pickMultiObjFilter', '$timeout'];
 
 function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplaceFilter, pickMultiObjFilter, $timeout) {
+    var ids = [];
     return {
         'search': search,
         'get': get,
         'searchAllPages': searchAllPages,
+        'searchId': searchId,
         'filterSingleObj': filterSingleObj,
         'strToKey': strToKey,
         'getNestedTrials': getNestedTrials,
@@ -75,6 +77,30 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
                 return searchAllPages(apiNode, query, list);
             }
             return list;
+        });
+    }
+
+    function searchId(apiNode, query, key, obj) {
+        // Get record id
+        return makeRequest(apiNode, query).query().$promise.then(function(data){
+            angular.forEach(data.results, function(arrObj){
+                var lookup = 'id__in';
+                var id = arrObj[key];
+                if (lookup in obj){
+                    if (ids.indexOf(id) === -1){
+                        obj[lookup] += ',' + id;
+                        ids.push(id);
+                    }
+                } else {
+                    obj[lookup] = id;
+                    ids.push(id);
+                }
+            });
+            if (data.next) {
+                query.offset += query.limit;
+                return searchId(apiNode, query, key, obj);
+            }
+            return obj;
         });
     }
 

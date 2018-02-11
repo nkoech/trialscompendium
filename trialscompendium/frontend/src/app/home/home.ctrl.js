@@ -192,6 +192,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
                     searchParam[key]['limit'] = limit;
                     if (key === trialsYield) {
 
+                        //Collection of yield IDs starts here
                         vm.queryId(trialsYield, searchParam[trialsYield], 'plot').then(function (response) {
                             return response;
                         }).then(function (response) {
@@ -201,22 +202,31 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
                                 searchParam[trials] = {};
                                 searchParam[trials]['id__in'] = response.id__in;
                             }
+
+                            // Collection of trial IDs starts here
+                            vm.queryId(trials, searchParam[trials], 'treatment').then(function (response) {
+                                return response;
+                            }).then(function (response) {
+                                if (treatment in searchParam) {
+                                    searchParam[treatment]['id__in'] = response.id__in;
+                                } else {
+                                    searchParam[treatment] = {};
+                                    searchParam[treatment]['id__in'] = response.id__in;
+                                }
+
+                                // Finally a query is done against treatment api node
+                                searchParam[treatment]['offset'] = vm.pagination.offset;
+                                searchParam[treatment]['limit'] = vm.pagination.pageSize;
+                                vm.pageParams = searchParam[treatment];
+                                vm.queryPage(treatment, searchParam[treatment]);
+                            });
+
+
                         });
 
-                        vm.queryId(trials, searchParam[trials], 'treatment').then(function (response) {
-                            return response;
-                        }).then(function (response) {
-                            if (treatment in searchParam) {
-                                searchParam[treatment]['id__in'] = response.id__in;
-                            } else {
-                                searchParam[treatment] = {};
-                                searchParam[treatment]['id__in'] = response.id__in;
-                            }
-                            // console.log(searchParam);
-                        });
 
                     } else if (key === trials && !(trialsYield in searchParam)){
-                        // console.log('xxxxxxxxxxxxxxxxxxxx');
+                        // Similar to "Collection of trial IDs" section;
                     }
                 });
                 // vm.queryId(trials, searchParam[trials], 'treatment').then(function (data) {

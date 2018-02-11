@@ -100,6 +100,7 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
                 query.offset += query.limit;
                 return searchId(apiNode, query, key, obj);
             }
+            ids = [];
             return obj;
         });
     }

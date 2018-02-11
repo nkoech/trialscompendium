@@ -2,7 +2,7 @@ angular
     .module('app.core')
     .factory('searchParamService', searchParamService);
 
-searchParamService.$inject = ['trialService', 'isEmptyFilter', 'valReplaceFilter'];
+searchParamService.$inject = ['trialService', 'valReplaceFilter'];
 
 function searchParamService(trialService, valReplaceFilter) {
     return {

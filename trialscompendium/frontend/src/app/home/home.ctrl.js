@@ -46,7 +46,6 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         nitrogen_treatment: 'trials/treatment/',
         phosphate_treatment: 'trials/treatment/'
     };
-    vm.idResults = '';
     vm.test = '';
 
     // Get table trials data
@@ -191,7 +190,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
                     searchParam[key]['limit'] = limit;
                     if (key === trialsYield) {
 
-                        //Collection of yield IDs starts here
+                        //Collection of trials IDs starts here
                         vm.queryId(trialsYield, searchParam[trialsYield], 'plot').then(function (response) {
                             return response;
                         }).then(function (response) {
@@ -202,7 +201,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
                                 searchParam[trials]['id__in'] = response.id__in;
                             }
 
-                            // Collection of trial IDs starts here
+                            // Collection of treatment IDs starts here
                             vm.queryId(trials, searchParam[trials], 'treatment').then(function (response) {
                                 return response;
                             }).then(function (response) {
@@ -217,16 +216,30 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
                                 searchParam[treatment]['offset'] = vm.pagination.offset;
                                 searchParam[treatment]['limit'] = vm.pagination.pageSize;
                                 vm.pageParams = searchParam[treatment];
-                                vm.queryPage(treatment, searchParam[treatment]);
+                                vm.queryPage(treatment, vm.pageParams);
+                                vm.pagination.currentPage = 1;
                             });
                         });
                     } else if (key === trials && !(trialsYield in searchParam)){
-                        // Similar to "Collection of trial IDs" section;
+                        vm.queryId(trials, searchParam[trials], 'treatment').then(function (response) {
+                            return response;
+                        }).then(function (response) {
+                            if (treatment in searchParam) {
+                                searchParam[treatment]['id__in'] = response.id__in;
+                            } else {
+                                searchParam[treatment] = {};
+                                searchParam[treatment]['id__in'] = response.id__in;
+                            }
+
+                            // Finally a query is done against treatment api node
+                            searchParam[treatment]['offset'] = vm.pagination.offset;
+                            searchParam[treatment]['limit'] = vm.pagination.pageSize;
+                            vm.pageParams = searchParam[treatment];
+                            vm.queryPage(treatment, vm.pageParams);
+                            vm.pagination.currentPage = 1;
+                        });
                     }
                 });
-                // vm.queryId(trials, searchParam[trials], 'treatment').then(function (data) {
-                //     console.log(data);
-                // });
             }
 
             // vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};

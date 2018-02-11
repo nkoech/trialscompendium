@@ -169,11 +169,11 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
 
     vm.queryId = function (apiNode, query, key) {
         vm.searching = true;
-        trialService.searchId(apiNode, query, key, {}).then(function (response) {
-            vm.idResults = response;
+        return trialService.searchId(apiNode, query, key, {}).then(function (response) {
             $timeout(function () {
                 vm.searching = false;
             }, 500);
+            return response;
         });
     };
 
@@ -186,15 +186,29 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
             vm.test = searchParam;
             var offset = 0, limit = 200;
             if (Object.keys(searchParam).length > 0){
+                var trials = 'trials/', trialsYield = 'trials/yield/', treatment = 'trials/treatment/';
                 angular.forEach(searchParam, function (value, key) {
                     searchParam[key]['offset'] = offset;
                     searchParam[key]['limit'] = limit;
-                    if (key === 'trials/yield/') {
-                        vm.queryId(key, searchParam[key], 'plot');
-                        // console.log(vm.idResults);
-                    } else if (key === 'trials/'){
-                        console.log('sdsdsdsdsdsds');
-                        console.log(vm.idResults);
+                    if (key === trialsYield) {
+                        vm.queryId(trialsYield, searchParam[trialsYield], 'plot').then(function (response) {
+                            return response;
+                        }).then(function (response) {
+                            if (trials in searchParam) {
+                                searchParam[trials]['id__in'] = response.id__in;
+                            } else {
+                                searchParam[trials] = {};
+                                searchParam[trials]['id__in'] = response.id__in;
+                            }
+                            // console.log(searchParam);
+                        });
+
+                        // vm.queryId(trials, searchParam[trials], 'treatment').then(function (data) {
+                        //     console.log('dtdtdtdtdtd');
+                        //     console.log(data);
+                        // });
+                    } else if (key === trials && !(trialsYield in searchParam)){
+                        console.log('xxxxxxxxxxxxxxxxxxxx');
                     }
                 });
             }

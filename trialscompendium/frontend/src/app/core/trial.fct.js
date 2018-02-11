@@ -20,7 +20,8 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         'getSearchedTrials': getSearchedTrials,
         'insertToArray': insertToArray,
         'applyArray': applyArray,
-        'removeProperty': removeProperty,
+        'removePropertyValue': removePropertyValue,
+        'removePropertyByKey': removePropertyByKey,
         'calculateTotalPages': calculateTotalPages
 
     };
@@ -228,9 +229,18 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         }, 0);
     }
 
-    function removeProperty (obj, propValue){
+    function removePropertyValue (obj, propValue){
         angular.forEach(obj, function(value, key){
             if (!angular.isArray(value) && value[key].startsWith(propValue)){
+                delete obj[key];
+            }
+        });
+        return obj;
+    }
+
+    function removePropertyByKey (obj, propKey){
+        angular.forEach(obj, function(value, key){
+            if (!angular.isArray(value) && value[propKey]){
                 delete obj[key];
             }
         });

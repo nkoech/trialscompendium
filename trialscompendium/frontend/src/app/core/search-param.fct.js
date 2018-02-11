@@ -53,7 +53,7 @@ function searchParamService(trialService, isEmptyFilter, valReplaceFilter) {
     //     var baseURLFilter = {};
     //     var inLookUps = {};
     //     var selectedCopy = angular.copy(userOption);
-    //     selectedCopy = trialService.removeProperty(selectedCopy, 'All');
+    //     selectedCopy = trialService.removePropertyValue(selectedCopy, 'All');
     //     angular.forEach(baseURLs, function(apiURL, fieldId){
     //         angular.forEach(selectedCopy, function(selValue, selKey){
     //             if (angular.isArray(selValue)){
@@ -112,7 +112,7 @@ function searchParamService(trialService, isEmptyFilter, valReplaceFilter) {
     function setSearchParam (baseURLs, userOption, replaceFilterVal){
         var searchParam = {};
         var selectedCopy = angular.copy(userOption);
-        selectedCopy = trialService.removeProperty(selectedCopy, 'All');
+        selectedCopy = trialService.removePropertyValue(selectedCopy, 'All');
         angular.forEach(baseURLs, function(apiURL, fieldId){
             angular.forEach(selectedCopy, function(selValue, selKey){
                 if (angular.isArray(selValue)){

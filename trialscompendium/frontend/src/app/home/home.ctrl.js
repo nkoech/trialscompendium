@@ -86,7 +86,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         vm.results = vm.getTrials(response.results);
         // vm.results = vm.getTrials(response);
         if (vm.searchBtnClicked) {
-            selectedCopy = trialService.removeProperty(selectedCopy, 'All');
+            selectedCopy = trialService.removePropertyValue(selectedCopy, 'All');
             var outObj = trialService.getSearchedTrials(vm.results, selectedCopy, ['Short Rains', 'Long Rains']);
 
             // if (outObj.length === 0){
@@ -142,7 +142,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
     //         console.log('yyyyyyyyy');
     //
     //         // var selectedCopyX = angular.copy(vm.selected);
-    //         // var selectedCopyX = trialService.removeProperty(selectedCopyX, 'All');
+    //         // var selectedCopyX = trialService.removePropertyValue(selectedCopyX, 'All');
     //         // var outObjX = trialService.getSearchedTrials(resultsX, selectedCopyX, ['Short Rains', 'Long Rains']);
     //         // console.log(outObjX.length);
     //
@@ -191,6 +191,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
                     searchParam[key]['offset'] = offset;
                     searchParam[key]['limit'] = limit;
                     if (key === trialsYield) {
+
                         vm.queryId(trialsYield, searchParam[trialsYield], 'plot').then(function (response) {
                             return response;
                         }).then(function (response) {
@@ -200,17 +201,27 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
                                 searchParam[trials] = {};
                                 searchParam[trials]['id__in'] = response.id__in;
                             }
+                        });
+
+                        vm.queryId(trials, searchParam[trials], 'treatment').then(function (response) {
+                            return response;
+                        }).then(function (response) {
+                            if (treatment in searchParam) {
+                                searchParam[treatment]['id__in'] = response.id__in;
+                            } else {
+                                searchParam[treatment] = {};
+                                searchParam[treatment]['id__in'] = response.id__in;
+                            }
                             // console.log(searchParam);
                         });
 
-                        // vm.queryId(trials, searchParam[trials], 'treatment').then(function (data) {
-                        //     console.log('dtdtdtdtdtd');
-                        //     console.log(data);
-                        // });
                     } else if (key === trials && !(trialsYield in searchParam)){
-                        console.log('xxxxxxxxxxxxxxxxxxxx');
+                        // console.log('xxxxxxxxxxxxxxxxxxxx');
                     }
                 });
+                // vm.queryId(trials, searchParam[trials], 'treatment').then(function (data) {
+                //     console.log(data);
+                // });
             }
 
             // vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};

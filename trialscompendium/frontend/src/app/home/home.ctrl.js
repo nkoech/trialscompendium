@@ -181,7 +181,6 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         if (!isEmptyFilter(vm.selected)) {
             vm.searchBtnClicked = true;
 
-
             var searchParam = searchParamService.setSearchParam(vm.baseURLs, vm.selected, vm.replaceFilterVal);
             vm.test = searchParam;
             var offset = 0, limit = 200;
@@ -220,11 +219,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
                                 vm.pageParams = searchParam[treatment];
                                 vm.queryPage(treatment, searchParam[treatment]);
                             });
-
-
                         });
-
-
                     } else if (key === trials && !(trialsYield in searchParam)){
                         // Similar to "Collection of trial IDs" section;
                     }

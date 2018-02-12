@@ -21,8 +21,8 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         'insertToArray': insertToArray,
         'applyArray': applyArray,
         'removePropertyValue': removePropertyValue,
-        'removePropertyByKey': removePropertyByKey,
-        'calculateTotalPages': calculateTotalPages
+        'removePropertyByKey': removePropertyByKey
+        // 'calculateTotalPages': calculateTotalPages
 
     };
 
@@ -247,10 +247,10 @@ function trialService($resource, BASE_URL, $log, pickSingleObjFilter, strReplace
         return obj;
     }
 
-    function calculateTotalPages (pageSize, totalItems) {
-        var totalPages = pageSize < 1 ? 1 : Math.ceil(totalItems / pageSize);
-        return Math.max(totalPages || 0, 1);
-    }
+    // function calculateTotalPages (pageSize, totalItems) {
+    //     var totalPages = pageSize < 1 ? 1 : Math.ceil(totalItems / pageSize);
+    //     return Math.max(totalPages || 0, 1);
+    // }
 
     function dataServiceError(errorResponse) {
         $log.error('XHR Failed for ShowService');

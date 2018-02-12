@@ -23,28 +23,23 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
     vm.replaceFilterVal = {true: "Plus", false: "Minus"};
     vm.replaceValue = {Plus: true, Minus: false};
     vm.pagination = {
-        offset: 0,
-        maxSize: 5,
-        pageSize: 5,
-        totalResults: 0,
-        currentPage: 1,
-        totalPages: 0,
-        pageOptions: {psize: [5, 10, 25, 50]}
+        offset: 0, maxSize: 5, pageSize: 5, totalResults: 0, currentPage: 1,
+        pageOptions: {psize: [5, 10, 25, 50]}//, totalPages: 0,
     };
     vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
     vm.baseURL = "trials/treatment/";
-    vm.filterSelectOptions = ['trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'];
-    vm.filterTableData = ['trial_id', 'plot_id', 'sub_plot_id', 'observation', 'year', 'tillage_practice', 'farm_yard_manure', 'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'];
+    vm.filterSelectOptions = [
+        'trial_id', 'observation', 'year', 'season', 'tillage_practice', 'farm_yard_manure',
+        'farm_residue', 'nitrogen_treatment', 'phosphate_treatment'
+    ];
+    vm.filterTableData = [
+        'trial_id', 'plot_id', 'sub_plot_id', 'observation', 'year', 'tillage_practice', 'farm_yard_manure',
+        'farm_residue', 'crops_grown', 'nitrogen_treatment', 'phosphate_treatment', 'short_rains', 'long_rains'
+    ];
     vm.baseURLs = {
-        trial_id: 'trials/',
-        observation: 'trials/yield/',
-        year: 'trials/yield/',
-        season: 'trials/yield/',
-        tillage_practice: 'trials/treatment/',
-        farm_yard_manure: 'trials/treatment/',
-        farm_residue: 'trials/treatment/',
-        nitrogen_treatment: 'trials/treatment/',
-        phosphate_treatment: 'trials/treatment/'
+        trial_id: 'trials/', observation: 'trials/yield/', year: 'trials/yield/', season: 'trials/yield/',
+        tillage_practice: 'trials/treatment/', farm_yard_manure: 'trials/treatment/', farm_residue: 'trials/treatment/',
+        nitrogen_treatment: 'trials/treatment/', phosphate_treatment: 'trials/treatment/'
     };
 
     // Get data three level nested api node.Modify if more than three
@@ -79,7 +74,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
     vm.setResults = function (response) {
         var selectedCopy = angular.copy(vm.selected);
         vm.pagination.totalResults = response.count;
-        vm.pagination.totalPages = trialService.calculateTotalPages(vm.pagination.pageSize, vm.pagination.totalResults);
+        // vm.pagination.totalPages = trialService.calculateTotalPages(vm.pagination.pageSize, vm.pagination.totalResults);
         vm.results = vm.getTrials(response.results);
         if (vm.searchBtnClicked) {
             selectedCopy = trialService.removePropertyValue(selectedCopy, 'All');
@@ -176,7 +171,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         if (!isEmptyFilter(vm.selected)) {
             vm.searchBtnClicked = true;
             var searchParam = searchParamService.setSearchParam(vm.baseURLs, vm.selected, vm.replaceFilterVal);
-            var offset = 0, limit = 200;
+            var offset = 0, limit = 500;
             if (Object.keys(searchParam).length > 0){
                 var trials = 'trials/', trialsYield = 'trials/yield/';
                 angular.forEach(searchParam, function (value, key) {
@@ -212,7 +207,7 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
     };
 
     vm.changePageSize = function () {
-        vm.pagination.totalPages = trialService.calculateTotalPages(vm.pagination.pageSize, vm.pagination.totalResults);
+        // vm.pagination.totalPages = trialService.calculateTotalPages(vm.pagination.pageSize, vm.pagination.totalResults);
         vm.pageParams.limit = vm.pagination.pageSize;
         vm.queryPage(vm.baseURL, vm.pageParams);
         vm.pagination.currentPage = 1;

@@ -46,9 +46,8 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         nitrogen_treatment: 'trials/treatment/',
         phosphate_treatment: 'trials/treatment/'
     };
-    vm.test = '';
 
-    // Get table trials data
+    // Get data three level nested api node.Modify if more than three
     vm.getTrials = function(data) {
         vm.trialsData = [];
         angular.forEach(data, function (obj) {
@@ -80,24 +79,15 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
     vm.setResults = function (response) {
         var selectedCopy = angular.copy(vm.selected);
         vm.pagination.totalResults = response.count;
-        // vm.pagination.totalResults = response.length;
         vm.pagination.totalPages = trialService.calculateTotalPages(vm.pagination.pageSize, vm.pagination.totalResults);
         vm.results = vm.getTrials(response.results);
-        // vm.results = vm.getTrials(response);
         if (vm.searchBtnClicked) {
             selectedCopy = trialService.removePropertyValue(selectedCopy, 'All');
-            var outObj = trialService.getSearchedTrials(vm.results, selectedCopy, ['Short Rains', 'Long Rains']);
-
-            // if (outObj.length === 0){
-            //     vm.nextPage();
-            // }else{
-            //     vm.results = outObj;
-            // }
-
-            vm.results = outObj;
+            vm.results = trialService.getSearchedTrials(vm.results, selectedCopy, ['Short Rains', 'Long Rains']);
         }
     };
 
+    // TODO: DO NOT DELETE. For searching search options
     // vm.getTrialsSearchOptions = function () {
     //     vm.searching = false;
     //     vm.selectOptions = trialService.filterSingleObj(allTrials, vm.filterSelectOptions, vm.replaceValue);
@@ -130,27 +120,6 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         });
     };
 
-    // // TODO: DELETE when done. This a test function.
-    // vm.queryAllXxx = function (apiNode, query) {
-    //     vm.searching = true;
-    //     trialService.searchAllPages(apiNode, query, []).then(function (response) {
-    //
-    //         console.log(response.length);
-    //         var resultsX = vm.getTrials(response);
-    //         console.log(resultsX.length);
-    //         console.log('yyyyyyyyy');
-    //
-    //         // var selectedCopyX = angular.copy(vm.selected);
-    //         // var selectedCopyX = trialService.removePropertyValue(selectedCopyX, 'All');
-    //         // var outObjX = trialService.getSearchedTrials(resultsX, selectedCopyX, ['Short Rains', 'Long Rains']);
-    //         // console.log(outObjX.length);
-    //
-    //         $timeout(function () {
-    //             vm.searching = false;
-    //         }, 500);
-    //     });
-    // };
-
     /**
      * TODO: DO NOT DELETE this function is so important.
      * Search one or more records in all pages
@@ -176,81 +145,55 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         });
     };
 
+    vm.addSearchParamProp = function (obj, propKey, propValue) {
+        if (propKey in obj) {
+            obj[propKey]['id__in'] = propValue;
+        } else {
+            obj[propKey] = {};
+            obj[propKey]['id__in'] = propValue;
+        }
+    };
+
+    vm.initQueryPage =function (obj, propKey) {
+        obj[propKey]['offset'] = vm.pagination.offset;
+        obj[propKey]['limit'] = vm.pagination.pageSize;
+        vm.pageParams = obj[propKey];
+        vm.queryPage(propKey, vm.pageParams);
+        vm.pagination.currentPage = 1;
+    };
+
+    vm.queryApiNode = function (obj, propKey) {
+        var treatment = 'trials/treatment/';
+        vm.queryId(propKey, obj[propKey], 'treatment').then(function (response) {
+            return response;
+        }).then(function (response) {
+            vm.addSearchParamProp(obj, treatment, response.id__in);
+            vm.initQueryPage(obj, treatment);
+        });
+    };
+
     vm.searchTrials = function (){
         if (!isEmptyFilter(vm.selected)) {
             vm.searchBtnClicked = true;
-
             var searchParam = searchParamService.setSearchParam(vm.baseURLs, vm.selected, vm.replaceFilterVal);
-            vm.test = searchParam;
             var offset = 0, limit = 200;
             if (Object.keys(searchParam).length > 0){
-                var trials = 'trials/', trialsYield = 'trials/yield/', treatment = 'trials/treatment/';
+                var trials = 'trials/', trialsYield = 'trials/yield/';
                 angular.forEach(searchParam, function (value, key) {
                     searchParam[key]['offset'] = offset;
                     searchParam[key]['limit'] = limit;
                     if (key === trialsYield) {
-
-                        //Collection of trials IDs starts here
                         vm.queryId(trialsYield, searchParam[trialsYield], 'plot').then(function (response) {
-                            return response;
+                            return response; // Trial IDs collected
                         }).then(function (response) {
-                            if (trials in searchParam) {
-                                searchParam[trials]['id__in'] = response.id__in;
-                            } else {
-                                searchParam[trials] = {};
-                                searchParam[trials]['id__in'] = response.id__in;
-                            }
-
-                            // Collection of treatment IDs starts here
-                            vm.queryId(trials, searchParam[trials], 'treatment').then(function (response) {
-                                return response;
-                            }).then(function (response) {
-                                if (treatment in searchParam) {
-                                    searchParam[treatment]['id__in'] = response.id__in;
-                                } else {
-                                    searchParam[treatment] = {};
-                                    searchParam[treatment]['id__in'] = response.id__in;
-                                }
-
-                                // Finally a query is done against treatment api node
-                                searchParam[treatment]['offset'] = vm.pagination.offset;
-                                searchParam[treatment]['limit'] = vm.pagination.pageSize;
-                                vm.pageParams = searchParam[treatment];
-                                vm.queryPage(treatment, vm.pageParams);
-                                vm.pagination.currentPage = 1;
-                            });
+                            vm.addSearchParamProp(searchParam, trials, response.id__in);
+                            vm.queryApiNode(searchParam, trials); // Collection of treatment IDs
                         });
                     } else if (key === trials && !(trialsYield in searchParam)){
-                        vm.queryId(trials, searchParam[trials], 'treatment').then(function (response) {
-                            return response;
-                        }).then(function (response) {
-                            if (treatment in searchParam) {
-                                searchParam[treatment]['id__in'] = response.id__in;
-                            } else {
-                                searchParam[treatment] = {};
-                                searchParam[treatment]['id__in'] = response.id__in;
-                            }
-
-                            // Finally a query is done against treatment api node
-                            searchParam[treatment]['offset'] = vm.pagination.offset;
-                            searchParam[treatment]['limit'] = vm.pagination.pageSize;
-                            vm.pageParams = searchParam[treatment];
-                            vm.queryPage(treatment, vm.pageParams);
-                            vm.pagination.currentPage = 1;
-                        });
+                        vm.queryApiNode(searchParam, trials);
                     }
                 });
             }
-
-            // vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
-            // vm.queryPage(vm.baseURL, vm.pageParams);
-            // vm.pagination.currentPage = 1;
-
-            // // // TODO: DELETE when done. This are test lines.
-            // console.log('xxxxxxxxx');
-            // var queryx = {offset: 0, limit: 200};
-            // vm.queryAllXxx(vm.baseURL, queryx);
-
         }else{
             vm.searchBtnClicked = false;
         }
@@ -279,36 +222,8 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
         vm.pageParams.offset = (vm.pagination.currentPage - 1) * vm.pagination.pageSize;
     };
 
-
     vm.pageChanged = function () {
         vm.resetOffset();
         vm.queryPage(vm.baseURL, vm.pageParams);
     };
-
-    // TODO: DO NOT DELETE. To be used with ui-bootstrap pagination
-    // vm.previousPage = function () {
-    //     if (vm.pagination.currentPage > 1) {
-    //         vm.pagination.currentPage--;
-    //         vm.resetOffset();
-    //         console.log(vm.pageParams.offset);
-    //         vm.queryPage(vm.baseURL, vm.pageParams);
-    //     }
-    // };
-    //
-    // vm.nextPage = function () {
-    //     if (vm.pagination.currentPage < vm.pagination.totalPages) {
-    //         vm.pagination.currentPage++;
-    //         vm.resetOffset();
-    //         console.log(vm.pageParams.offset);
-    //         vm.queryPage(vm.baseURL, vm.pageParams);
-    //     }
-    // };
-    //
-    // vm.noPrevious = function() {
-    //     return vm.pagination.currentPage === 1;
-    // };
-    //
-    // vm.noNext = function() {
-    //     return vm.pagination.currentPage === vm.pagination.totalPages;
-    // };
 }

@@ -133,10 +133,10 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
     vm.queryId = function (apiNode, query, key) {
         vm.searching = true;
         return trialService.searchId(apiNode, query, key, {}).then(function (response) {
-            $timeout(function () {
+            if (response) {
                 vm.searching = false;
-            }, 500);
-            return response;
+                return response;
+            }
         });
     };
 

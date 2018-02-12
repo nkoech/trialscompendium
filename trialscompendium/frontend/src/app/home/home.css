@@ -29,6 +29,17 @@
     width: 25%;
 }
 
+.search .loading-msg {
+    float: left;
+    font-size: 16px;
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.search .loading-msg .ng-hide {
+    opacity: 0;
+}
+
 .main-content .data-table {
     padding: 20px 0 20px;
 }

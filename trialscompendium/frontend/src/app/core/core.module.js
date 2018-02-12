@@ -1,4 +1,5 @@
 require('angular-animate');
+require('angular-loading-bar');
 require('angular-route');
 require('angular-resource');
 require('angular-sanitize');
@@ -9,6 +10,7 @@ require('angular-filter');
 
 angular.module('app.core', [
     'ngAnimate',
+    'angular-loading-bar',
     'ngRoute',
     'ngResource',
     'ngSanitize',
@@ -16,6 +18,7 @@ angular.module('app.core', [
     'ui.select',
     'LocalStorageModule',
     'angular.filter'
+
 ]);
 
 require('./trial.fct');

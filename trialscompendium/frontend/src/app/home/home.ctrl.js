@@ -23,8 +23,8 @@ function HomeController(pageTrials, trialService, searchParamService, $timeout, 
     vm.replaceFilterVal = {true: "Plus", false: "Minus"};
     vm.replaceValue = {Plus: true, Minus: false};
     vm.pagination = {
-        offset: 0, maxSize: 5, pageSize: 5, totalResults: 0, currentPage: 1,
-        pageOptions: {psize: [5, 10, 25, 50]}//, totalPages: 0,
+        offset: 0, maxSize: 5, pageSize: 2, totalResults: 0, currentPage: 1,
+        pageOptions: {psize: [2, 4, 8, 16]}//, totalPages: 0,
     };
     vm.pageParams = {offset: vm.pagination.offset, limit: vm.pagination.pageSize};
     vm.baseURL = "trials/treatment/";

@@ -14,7 +14,7 @@ function routes($routeProvider, $locationProvider) {
             resolve: {
                 pageTrials: function (trialService){
                     var apiNode = "trials/treatment/";
-                    var query = {offset: 0, limit: 5};
+                    var query = {offset: 0, limit: 2};
                     return trialService.search(apiNode, query).then(function (response) {
                         return response;
                     });

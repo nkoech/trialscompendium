@@ -64,23 +64,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <p class="loading-msg" ng-show="vm.searching">Performing search...</p>
-                            <!--<div class="form-group">-->
-                                <!--<div class="col-lg-12 col-md-12">-->
-                                    <!--<search-trial label="field trial" prop="trial_id" multiple="0" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions"></search-trial>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        </div>
-                    </div>
                 </form>
             </div>
             <!--{{vm.selected}} <br>-->
             <!--{{vm.userSearchOptions}} <br>-->
             <!--{{vm.results}}-->
-            {{vm.test}} <br>
         </section>
 
         <!-- Table section -->
@@ -90,7 +78,7 @@
                     <div class="col-lg-6 col-md-6 pull-left">
                         <div class="left-widget">
                             <span class="widget-label">
-                                Page Size:
+                                Page Factor:
                                 <select class="form-control" ng-options="opt for opt in vm.pagination.pageOptions.psize" ng-model="vm.pagination.pageSize" ng-change="vm.changePageSize()"></select>
                             </span>
                         </div>

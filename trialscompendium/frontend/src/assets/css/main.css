@@ -47,6 +47,11 @@ a {
   text-decoration: none;
   transition: all 500ms ease-in-out;
 }
+
+a:visited {
+  text-decoration: none;
+}
+
 a:hover, a:active{
   color: #34495e;
   text-decoration: none;

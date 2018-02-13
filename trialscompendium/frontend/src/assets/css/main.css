@@ -3,6 +3,7 @@
 @import 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto%20Mono';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.min.css';
 @import '../../app/home/home.css';
+@import '../../app/about/about.css';
 @import '../../app/widgets/search-trial/search-trial.css';
 
 /* Base styles */

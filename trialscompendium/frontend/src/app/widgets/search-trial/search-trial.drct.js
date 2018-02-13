@@ -13,7 +13,8 @@ function searchTrial() {
             'trialSelected': '=',
             'disableInputField': '=',
             'selected': '=',
-            'selectOptions': '='
+            'selectOptions': '=',
+            'searching': '='
         },
         controller: SearchTrialController
     };

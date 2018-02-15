@@ -12,6 +12,15 @@ module.exports = {
     entry: {
         app: './src/app/app.module.js'
     },
+    aliases: {
+     // Tell Webpack about your directory structure, customize the below line with the right directory
+     //TODO: Read more here https://webpack.js.org/configuration/resolve/ and https://webpack.js.org/configuration/resolve/#resolve-alias
+    //change directory to match my project structure
+    // you may have also to tweark the link in your css
+    //src: path.resolve(__dirname, '../src')
+    image: path.resolve(__dirname, '../../image'),
+   
+  },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'

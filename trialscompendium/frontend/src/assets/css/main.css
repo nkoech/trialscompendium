@@ -38,11 +38,6 @@ body {
   -moz-osx-font-smoothing: grayscale !important;
 }
 
-ol, ul, li {
-  list-style: none;
-  display: inline-block;
-}
-
 a {
   color: #34495e;
   text-decoration: none;

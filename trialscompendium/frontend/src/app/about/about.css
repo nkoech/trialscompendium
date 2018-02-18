@@ -39,9 +39,8 @@
 }
 
 .banner-btn .btn-primary {
-    /*height:*/
     width: 25%;
-    padding: 0px;
+    padding: 8px;
 }
 
 .about-page .title {

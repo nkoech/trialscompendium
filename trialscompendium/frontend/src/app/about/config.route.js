@@ -6,8 +6,8 @@ routes.$inject = ["$routeProvider", "$locationProvider"];
 
 function routes($routeProvider, $locationProvider) {
     $routeProvider.
-        when('/about', {
-            title: 'about',
+        when('/', {
+            title: 'home',
             controller: 'AboutController',
             controllerAs: 'vm',
             templateUrl: require("./about.tpl.html")

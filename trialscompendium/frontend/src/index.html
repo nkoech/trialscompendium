@@ -19,14 +19,14 @@
                     <button type="button" class="navbar-toggle" ng-click="vm.isNavCollapsed = !vm.isNavCollapsed"></button>
                     <a href="https://ccafs.cgiar.org/" class="navbar-brand navbar-left" target="_blank"><img src="./assets/img/ciat_logo.jpg" alt="CIAT Logo"></a>
                 </div>
-                <div class="navbar-collapse collapse" uib-collapse="vm.isNavCollapsed">
+                <div class="navbar-collapse collapse" uib-collapse="vm.isNavCollapsed" set-active-link>
                     <ul class="nav navbar-nav navbar-left nav-link">
-                        <li><a class='active' href="/">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="/trials">Trials</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right registration-link">
-                        <li id="login"><a href="/login">Login</a></li>
-                        <li id="sign-up"><a href="/sign-up">Sign Up</a></li>
+                        <li id="login"><a href="#">Login</a></li>
+                        <li id="sign-up"><a href="#">Sign Up</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,8 +50,8 @@
                     </div>
                     <div class="col-lg-2  col-lg-offset-2 col-md-2 col-lg-offset-2">
                         <h4>Application</h4>
-                        <p><i class="fa fa-home" aria-hidden="true"></i> <a href="#">Home</a></p>
-                        <p><i class="fa fa-info-circle" aria-hidden="true"></i> <a href="#">About</a></p>
+                        <p><i class="fa fa-home" aria-hidden="true"></i> <a href="/">Home</a></p>
+                        <p><i class="fa fa-info-circle" aria-hidden="true"></i> <a href="/trials">Trials</a></p>
                         <p><i class="fa fa-sign-in" aria-hidden="true"></i> <a href="#">Login</a></p>
                         <p><i class="fa fa-user-plus" aria-hidden="true"></i> <a href="#">Sign Up</a></p>
                     </div>

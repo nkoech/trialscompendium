@@ -108,7 +108,7 @@ function SearchTrialController($scope, trialService) {
         if (prop === 'trial_id'){
             angular.forEach($scope.selected,function(value, key){
                 if (key !== prop) {
-                    $scope.selected[key] = undefined;
+                    delete $scope.selected[key];
                 }
             });
         }

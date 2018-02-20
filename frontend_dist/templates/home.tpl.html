@@ -1,0 +1,151 @@
+<div class="home-page" id="home-page">
+
+    <!-- main section -->
+    <section class="main-content">
+        <!-- Search section -->
+        <section class="search">
+            <div class="container">
+                <form role="form" class="form-horizontal">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <div class="col-lg-12 col-md-12">
+                                    <search-trial label="field trial" prop="trial_id" multiple="0" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <div class="col-lg-7 col-md-7">
+                                    <search-trial label="observation" prop="observation" multiple="0" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                                <div class="col-lg-5 col-md-5">
+                                    <search-trial label="year" prop="year" multiple="1" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <div class="col-lg-4 col-md-4">
+                                    <search-trial label="season" prop="season" multiple="1" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                                <div class="col-lg-5 col-md-5">
+                                    <search-trial label="tillage practice" prop="tillage_practice" multiple="1" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                                <div class="col-lg-3 col-md-3">
+                                    <search-trial label="farm yard manure" prop="farm_yard_manure" multiple="1" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <div class="col-lg-4 col-md-4">
+                                    <search-trial label="crop residue" prop="farm_residue" multiple="1" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <search-trial label="nitrogen" prop="nitrogen_treatment" multiple="1" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <search-trial label="phosphate" prop="phosphate_treatment" multiple="1" trial-selected="vm.trialSelected" disable-input-field="vm.disableInputField" selected="vm.selected" select-options="vm.selectOptions" searching="vm.searching"></search-trial>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="bottom-btn">
+                                <button type="submit" class="btn btn-primary input-lg" ng-disabled="vm.disableInputField && vm.prop !== 'trial_id' || vm.searching" ng-click="vm.searchTrials()">Search Trials</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Table section -->
+        <section class="data-table">
+            <div class="container">
+                <div class="row top-bottom-bar" ng-if="vm.results.length > 0">
+                    <div class="col-lg-6 col-md-6 pull-left">
+                        <div class="left-widget">
+                            <span class="widget-label">
+                                Page Factor:
+                                <select class="form-control" ng-options="opt for opt in vm.pagination.pageOptions.psize" ng-model="vm.pagination.pageSize" ng-disabled="vm.searching" ng-change="vm.changePageSize()"></select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6  pull-right">
+                        <div class="right-widget">
+                            <span for="table-search-form" class="widget-label">
+                                Search:
+                                <input type="text" class="form-control" id="table-search-form"  placeholder="Table search ..." ng-model="vm.searchTable" ng-disabled="vm.searching" ng-change="vm.onSearchTable(true)">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12" ng-show="vm.results.length > 0 && vm.filterData > 0">
+                        <table class="table table-striped table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Trial&nbsp;<a ng-click="vm.sort_with('trial_id');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Plot&nbsp;<a ng-click="vm.sort_with('plot_id');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Observation&nbsp;<a ng-click="vm.sort_with('observation');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Year&nbsp;<a ng-click="vm.sort_with('year');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Tillage&nbsp;<a ng-click="vm.sort_with('tillage_practice');"><i class="fa fa-sort"></i></a></th>
+                                    <th>FYM&nbsp;<a ng-click="vm.sort_with('farm_yard_manure');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Residue&nbsp;<a ng-click="vm.sort_with('farm_residue');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Rotation&nbsp;<a ng-click="vm.sort_with('crops_grown');"><i class="fa fa-sort"></i></a></th>
+                                    <th>NP&nbsp;<a ng-click="vm.sort_with('phosphate_treatment');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Short Rains&nbsp;<a ng-click="vm.sort_with('short_rains');"><i class="fa fa-sort"></i></a></th>
+                                    <th>Long Rains&nbsp;<a ng-click="vm.sort_with('long_rains');"><i class="fa fa-sort"></i></a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="trial in vm.searched = (vm.results | filter: vm.searchTable | orderBy: vm.sortColumn: vm.reverse) track by $index">
+                                    <td>{{trial.trial_id}}</td>
+                                    <td>{{trial.plot_id}}{{trial.sub_plot_id}}</td>
+                                    <td>{{trial.observation}}</td>
+                                    <td>{{trial.year}}</td>
+                                    <td>{{trial.tillage_practice}}</td>
+                                    <td>{{trial.farm_yard_manure}}</td>
+                                    <td>{{trial.farm_residue}}</td>
+                                    <td>{{trial.crops_grown}}</td>
+                                    <td>{{trial.phosphate_treatment}}{{trial.nitrogen_treatment}}</td>
+                                    <td>{{trial.short_rains}}</td>
+                                    <td>{{trial.long_rains}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12 col-md-12 alert alert-warning no-data" ng-if="vm.results.length === 0">
+                        <i class="fa fa-info-circle"></i> Our search did not return any results. Kindly change your keywords and search again.
+                    </div>
+                    <div class="col-lg-12 col-md-12 alert alert-warning no-data" ng-if="vm.filterData === 0 && vm.searchingTable">
+                        <i class="fa fa-info-circle"></i> Table filter did not return any results. Kindly delete to view tabular data.
+                    </div>
+                </div>
+                <div class="row top-bottom-bar" ng-if="vm.results.length > 0 && vm.filterData > 0">
+                    <div class="col-lg-6 col-md-6 pull-left">
+                        <div class="left-widget">
+                            <span class="widget-label">
+                                Showing Page {{vm.pagination.currentPage }} of {{vm.pagination.numPages}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6  pull-right">
+                        <div class="bottom-btn right-widget content-pagination">
+                            <ul uib-pagination class="pagination" previous-text="&laquo;" next-text="&raquo;" total-items="vm.pagination.totalResults" items-per-page="vm.pagination.pageSize" ng-model="vm.pagination.currentPage" max-size="vm.pagination.maxSize" ng-disabled="vm.searching" ng-change="vm.pageChanged()" rotate="true" boundary-link-numbers="true" num-pages="vm.pagination.numPages"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>

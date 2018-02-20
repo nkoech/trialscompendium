@@ -27,8 +27,6 @@ function SearchTrialController($scope, trialService) {
     $scope.selectOptions = [{
         "trial_id": "INM3"
     },{
-        "trial_id": "CT1"
-    },{
         "observation": "Maize Y"
     },{
         "observation": "Maize AGB"

@@ -164,7 +164,8 @@ WEBPACK_LOADER = {
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:8080'
+    'localhost:8080',
+    'trialscompendium'
 )
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None

@@ -10,11 +10,11 @@ var extractPlugin = new ExtractTextPlugin({
 
 module.exports = {
     entry: {
-        app: './src/app/app.module.js'
+        bundle: './src/app/app.module.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: '[name].js'
         // publicPath: '/dist'
     },
     module: {
@@ -33,7 +33,10 @@ module.exports = {
                         }
                     }
                 ],
-                exclude: [/node-modules/]
+                exclude: [
+                    path.resolve(__dirname, 'src/config/config.js'),
+                    /node-modules/
+                ]
             },
             {
                 test: /\.css$/,
@@ -56,6 +59,19 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /config.js$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'config/'
+                        }
+                    }
+                ],
+                exclude: [/node-modules/]
             },
             {
                 test: /\.html$/,

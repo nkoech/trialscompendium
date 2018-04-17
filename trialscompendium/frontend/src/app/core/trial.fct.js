@@ -1,7 +1,9 @@
+require('../../config/config');
+
 angular
     .module('app.core')
-    .constant('BASE_URL', 'http://127.0.0.1:8000/api')
-    // .constant('BASE_URL', baseURL.url)
+    // .constant('BASE_URL', 'http://127.0.0.1:8000/api')
+    .constant('BASE_URL', baseAPI.url)
     .factory('trialService', trialService);
 
 trialService.$inject = ['$resource', 'BASE_URL', '$log', 'pickSingleObjFilter', 'strReplaceFilter', 'pickMultiObjFilter', '$timeout'];
